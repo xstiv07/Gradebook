@@ -1,0 +1,125 @@
+main{
+	padding-top: 30px;
+}
+
+@font-face {
+    font-family: Avengers;
+    src: url('../fonts/BankGothicBold.ttf');
+}
+
+header .navbar{
+	border-radius: 0;
+}
+
+::-webkit-input-placeholder
+{
+    text-align: center;
+    font-family: Avengers;
+}
+
+* {
+  outline: 0px none !important;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+input[type="text"],
+input[type="password"] {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  padding: 0.7em 2em 0.7em 1.7em;
+  font-size: 18px;
+  background: none repeat scroll 0% 0% transparent;
+  border: thin solid #b4b2b2;
+  border-radius: 2px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+	border: thin solid #89C4F4;
+}
+
+form[novalidate] input{
+  border: thin solid #89C4F4;
+}
+
+input.ng-invalid.ng-dirty{
+  border-color: red;
+}
+
+
+.login-form {
+  background: none repeat scroll 0% 0% #fff;
+  border: thin solid #89c4f4;
+  margin: 9% auto;
+  position: relative;
+  width: 400px;
+  text-align: center;
+  -webkit-box-shadow: 6px 6px 18px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 6px 18px -3px rgba(0,0,0,0.75);
+  box-shadow: 6px 6px 18px -3px rgba(0,0,0,0.75);
+}
+.login-form form {
+  padding: 5% 10% 20% 2.5em;
+}
+.login-form form div {
+  
+  margin-bottom: 25px;
+  width: 100%;
+  background: none repeat scroll 0% 0% transparent;
+  border-radius: 0.3em;
+}
+.btn {
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px;
+  display: block;
+  color: #808080;
+  width: 135px;
+  margin: 0px auto;
+  border: thin solid #89C4F4;
+}
+.btn:hover {
+  border: thin solid transparent;
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus{
+	background-color: #fff;
+}
+.btn-default, .btn-default:focus{
+  border: thin solid #89C4F4;
+}
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.pwd {
+  margin-bottom: 50px !important;
+}
+
+.spinner {
+  animation:spin 1s infinite;
+  -webkit-animation:spin 1s infinite;
+  -moz-animation:spin 1s infinite;
+}
+
+@keyframes spin {
+  from  { transform:rotate(0deg); }
+  to  { transform:rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+  from  { -webkit-transform:rotate(0deg); }
+  to  { -webkit-transform:rotate(360deg); }
+}
+
+@-moz-keyframes spin {
+  from  { -moz-transform:rotate(0deg); }  
+  to  { -moz-transform:rotate(360deg); }
+}
