@@ -1,0 +1,24 @@
+<div class="alert alert-danger" ng-show="register.error">
+	{{register.error}}
+</div>
+<div class="login-form">
+	<span><img src="assets/images/u6.png" /></span>
+	<form ng-submit="register.doRegister()" name="form" novalidate>
+		<div class="name">
+			<input required type="text" placeholder="FIRST NAME" ng-model="register.registerData.name">
+		</div>
+		<div class="uname">
+			<input required type="text" placeholder="USERNAME" ng-model="register.registerData.username">
+		</div>
+		<div class="pwd">
+			<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD" ng-model="register.registerData.password">
+			<p class="help-block bg-danger" ng-show="form.password.$error.minlength">Min 6 characters required</p>
+		</div>
+		
+		<a href="/login"><span class="btn btn-default right">Login</span></a>
+		<button type="submit" class="btn btn-default left" ng-disabled="form.$invalid">
+			<span ng-if="register.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
+			<span ng-if="!register.processing">Register</span>
+		</button>
+	</form>
+</div>

@@ -12,18 +12,29 @@ angular.module('authService', [])
 	var authFactory = {};
 
 	// log a user in
-	authFactory.login = function(username, password) {
+	authFactory.login = function(loginData) {
 
 		// return the promise object and its data
 		return $http.post('/api/authenticate', {
-			username: username,
-			password: password
+			username: loginData.username,
+			password: loginData.password
 		})
 			.success(function(data) {
 				AuthToken.setToken(data.token);
        			return data;
 			});
 	};
+
+	authFactory.register = function (registerData) {
+		return $http.post('/api/register/', {
+			name: registerData.name,
+			username: registerData.username,
+			password: registerData.password
+		}).success(function(data) {
+			AuthToken.setToken(data.token);
+   			return data;
+		});
+	}
 
 	// log a user out by clearing the token
 	authFactory.logout = function() {

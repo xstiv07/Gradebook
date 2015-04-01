@@ -16,13 +16,38 @@ angular.module('mainCtrl', [])
 			});
 	});	
 
+	vm.doRegister = function () {
+
+		// clear the error
+		vm.error = '';
+
+		var registerData = {
+			name: vm.registerData.name,
+			username: vm.registerData.username,
+			password: vm.registerData.password
+		};
+
+		Auth.register(registerData).success(function (data) {
+			if (data.success)			
+				$location.path('/users');
+			else 
+				vm.error = data.message;
+
+		})
+	}
+
 	vm.doLogin = function () {
 		vm.processing = true;
 
 		// clear the error
 		vm.error = '';
 
-		Auth.login(vm.loginData.username, vm.loginData.password).success(function (data) {
+		var loginData = {
+			username: vm.loginData.username,
+			password: vm.loginData.password
+		};
+
+		Auth.login(loginData).success(function (data) {
 			vm.processing = false;
 			// if a user successfully logs in, redirect to users page
 				if (data.success)			

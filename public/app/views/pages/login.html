@@ -8,8 +8,7 @@
 			<input required type="text" placeholder="USERNAME" ng-model="login.loginData.username">
 		</div>
 		<div class="pwd">
-			<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD" ng-model="login.loginData.password">
-			<p class="help-block bg-danger" ng-show="form.password.$error.minlength">Min 6 characters required</p>
+			<input required name="password" type="password" placeholder="PASSWORD" ng-model="login.loginData.password">
 		</div>
 		
 		<button type="submit" class="btn btn-default right" ng-disabled="form.$invalid">
@@ -17,7 +16,7 @@
 			<span ng-if="!login.processing">Log In</span>
 		</button>
 
-		<span class="btn btn-default left">Register</span>
+		<a href="/register"><span class="btn btn-default left">Register</span></a>
 
 	</form>
 </div>

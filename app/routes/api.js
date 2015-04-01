@@ -30,8 +30,34 @@ module.exports = function (app, express) {
 						message: 'Authentication failed. Password does not match'
 					})
 				}else{
-					//if user is found and password is right
-					var token = jwt.sign({
+					sendToken('Successfully passed a token', user, res);
+				}
+			}
+		})
+	});
+
+	apiRouter.route('/register')
+		.post(function (req, res) {
+			var user = new User();
+
+			user.name = req.body.name;
+			user.username =  req.body.username;
+			user.password = req.body.password;
+
+			user.save(function(err){
+				if (err){
+					//duplicate entry
+					if(err.code == 11000)
+						return res.json({success: false, message: "Username already exists"});
+					else
+						return res.send(err);
+				}
+				sendToken('Registration successful', user, res);
+			})
+		})
+
+	function sendToken (msg, user, res) {
+		var token = jwt.sign({
 						name: user.name,
 						username: user.username
 					}, supersecret, {
@@ -40,14 +66,10 @@ module.exports = function (app, express) {
 
 					res.json({
 						success: true,
-						message: 'Successfully passed a token',
+						message: msg,
 						token: token
 					});
-
-				}
-			}
-		})
-	})
+	}
 
 	//middleware that is responsible for protecting all routes that will follow it using tokens based authentication
 	apiRouter.use(function (req, res, next) {

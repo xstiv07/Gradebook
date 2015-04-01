@@ -9,7 +9,12 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/login.html',
 			controller: 'mainController',
 			controllerAs: 'login'
-		});
+		})
+		.when('/register',{
+			templateUrl: 'app/views/pages/register.html',
+			controller: 'mainController',
+			controllerAs: 'register'
+		})
 
 	$locationProvider.html5Mode(true);
 });
