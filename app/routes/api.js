@@ -1,5 +1,6 @@
 var User = require('../models/user'),
 	jwt = require('jsonwebtoken'),
+	validator = require('validator'),
 	config = require('../../config');
 
 var supersecret = config.secret;
@@ -38,22 +39,30 @@ module.exports = function (app, express) {
 
 	apiRouter.route('/register')
 		.post(function (req, res) {
-			var user = new User();
+			console.log(req);
+			if(!validator.isNull(req.body.name) && !validator.isNull(req.body.username) && !validator.isNull(req.body.password)){
+				var user = new User();
 
-			user.name = req.body.name;
-			user.username =  req.body.username;
-			user.password = req.body.password;
+				user.name = req.body.name;
+				user.username =  req.body.username;
+				user.password = req.body.password;
 
-			user.save(function(err){
-				if (err){
-					//duplicate entry
-					if(err.code == 11000)
-						return res.json({success: false, message: "Username already exists"});
-					else
-						return res.send(err);
-				}
-				sendToken('Registration successful', user, res);
-			})
+				user.save(function(err){
+					if (err){
+						//duplicate entry
+						if(err.code == 11000)
+							return res.json({success: false, message: "Username already exists"});
+						else
+							return res.send(err);
+					}
+					sendToken('Registration successful', user, res);
+				})
+			}else{
+				res.json({
+					success: false,
+					message: 'Please fill all the required fields'
+				})
+			}
 		})
 
 	function sendToken (msg, user, res) {

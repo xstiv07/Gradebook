@@ -16,45 +16,55 @@ angular.module('mainCtrl', [])
 			});
 	});	
 
-	vm.doRegister = function () {
+	vm.doRegister = function (isValid) {
 
 		// clear the error
 		vm.error = '';
 
-		var registerData = {
-			name: vm.registerData.name,
-			username: vm.registerData.username,
-			password: vm.registerData.password
-		};
+		if(isValid){
+			var registerData = {
+				name: vm.registerData.name,
+				username: vm.registerData.username,
+				password: vm.registerData.password
+			};
 
-		Auth.register(registerData).success(function (data) {
-			if (data.success)			
-				$location.path('/users');
-			else 
-				vm.error = data.message;
+			Auth.register(registerData).success(function (data) {
+				if (data.success)			
+					$location.path('/users');
+				else 
+					vm.error = data.message;
 
-		})
-	}
+			})
+		}else{
+			vm.processing = false;
+			vm.error = 'Fill out all the required info.';
+		}	
+	};
 
-	vm.doLogin = function () {
+	vm.doLogin = function (isValid) {
 		vm.processing = true;
 
 		// clear the error
 		vm.error = '';
 
-		var loginData = {
-			username: vm.loginData.username,
-			password: vm.loginData.password
-		};
+		if(isValid){
+				var loginData = {
+				username: vm.loginData.username,
+				password: vm.loginData.password
+			};
 
-		Auth.login(loginData).success(function (data) {
+			Auth.login(loginData).success(function (data) {
+				vm.processing = false;
+				// if a user successfully logs in, redirect to users page
+					if (data.success)			
+						$location.path('/users');
+					else 
+						vm.error = data.message;
+			});
+		}else{
 			vm.processing = false;
-			// if a user successfully logs in, redirect to users page
-				if (data.success)			
-					$location.path('/users');
-				else 
-					vm.error = data.message;
-		});
+			vm.error = 'Fill out all the required info.';
+		}
 	};
 
 	vm.doLogout = function () {

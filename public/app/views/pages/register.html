@@ -3,7 +3,7 @@
 </div>
 <div class="login-form">
 	<span><img src="assets/images/u6.png" /></span>
-	<form ng-submit="register.doRegister()" name="form" novalidate>
+	<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
 		<div class="name">
 			<input required type="text" placeholder="FIRST NAME" ng-model="register.registerData.name">
 		</div>
@@ -16,7 +16,7 @@
 		</div>
 		
 		<a href="/login"><span class="btn btn-default right">Login</span></a>
-		<button type="submit" class="btn btn-default left" ng-disabled="form.$invalid">
+		<button type="submit" class="btn btn-default left">
 			<span ng-if="register.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
 			<span ng-if="!register.processing">Register</span>
 		</button>
