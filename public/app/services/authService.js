@@ -15,7 +15,7 @@ angular.module('authService', [])
 	authFactory.login = function(username, password) {
 
 		// return the promise object and its data
-		return $http.post('https://wvup-gradebook.herokuapp.com/api/authenticate', {
+		return $http.post('/api/authenticate', {
 			username: username,
 			password: password
 		})
@@ -43,7 +43,7 @@ angular.module('authService', [])
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
-			return $http.get('https://wvup-gradebook.herokuapp.com/api/me', { cache: true });
+			return $http.get('/api/me', { cache: true });
 		else
 			return $q.reject({ message: 'User has no token.' });		
 	};
