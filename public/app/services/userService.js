@@ -11,16 +11,12 @@ angular.module('userService', [])
 		return $http.get('/api/users/' + id);
 	};
 
-	userFactory.create = function(data) {
-		return $http.post('/api/users/' + data);
-	};
-
 	userFactory.update = function (id, data) {
 		return $http.put('/api/users/' + id, data);
 	};
 
 	userFactory.delete = function (id) {
-		return $http.delete('/api/users' + id);
+		return $http.delete('/api/users/' + id);
 	}
 
 	return userFactory;

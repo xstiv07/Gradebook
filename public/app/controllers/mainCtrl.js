@@ -22,13 +22,7 @@ angular.module('mainCtrl', [])
 		vm.error = '';
 
 		if(isValid){
-			var registerData = {
-				name: vm.registerData.name,
-				username: vm.registerData.username,
-				password: vm.registerData.password
-			};
-
-			Auth.register(registerData).success(function (data) {
+			Auth.register(vm.registerData).success(function (data) {
 				if (data.success)			
 					$location.path('/users');
 				else 
@@ -48,12 +42,8 @@ angular.module('mainCtrl', [])
 		vm.error = '';
 
 		if(isValid){
-				var loginData = {
-				username: vm.loginData.username,
-				password: vm.loginData.password
-			};
 
-			Auth.login(loginData).success(function (data) {
+			Auth.login(vm.loginData).success(function (data) {
 				vm.processing = false;
 				// if a user successfully logs in, redirect to users page
 					if (data.success)			
