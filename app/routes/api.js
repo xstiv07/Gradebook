@@ -5,7 +5,7 @@ module.exports = function (app, express) {
 	//public routes
 	require('./publicRoutes')(apiRouter);
 
-	//middleware that is responsible for protecting all routes
+	//middleware that is responsible for protecting all following routes
 	require('./authRoutes')(apiRouter);
 
 	//user routes

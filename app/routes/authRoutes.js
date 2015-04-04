@@ -8,7 +8,12 @@ module.exports = function (apiRouter) {
 		var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 		//decode token
-		if(token){
+		if(!token){
+			return res.status(403).send({
+				success: false,
+				message: 'No token provided'
+			});
+		}else{
 			//verifies secret and checks expiration
 			jwt.verify(token, supersecret, function (err, decoded) {
 				if (err){
@@ -22,12 +27,7 @@ module.exports = function (apiRouter) {
 					next();
 				}
 			});
-		}else{
-			//if there is no token retuen http response of 403 and error message
-			return res.status(403).send({
-				success: false,
-				message: 'No token provided'
-			});
+			
 		}
 	});
 }
