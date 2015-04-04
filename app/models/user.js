@@ -1,23 +1,31 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	bcrypt = require('bcrypt-nodejs');
+	bcrypt = require('bcrypt-nodejs'),
+	Class = require('./class');
 
 //user schema
 
 var UserSchema = new Schema({
-	name: String,
+	name: {
+		type: String,
+		required: 'First name required.'
+	},
 	username: {
 		type: String,
-		required: true,
+		required: 'Username required',
 		index: {
 			unique: true
 		}
 	},
 	password: {
 		type: String,
-		required: true,
+		required: 'Password required',
 		select: false
-	}
+	},
+	classes: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Class'
+	}]
 });
 
 //hash the password before the user is saved

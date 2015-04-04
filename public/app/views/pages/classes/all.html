@@ -1,0 +1,36 @@
+<div class="jumbotron text-center" ng-show="class.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Classes...</p>
+</div>
+<div class="page-header">
+<h1>Classes</h1>
+	<a href="/classes/create" class="btn btn-default">
+				<span class="glyphicon glyphicon-plus"></span> 
+				New Class
+			</a>
+</div>
+<table class="table table-bordered table-striped" ng-show="class.classes">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>CRN</th>
+			<th>Description</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="class in class.classes">
+			<td>{{ class._id }}</td>
+			<td>{{ class.name }}</td>
+			<td>{{ class.crn }}</td>
+			<td>{{ class.description }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/classes/{{ class._id }}" class="btn btn-default">Edit</a>
+				<a ng-href="/classes/addStudents/{{ class._id }}" class="btn btn-default">Add Students</a>
+				<a ng-href="/classes/enrolledStudents/{{ class._id }}" class="btn btn-default">View Students</a>
+				<a href="#" ng-click="class.deleteClass(class._id)" class="btn btn-default">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

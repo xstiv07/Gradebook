@@ -1,5 +1,6 @@
 //name our angular app
-angular.module('gradebookApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
+angular.module('gradebookApp', 
+	['ngAnimate', 'app.routes','authService','mainCtrl','userCtrl','userService','classCtrl', 'classService'])
 
 .config(function($httpProvider) {
 

@@ -11,8 +11,7 @@ var express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//configure our app to handle Cross Origin Resource Sharing requests
-//we are setting out configuration to allow requests from other domains to prevent CORS errors. This allows any domain to access our API
+//handle Cross Origin Resource Sharing requests
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');

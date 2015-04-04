@@ -16,9 +16,11 @@
 
 	<script src="app/controllers/mainCtrl.js"></script>
 	<script src="app/controllers/userCtrl.js"></script>
+	<script src="app/controllers/classCtrl.js"></script>
 
 	<script src="app/services/authService.js"></script>
 	<script src="app/services/userService.js"></script>
+	<script src="app/services/classService.js"></script>
 
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
@@ -35,6 +37,9 @@
 					<li>
 						<a href="/users"><span class="glyphicon glyphicon-user"></span>Users</a>
 					</li>
+					<li>
+						<a href="/classes"><span class="glyphicon glyphicon-book"></span>Classes</a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
@@ -47,7 +52,10 @@
 
 	<!-- MAIN CONTENT AND INJECTED VIEWS -->
 	<main class='container'>
+	<div id="wrapper">
 		<div ng-view></div>
+	</div>
+		
 	</main>
 </body>
 </html>
