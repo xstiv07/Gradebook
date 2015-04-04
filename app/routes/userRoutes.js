@@ -7,9 +7,10 @@ module.exports = function (apiRouter) {
 			User.find(function (err, users) {
 				if(err)
 					res.send(err);
-
-				//return the users
-				res.json(users)
+				else{
+					//return the users
+					res.json(users)
+				}
 			});
 		});
 
@@ -23,7 +24,9 @@ module.exports = function (apiRouter) {
 				.exec(function (err, user) {
 					if (err)
 						res.send(err);
-					res.json(user);
+					else{
+						res.json(user);
+					}
 				})
 		})
 		//update the user with that id
@@ -44,12 +47,13 @@ module.exports = function (apiRouter) {
 				user.save(function (err) {
 					if(err)
 						res.send(err);
-
-					//return a message
-					res.json({
-						success: true,
-						message: 'User updated'
-					});
+					else{
+						//return a message
+						res.json({
+							success: true,
+							message: 'User updated'
+						});
+					}
 				})
 			})
 		})
@@ -60,17 +64,15 @@ module.exports = function (apiRouter) {
 			}, function (err, user) {
 				if(err)
 					return res.send(err);
-
-				User.find(function (err, users) {
-					if(err)
-						res.send(err);
-
-					//return the users
-					res.json({
-						users: users,
-						message: 'Successfully deleted'
-					})
-				});
+				else{
+					User.find(function (err, users) {
+						//return the users
+						res.json({
+							users: users,
+							message: 'Successfully deleted'
+						})
+					});
+				}
 			});
 		});
 

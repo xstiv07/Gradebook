@@ -1,6 +1,6 @@
 angular.module('classCtrl', ['classService'])
 
-.controller('classController', function (Class) {
+.controller('classController', function ($location, Class) {
 	var vm = this;
 
 	vm.processing = true;
@@ -8,7 +8,31 @@ angular.module('classCtrl', ['classService'])
 	Class.all().success(function (data) {
 		vm.classes = data;
 		vm.processing = false;
-	})
+	});
+
+	vm.doDeleteClass = function (id) {
+		Class.delete(id).success(function (data) {
+			vm.processing = false;
+			vm.classes = data.classes;
+		});
+	};
+
+	vm.doNewClass = function (isValid) {
+		vm.error = '';
+		if (isValid){
+			Class.create(vm.classData).success(function (data) {
+				if(data.success)
+					$location.path('/classes');
+				else{
+					vm.processing = false;
+					vm.error = data.message;
+				}
+			})
+		}else{
+			vm.processing = false;
+			vm.error = 'Fields marked with a * are mandatory.';
+		}
+	}
 })
 
 .controller('addStudentsController', function ($routeParams, $location, User, Class) {
@@ -32,8 +56,11 @@ angular.module('classCtrl', ['classService'])
 
 	vm.postStudents = function () {
 		Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
-			vm.selectedUsers = [];
-			$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
+			if (data.success)			
+					$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
+				else 
+					vm.message = data.message;
+			vm.processing = false;
 		})
 	}
 })
@@ -44,9 +71,8 @@ angular.module('classCtrl', ['classService'])
 	vm.processing = true;
 
 	Class.getStudents($routeParams.class_id).success(function (data) {
-		vm.users = data;
-		
-		console.log(vm.users)
+		vm.users = data.students;
+		vm.processing = false;
 	})
 
 

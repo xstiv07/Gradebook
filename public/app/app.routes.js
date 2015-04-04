@@ -30,6 +30,11 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'classController',
 			controllerAs: 'class'
 		})
+		.when('/classes/create',{
+			templateUrl: 'app/views/pages/classes/create.html',
+			controller: 'classController',
+			controllerAs: 'class'
+		})
 		.when('/classes/addStudents/:class_id', {
 			templateUrl: 'app/views/pages/classes/addStudents.html',
 			controller: 'addStudentsController',
@@ -40,6 +45,9 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'enrolledStudentsController',
 			controllerAs: 'enrolledStudents'
 		})
+		.otherwise({
+            redirectTo: '/'
+        });
 
 	$locationProvider.html5Mode(true);
 });

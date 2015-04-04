@@ -5,10 +5,10 @@
 	<span><img src="assets/images/u6.png" /></span>
 	<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
 		<div class="uname">
-			<input required type="text" placeholder="USERNAME" ng-model="login.loginData.username">
+			<input required type="text" placeholder="USERNAME*" ng-model="login.loginData.username">
 		</div>
 		<div class="pwd">
-			<input required name="password" type="password" placeholder="PASSWORD" ng-model="login.loginData.password">
+			<input required name="password" type="password" placeholder="PASSWORD*" ng-model="login.loginData.password">
 		</div>
 		
 		<button type="submit" class="btn btn-default right">

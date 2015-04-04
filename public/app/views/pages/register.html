@@ -5,13 +5,13 @@
 	<span><img src="assets/images/u6.png" /></span>
 	<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
 		<div class="name">
-			<input required type="text" placeholder="FIRST NAME" ng-model="register.registerData.name">
+			<input required type="text" placeholder="FIRST NAME*" ng-model="register.registerData.name">
 		</div>
 		<div class="uname">
-			<input required type="text" placeholder="USERNAME" ng-model="register.registerData.username">
+			<input required type="text" placeholder="USERNAME*" ng-model="register.registerData.username">
 		</div>
 		<div class="pwd">
-			<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD" ng-model="register.registerData.password">
+			<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD*" ng-model="register.registerData.password">
 			<p class="help-block bg-danger" ng-show="form.password.$error.minlength">Min 6 characters required</p>
 		</div>
 		

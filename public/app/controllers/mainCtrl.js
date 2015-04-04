@@ -25,13 +25,15 @@ angular.module('mainCtrl', [])
 			Auth.register(vm.registerData).success(function (data) {
 				if (data.success)			
 					$location.path('/users');
-				else 
+				else{
+					vm.processing = false;
 					vm.error = data.message;
+				}
 
 			})
 		}else{
 			vm.processing = false;
-			vm.error = 'Fill out all the required info.';
+			vm.error = 'Fields marked with a * are mandatory.';
 		}	
 	};
 
@@ -53,7 +55,7 @@ angular.module('mainCtrl', [])
 			});
 		}else{
 			vm.processing = false;
-			vm.error = 'Fill out all the required info.';
+			vm.error = 'Fields marked with a * are mandatory.';
 		}
 	};
 

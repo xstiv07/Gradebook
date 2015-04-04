@@ -5,15 +5,15 @@ var User = require('./user'),
 var classSchema = new Schema({
 	crn: {
 		type: Number,
-		required: "CRN Required"
+		required: true
 	},
 	name: {
 		type: String,
-		required: "Class Name Required"
+		required: true
 	},
 	description: {
 		type: String,
-		required: 'Description Required'
+		required: true
 	},
 	users : [{
 		type: mongoose.Schema.Types.ObjectId,

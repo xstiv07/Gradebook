@@ -1,0 +1,36 @@
+<h1>Create a new class</h1>
+
+<div class="alert alert-danger" ng-show="class.error">
+	{{class.error}}
+</div>
+
+<form class="form-horizontal" name="form" ng-submit="class.doNewClass(form.$valid)" novalidate>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">CRN*</label>
+		<div class="col-sm-6">
+			<input required type="text" class="form-control" ng-model="class.classData.crn">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Class Name*</label>
+		<div class="col-sm-6">
+			<input required type="text" class="form-control" ng-model="class.classData.name">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Description*</label>
+		<div class="col-sm-6">
+			<input required type="text" class="form-control" ng-model="class.classData.description">
+		</div>
+	</div>
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-default btn-lg btn-block">Create</button>
+	</div>
+	</div>
+
+</form>

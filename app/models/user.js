@@ -8,18 +8,18 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
 	name: {
 		type: String,
-		required: 'First name required.'
+		required: true
 	},
 	username: {
 		type: String,
-		required: 'Username required',
+		required: true,
 		index: {
 			unique: true
 		}
 	},
 	password: {
 		type: String,
-		required: 'Password required',
+		required: true,
 		select: false
 	},
 	classes: [{

@@ -20,16 +20,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="class in class.classes">
-			<td>{{ class._id }}</td>
-			<td>{{ class.name }}</td>
-			<td>{{ class.crn }}</td>
-			<td>{{ class.description }}</td>
+		<tr ng-repeat="gClass in class.classes">
+			<td>{{ gClass._id }}</td>
+			<td>{{ gClass.name }}</td>
+			<td>{{ gClass.crn }}</td>
+			<td>{{ gClass.description }}</td>
 			<td class="col-sm-2">
-				<a ng-href="/classes/{{ class._id }}" class="btn btn-default">Edit</a>
-				<a ng-href="/classes/addStudents/{{ class._id }}" class="btn btn-default">Add Students</a>
-				<a ng-href="/classes/enrolledStudents/{{ class._id }}" class="btn btn-default">View Students</a>
-				<a href="#" ng-click="class.deleteClass(class._id)" class="btn btn-default">Delete</a>
+				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit</a>
+				<a ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-default">Add Students</a>
+				<a ng-href="/classes/enrolledStudents/{{ gClass._id }}" class="btn btn-default">View Students</a>
+				<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-default">Delete</a>
 			</td>
 		</tr>
 	</tbody>
