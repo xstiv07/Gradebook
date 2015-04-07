@@ -1,0 +1,29 @@
+<div class="jumbotron text-center" ng-show="assignment.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Assignments...</p>
+</div>
+<div class="page-header">
+<h1>Assignments Specific</h1>
+</div>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="assignm in assignment.assignments">
+			<td>{{ assignm._id }}</td>
+			<td>{{ assignm.name }}</td>
+			<td>{{ assignm.description }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Assignment</a>
+				<a href="#" ng-click="assignment.doDeleteAssignment(assignm._id)" class="btn btn-default">Delete Assignment</a>
+				<a ng-href="/assignments/{{ gClass._id }}" class="btn btn-default">View Submissions</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

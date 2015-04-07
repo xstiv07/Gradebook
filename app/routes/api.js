@@ -14,5 +14,8 @@ module.exports = function (app, express) {
 	//class routes
 	require('./classRoutes')(apiRouter);
 
+	//assignment routes
+	require('./assignmentRoutes')(apiRouter);
+
 	return apiRouter;
 };

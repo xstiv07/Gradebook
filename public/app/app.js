@@ -1,5 +1,15 @@
 angular.module('gradebookApp', 
-	['ngAnimate', 'app.routes','authService','mainCtrl','userCtrl','userService','classCtrl', 'classService'])
+	['ngAnimate',
+	'app.routes',
+	'authService',
+	'mainCtrl',
+	'userCtrl',
+	'userService',
+	'classCtrl',
+	'classService',
+	'assignmentCtrl',
+	'assignmentService']
+	)
 
 .config(function($httpProvider) {
 

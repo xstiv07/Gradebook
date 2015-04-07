@@ -45,6 +45,21 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'enrolledStudentsController',
 			controllerAs: 'enrolledStudents'
 		})
+		.when('/assignments',{
+			templateUrl: 'app/views/pages/assignments/all.html',
+			controller: 'assignmentController',
+			controllerAs: 'assignment'
+		})
+		.when('/assignments/create/:class_id',{
+			templateUrl: 'app/views/pages/assignments/create.html',
+			controller: 'assignmentController',
+			controllerAs: 'assignment'
+		})
+		.when('/assignments/view/:class_id',{
+			templateUrl: 'app/views/pages/assignments/classAssignments.html',
+			controller: 'assignmentClassController',
+			controllerAs: 'assignment'
+		})
 		.otherwise({
             redirectTo: '/'
         });

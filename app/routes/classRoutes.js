@@ -26,11 +26,8 @@ module.exports = function (apiRouter) {
 			gClass.save(function (err) {
 				if (err)
 					res.send(err);
-				else{
-					res.json({
-					success: true
-				});
-				}
+				else
+					res.json({success: true});
 			})
 		});
 
@@ -40,7 +37,7 @@ module.exports = function (apiRouter) {
 				_id: req.params.class_id
 			}, function (err) {
 				if(err)
-					return res.send(err);
+					res.send(err);
 
 				Class.find(function (err, classes) {
 					res.json({
@@ -52,6 +49,7 @@ module.exports = function (apiRouter) {
 		});
 
 
+		//change tomorrow.
 	apiRouter.route('/classes/addStudents/:class_id')
 		.post(function (req, res) {
 
@@ -76,7 +74,7 @@ module.exports = function (apiRouter) {
 						})
 				};
 				if (err)
-					res.json(err);
+					res.send(err);
 				else{
 					res.json({
 					success: true,
@@ -84,6 +82,13 @@ module.exports = function (apiRouter) {
 				});	
 				}
 				
+			})
+		})
+		.delete(function (req, res) {
+			Class.findById(req.params.class_id, function (err, gClass) {
+				if (err)
+					res.send(err);
+
 			})
 		})
 

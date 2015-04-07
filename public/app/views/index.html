@@ -20,10 +20,12 @@
 	<script src="app/services/authService.js"></script>
 	<script src="app/services/userService.js"></script>
 	<script src="app/services/classService.js"></script>
+	<script src="app/services/assignmentService.js"></script>
 
 	<script src="app/controllers/mainCtrl.js"></script>
 	<script src="app/controllers/userCtrl.js"></script>
 	<script src="app/controllers/classCtrl.js"></script>
+	<script src="app/controllers/assignmentCtrl.js"></script>
 
 </head>
 <body ng-app="gradebookApp" ng-controller="mainController as main">
@@ -40,6 +42,9 @@
 					</li>
 					<li>
 						<a href="/classes"><span class="glyphicon glyphicon-book"></span>Classes</a>
+					</li>
+					<li>
+						<a href="/assignments"><span class="glyphicon glyphicon-pencil"></span>Assignments</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
