@@ -10,7 +10,7 @@
 			<th>_id</th>
 			<th>Name</th>
 			<th>Username</th>
-			
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,6 +18,9 @@
 			<td>{{ person._id }}</td>
 			<td>{{ person.name }}</td>
 			<td>{{ person.username }}</td>
+			<td>
+				<a href="#" ng-click="enrolledStudents.unenroll(person._id)" class="btn btn-default">Delete from class</a>
+			</td>
 		</tr>
 	</tbody>
 </table>

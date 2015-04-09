@@ -26,13 +26,13 @@ angular.module('classCtrl', ['classService'])
 				else{
 					vm.processing = false;
 					vm.error = data.message;
-				}
-			})
+				};
+			});
 		}else{
 			vm.processing = false;
 			vm.error = 'Fields marked with a * are mandatory.';
-		}
-	}
+		};
+	};
 })
 
 .controller('addStudentsController', function ($routeParams, $location, User, Class) {
@@ -57,15 +57,14 @@ angular.module('classCtrl', ['classService'])
 	vm.postStudents = function () {
 		Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
 			if (data.success)			
-					$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
-				else 
-					vm.message = data.message;
+				$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
+				
 			vm.processing = false;
-		})
-	}
+		});
+	};
 })
 
-.controller('enrolledStudentsController', function ($routeParams, Class) {
+.controller('enrolledStudentsController', function ($location, $routeParams, Class) {
 	var vm = this;
 
 	vm.processing = true;
@@ -73,7 +72,18 @@ angular.module('classCtrl', ['classService'])
 	Class.getStudents($routeParams.class_id).success(function (data) {
 		vm.users = data.students;
 		vm.processing = false;
-	})
+	});
 
+	vm.unenroll = function (userId) {
+		var usrId = {
+			userId : userId
+		};
+		Class.unenroll($routeParams.class_id, usrId).success(function () {
+			Class.getStudents($routeParams.class_id).success(function (data) {
+				vm.users = data.students;
+				vm.processing = false;
+			});
+		})
+	};
 
 })

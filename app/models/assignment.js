@@ -13,10 +13,10 @@ var assignmentSchema = new Schema({
 		type: String,
 		required: true
 	},
-	gclass: {
+	gclass: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Class'
-	},
+	}],
 	submissions:[{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Submission'

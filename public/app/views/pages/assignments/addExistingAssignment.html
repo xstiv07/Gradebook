@@ -3,7 +3,7 @@
 	<p>Loading Assignments...</p>
 </div>
 <div class="page-header">
-<h1>Assignments for 'className here'</h1> <!-- get class name here from another controller or via service separate call-->
+<h1>Assignments</h1>
 </div>
 <table class="table table-bordered table-striped">
 	<thead>
@@ -20,10 +20,10 @@
 			<td>{{ assignm.name }}</td>
 			<td>{{ assignm.description }}</td>
 			<td class="col-sm-2">
-				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Assignment</a>
-				<a href="#" ng-click="assignment.deleteAssignmentFromClass(assignm._id)" class="btn btn-default">Delete Assignment From a Class</a>
-				<a ng-href="/assignments/{{ gClass._id }}" class="btn btn-default">View Submissions</a>
+				<input type="checkbox" ng-checked="assignment.selectedAssignments.indexOf(assignm) != -1" ng-click="assignment.toggleCheck(assignm._id)">
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<button class="btn btn-default" ng-click="assignment.postAssignments()">Add assignments</button>

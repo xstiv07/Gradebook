@@ -60,6 +60,11 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'assignmentClassController',
 			controllerAs: 'assignment'
 		})
+		.when('/assignments/addAssignment/:class_id',{
+			templateUrl: 'app/views/pages/assignments/addExistingAssignment.html',
+			controller: 'assignmentController',
+			controllerAs: 'assignment'
+		})
 		.otherwise({
             redirectTo: '/'
         });

@@ -4,19 +4,66 @@ var Assignment = require('../models/assignment'),
 module.exports = function (apiRouter) {
 
 	//assignments for a specific class
-	apiRouter.get('/assignments/view/:class_id', function (req, res) {
-		Class.findOne({
-				_id: req.params.class_id
-			}).populate('assignments').exec(function (err, gClass) {
-				if (err)
-					return err;
-				else{
-					res.json({
-						assignments: gClass.assignments
-					});
-				};
+	apiRouter.route('/assignments/view/:class_id')
+		.get(function (req, res) {
+			Class.findOne({
+					_id: req.params.class_id
+				}).populate('assignments').exec(function (err, gClass) {
+					if (err)
+						return err;
+					else{
+						res.json({
+							assignments: gClass.assignments
+						});
+					};
+				});
+			})
+		//it is not an array that is why I cannot pull
+		.put(function (req, res) {
+			Assignment.update({
+				_id: req.body.assignmentId},
+				{$pull: {gclass: req.params.class_id}}, function (err) {
+					if (err)
+						res.send(err);
+			});
+			Class.update({
+				_id: req.params.class_id},
+				{$pull: {assignments: req.body.assignmentId}}, function (err) {
+					if (err)
+						res.send(err);
+			});
+			res.json({
+				success: true
+			});
+		})
+
+	apiRouter.post('/assignments/addExisting/:class_id', function (req, res) {
+		Class.findById(req.params.class_id, function (err, gxClass) {
+			if (err)
+				res.send(err);
+
+			console.log(req.body);
+
+			for (var i in req.body) {
+				Assignment.update({
+					_id: req.body[i]},
+					{$addToSet: {gclass: gxClass}}, function (err) {
+						if(err)
+							res.send(err);
+				});
+
+				Class.update({
+					_id: gxClass._id},
+					{$addToSet: {assignments: req.body[i]}}, function (err) {
+						if (err)
+							res.send(err);
+				});
+			};
+			res.json({
+				success: true
 			});
 		});
+	});
 		
 	apiRouter.post('/assignments/create/:class_id', function (req, res) {
 		var assignm = new Assignment();
@@ -35,8 +82,8 @@ module.exports = function (apiRouter) {
 			gClass.save(function (err) {
 				if (err)
 					res.send(err);
-			})
-		})
+			});
+		});
 
 		assignm.save(function (err) {
 			if (err)
@@ -59,7 +106,7 @@ module.exports = function (apiRouter) {
 					success: true
 				});
 			});
-		})
+		});
 	});
 
 		//create and list all assignments

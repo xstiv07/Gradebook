@@ -47,6 +47,18 @@ UserSchema.pre('save', function (next) {
 	});
 });
 
+//will remove user from classes on user delete
+UserSchema.pre('remove', function (next) {
+	var user = this;
+
+	user.model('Class').update(
+		{_id: {$in: user.classes}},
+		{$pull: {users: user._id}},
+		{multi: true},
+		next
+	);
+});
+
 //method to compare a given password with the database hash
 
 UserSchema.methods.comparePassword = function (password) {

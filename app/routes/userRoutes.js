@@ -10,7 +10,7 @@ module.exports = function (apiRouter) {
 				else{
 					//return the users
 					res.json(users)
-				}
+				};
 			});
 		});
 
@@ -53,26 +53,24 @@ module.exports = function (apiRouter) {
 							success: true,
 							message: 'User updated'
 						});
-					}
-				})
-			})
+					};
+				});
+			});
 		})
 		//delete the user with this id
 		.delete(function (req, res) {
-			User.remove({
-				_id: req.params.user_id
-			}, function (err, user) {
-				if(err)
-					return res.send(err);
-				else{
-					User.find(function (err, users) {
-						//return the users
-						res.json({
-							users: users,
-							message: 'Successfully deleted'
-						})
+			User.findByIdAndRemove(req.params.user_id, function (err, user) {
+				if (err)
+					res.send(err);
+				user.remove();
+			}).then(function () {
+				User.find(function (err, users) {
+					res.json({
+						users: users,
+						success: true,
+						message: 'Successfully deleted'
 					});
-				}
+				});
 			});
 		});
 
