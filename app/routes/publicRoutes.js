@@ -5,6 +5,7 @@ var User = require('../models/user'),
 
 function sendToken (msg, user, res) {
 	var token = jwt.sign({
+					id: user._id,
 					name: user.name,
 					username: user.username
 				}, supersecret, {

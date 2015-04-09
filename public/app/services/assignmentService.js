@@ -27,5 +27,9 @@ angular.module('assignmentService', [])
 		return $http.post('/api/assignments/addExisting/' + classId, assignmentIds);
 	}
 
+	assignmentFactory.submit = function (assignmentId, userId, files) {
+		return $http.post('/api/assignments/submit' + assignmentId, userId, files)
+	}
+
 	return assignmentFactory;
 })

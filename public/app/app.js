@@ -8,7 +8,8 @@ angular.module('gradebookApp',
 	'classCtrl',
 	'classService',
 	'assignmentCtrl',
-	'assignmentService']
+	'assignmentService',
+	'submissionCtrl']
 	)
 
 .config(function($httpProvider) {

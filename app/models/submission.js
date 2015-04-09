@@ -16,5 +16,7 @@ var submissionSchema = new Schema({
 	files: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'File'
-	}]
+	}],
+	grade: String,
+	status: String
 })
