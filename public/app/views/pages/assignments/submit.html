@@ -1,4 +1,16 @@
-<form id = "uploadForm" enctype = "multipart/form-data" name="form" ng-submit="submission.submit(form.$valid)" novalidate>
-	<input required type="file" name="userSubmission" />
-	<input type="submit" value="Attach Files" name="submit">
-</form>
+<div ng-show="!submission.uploaded">
+	<span class="button-upload" ng-file-select ng-model="submission.files" ng-multiple="true">Select Files To Upload</span>
+
+	<button ng-click="submission.upload(submission.files)" class="btn btn-default">SUBMIT</button>
+</div>
+
+<p ng-show="!submission.uploaded" ng-bind="submission.uploadPercent"></p>
+
+<div ng-show='submission.uploaded'>
+	<p>Following files were successfully uploaded:</p>
+	<ul >
+	    <li ng-repeat="f in submission.files" style="font:smaller">
+	    	{{f.name}}
+	    </li>
+	</ul>
+</div>

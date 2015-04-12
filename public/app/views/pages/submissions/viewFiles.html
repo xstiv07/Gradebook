@@ -1,0 +1,19 @@
+<div class="jumbotron text-center" ng-show="submission.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Files...</p>
+</div>
+<div class="page-header">
+<h1>Files for 'submissionName here'</h1> 
+</div>
+<table class="table table-bordered table-striped">
+	<tbody>
+		<tr ng-repeat="f in submission.files">
+			<td>
+				{{f.name}}
+			</td>
+			<td>
+				<a target="_self" download="{{f.name}}" href="{{f.path}}">Download</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -6,6 +6,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	path = require('path'),
 	multer = require('multer'),
+	done = false,
 	config = require('./config');
 
 //use body parser so we can grab information from POST requests
@@ -24,7 +25,7 @@ app.use(function (req, res, next) {
 app.use(morgan('dev'));
 
 app.use(multer({
-	dest: './app/uploads/',
+	dest: './public/uploads/',
 	rename: function (fieldname, filename) {
 		return filename + Date.now();
 	},

@@ -1,6 +1,6 @@
 var User = require('./user'),
 	Assignment = require('./assignment'),
-	File = require('./file')
+	File = require('./file'),
 	mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
@@ -20,3 +20,5 @@ var submissionSchema = new Schema({
 	grade: String,
 	status: String
 })
+
+module.exports = mongoose.model('Submission', submissionSchema);

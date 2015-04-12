@@ -9,11 +9,11 @@ angular.module('gradebookApp',
 	'classService',
 	'assignmentCtrl',
 	'assignmentService',
-	'submissionCtrl']
+	'submissionCtrl',
+	'angularFileUpload']
 	)
 
 .config(function($httpProvider) {
-
 	// attach auth interceptor to http requests
 	$httpProvider.interceptors.push('AuthInterceptor');
 

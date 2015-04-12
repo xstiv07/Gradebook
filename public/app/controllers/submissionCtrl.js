@@ -1,6 +1,6 @@
-angular.module('submissionCtrl', ['assignmentService'])
+angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 
-.controller('submissionController', function (Auth, Assignment, $routeParams) {
+.controller('submissionController', function (Auth, Assignment, $routeParams, $upload) {
 	var vm = this;
 	vm.processing = true;
 
@@ -8,23 +8,36 @@ angular.module('submissionCtrl', ['assignmentService'])
 		vm.currentUser = user.data
 	});
 
-	vm.submit = function () {
-		vm.error = '';
+	
+	vm.error = '';
+	vm.uploaded = false;
 
-		var currentUserId = {
-			userId: vm.currentUser.id
-		}
+	vm.upload = function (files) {
+		if (files && files.length) {
+			$upload.upload({
+				url: '/api/assignments/submit/' + $routeParams.assignment_id,
+				data: vm.currentUser.id,
+				file: files
+			}).progress(function (e) {
+				vm.uploadPercent  =  parseInt(100.0 * e.loaded / e.total) + ' %'
+			}).success(function (data ,status, headers, config) {
+				vm.uploaded = true;
+		});
+		};
+	};
+})
+.controller('viewSubmissionController', function ($routeParams, Assignment) {
+	var vm = this;
 
-		console.log($routeParams.assignment_id);
-		console.log(currentUserId);
+	//get all submissions for the assignment
+	Assignment.getSubmissions($routeParams.assignment_id).success(function (data) {
+		vm.submissions = data.submissions;
+	});
+})
+.controller('viewSubmissionFilesController', function ($routeParams, Assignment) {
+	var vm= this;
 
-		//get form data --files to send to the api
-		console.log(vm.userSubmission)
-
-
-			// Assignment.submit($routeParams.assignment_id, currentUser, vm.files).success(function () {
-			// 	$location.path('/');
-			// 	vm.processing = false;
-			// })
-	}
+	Assignment.getSubmissionFiles($routeParams.submission_id).success(function (data) {
+		vm.files = data.files;
+	});
 })

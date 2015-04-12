@@ -1,0 +1,27 @@
+<div class="jumbotron text-center" ng-show="assignment.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Submissions...</p>
+</div>
+<div class="page-header">
+<h1>Submissions for 'assignmentName here'</h1> 
+</div>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Grade</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="subm in assignment.submissions">
+			<td>{{ subm._id }}</td>
+			<td>{{ subm.grade }}</td>
+			<td>{{ subm.status }}</td>
+			<td>
+				<a ng-href="/submission/viewFiles/{{ subm._id }}" class="btn btn-default">View Attached Files</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

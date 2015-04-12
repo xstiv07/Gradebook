@@ -131,3 +131,13 @@ input.ng-invalid.ng-dirty{
   -moz-animation:fadeIn .8s both linear;
   animation:fadeIn .8s both linear;
 }
+
+.button-upload {
+    -moz-appearance: button;
+    /* Firefox */
+    -webkit-appearance: button;
+    /* Safari and Chrome */
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+}

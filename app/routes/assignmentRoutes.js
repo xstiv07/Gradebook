@@ -1,5 +1,7 @@
 var Assignment = require('../models/assignment'),
 	Class = require('../models/class');
+	Submission = require('../models/submission'),
+	File = require('../models/file');
 
 module.exports = function (apiRouter) {
 
@@ -10,7 +12,7 @@ module.exports = function (apiRouter) {
 					_id: req.params.class_id
 				}).populate('assignments').exec(function (err, gClass) {
 					if (err)
-						return err;
+						res.send(err);
 					else{
 						res.json({
 							assignments: gClass.assignments
@@ -35,14 +37,12 @@ module.exports = function (apiRouter) {
 			res.json({
 				success: true
 			});
-		})
+		});
 
 	apiRouter.post('/assignments/addExisting/:class_id', function (req, res) {
 		Class.findById(req.params.class_id, function (err, gxClass) {
 			if (err)
 				res.send(err);
-
-			console.log(req.body);
 
 			for (var i in req.body) {
 				Assignment.update({
@@ -62,6 +62,71 @@ module.exports = function (apiRouter) {
 			res.json({
 				success: true
 			});
+		});
+	});
+
+	apiRouter.route('/assignments/submit/:assignment_id')
+		.post(function (req, res) {
+			console.log(req.files)
+			var submission = new Submission();
+			submission.user = req.body.data; //userId
+			submission.assignment = req.params.assignment_id;
+
+			for (var file in req.files) {
+				var submissionFile = new File();
+				submissionFile.submission = submission._id;
+				submissionFile.path = '/uploads/' + req.files[file].name;
+				submissionFile.name = req.files[file].originalname;
+
+				submission.files.push(submissionFile); // adding a file reference to a submission
+				submissionFile.save(function (err) {
+					if (err)
+						res.send(err)
+				});
+			};
+			Assignment.update({
+				_id: req.params.assignment_id},
+				{$push: {submissions: submission}}, function (err) {
+					if (err)
+						res.send(err)
+			});
+
+			submission.save(function (err) {
+				if (err)
+					res.send(err);
+			})
+			res.json({
+				success: true
+			});
+		})
+		.get(function (req, res) {
+			//find an assignment, populate with submissions and files and return
+			Assignment.findOne({
+				_id: req.params.assignment_id
+			}).populate('submissions').exec(function (err, assignm) {
+				if (err)
+					res.send(err);
+				else{
+					res.json({
+						submissions: assignm.submissions,
+						success: true
+					});
+				};
+			});
+		});
+
+	apiRouter.get('/assignments/files/:submission_id', function (req, res) {
+		Submission.findOne({
+			_id: req.params.submission_id
+		}).populate('files').exec(function (err, submission) {
+			if (err)
+				res.send(err);
+			else{
+				res.json({
+					files: submission.files,
+					success: true
+				});
+			};
 		});
 	});
 		

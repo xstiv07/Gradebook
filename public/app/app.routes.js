@@ -70,6 +70,16 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'submissionController',
 			controllerAs: 'submission'
 		})
+		.when('/assignments/viewSubmissions/:assignment_id',{
+			templateUrl: 'app/views/pages/submissions/all.html',
+			controller: 'viewSubmissionController',
+			controllerAs: 'assignment'
+		})
+		.when('/submission/viewFiles/:submission_id',{
+			templateUrl: 'app/views/pages/submissions/viewFiles.html',
+			controller: 'viewSubmissionFilesController',
+			controllerAs: 'submission'
+		})
 		.otherwise({
             redirectTo: '/'
         });
