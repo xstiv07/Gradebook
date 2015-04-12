@@ -39,8 +39,9 @@ angular.module('assignmentCtrl', ['assignmentService'])
 		vm.error = '';
 		if (isValid){
 			Assignment.create(vm.assignmentData, $routeParams.class_id).success(function (data) {
-				if (data.success)
+				if (data.success){
 					$location.path('/assignments/view/' + $routeParams.class_id)
+				}
 				else{
 					vm.processing = false;
 					vm.error = data.message;
@@ -79,6 +80,8 @@ angular.module('assignmentCtrl', ['assignmentService'])
 
 	Assignment.allForClass($routeParams.class_id).success(function (data) {
 		vm.assignments = data.assignments;
+		vm.classNm = data.classNm;
+		console.log(vm.classNm);
 		vm.processing = false;
 	});
 })

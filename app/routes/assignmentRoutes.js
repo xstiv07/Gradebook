@@ -15,8 +15,10 @@ module.exports = function (apiRouter) {
 					if (err)
 						res.send(err);
 					else{
+						console.log(gClass.name)
 						res.json({
-							assignments: gClass.assignments
+							assignments: gClass.assignments,
+							classNm: gClass.name
 						});
 					};
 				});
@@ -105,12 +107,13 @@ module.exports = function (apiRouter) {
 			//find an assignment, populate with submissions and files and return
 			Assignment.findOne({
 				_id: req.params.assignment_id
-			}).deepPopulate('submissions.files').exec(function (err, assignm) {
+			}).deepPopulate('submissions.files submissions.user').exec(function (err, assignm) {
 				if (err)
 					res.send(err);
 				else{
 					res.json({
 						submissions: assignm.submissions,
+						assignmentName: assignm.name,
 						success: true
 					});
 				};

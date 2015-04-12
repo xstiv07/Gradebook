@@ -90,6 +90,7 @@ module.exports = function (apiRouter) {
 				}
 				else{
 					res.json({
+						className: gClass.name,
 						students: gClass.users
 					});
 				};

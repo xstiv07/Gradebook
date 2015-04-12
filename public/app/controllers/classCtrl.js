@@ -71,6 +71,7 @@ angular.module('classCtrl', ['classService'])
 
 	Class.getStudents($routeParams.class_id).success(function (data) {
 		vm.users = data.students;
+		vm.className = data.className;
 		vm.processing = false;
 	});
 

@@ -34,9 +34,6 @@ angular.module('assignmentService', [])
 	assignmentFactory.getSubmissions = function (assignmentId) {
 		return $http.get('/api/assignments/submit/' + assignmentId)
 	};
-	assignmentFactory.getSubmissionFiles = function (submissionId) {
-		return $http.get('/api/assignments/files/' + submissionId)
-	};
 
 	return assignmentFactory;
 })

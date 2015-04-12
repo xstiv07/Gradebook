@@ -7,7 +7,6 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 	Auth.getUser().then(function (user) {
 		vm.currentUser = user.data
 	});
-
 	
 	vm.error = '';
 	vm.uploaded = false;
@@ -32,12 +31,6 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 	//get all submissions for the assignment
 	Assignment.getSubmissions($routeParams.assignment_id).success(function (data) {
 		vm.submissions = data.submissions;
-	});
-})
-.controller('viewSubmissionFilesController', function ($routeParams, Assignment) {
-	var vm= this;
-
-	Assignment.getSubmissionFiles($routeParams.submission_id).success(function (data) {
-		vm.files = data.files;
+		vm.assignmentName = data.assignmentName;
 	});
 })
