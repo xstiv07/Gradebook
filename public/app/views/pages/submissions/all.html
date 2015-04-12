@@ -11,7 +11,7 @@
 			<th>_id</th>
 			<th>Grade</th>
 			<th>Status</th>
-			<th></th>
+			<th>Attachments</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,7 +20,9 @@
 			<td>{{ subm.grade }}</td>
 			<td>{{ subm.status }}</td>
 			<td>
-				<a ng-href="/submission/viewFiles/{{ subm._id }}" class="btn btn-default">View Attached Files</a>
+				<span ng-repeat='file in subm.files'>
+					<a target="_self" download="{{file.name}}" href="{{file.path}}">{{file.name}}</a>
+				</span>
 			</td>
 		</tr>
 	</tbody>

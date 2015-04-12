@@ -1,6 +1,7 @@
 var Assignment = require('../models/assignment'),
 	Class = require('../models/class');
 	Submission = require('../models/submission'),
+	deepPopulate = require('mongoose-deep-populate'),
 	File = require('../models/file');
 
 module.exports = function (apiRouter) {
@@ -79,6 +80,7 @@ module.exports = function (apiRouter) {
 				submissionFile.name = req.files[file].originalname;
 
 				submission.files.push(submissionFile); // adding a file reference to a submission
+				submission.status = "Submitted";
 				submissionFile.save(function (err) {
 					if (err)
 						res.send(err)
@@ -103,7 +105,7 @@ module.exports = function (apiRouter) {
 			//find an assignment, populate with submissions and files and return
 			Assignment.findOne({
 				_id: req.params.assignment_id
-			}).populate('submissions').exec(function (err, assignm) {
+			}).deepPopulate('submissions.files').exec(function (err, assignm) {
 				if (err)
 					res.send(err);
 				else{
@@ -114,21 +116,6 @@ module.exports = function (apiRouter) {
 				};
 			});
 		});
-
-	apiRouter.get('/assignments/files/:submission_id', function (req, res) {
-		Submission.findOne({
-			_id: req.params.submission_id
-		}).populate('files').exec(function (err, submission) {
-			if (err)
-				res.send(err);
-			else{
-				res.json({
-					files: submission.files,
-					success: true
-				});
-			};
-		});
-	});
 		
 	apiRouter.post('/assignments/create/:class_id', function (req, res) {
 		var assignm = new Assignment();

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 	Submission = require('./submission'),
+	deepPopulate = require('mongoose-deep-populate'),
 	Class = require('./class');
 	
 
@@ -34,5 +35,7 @@ assignmentSchema.pre('remove', function (next) {
 		next
 	);
 });
+
+assignmentSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Assignment', assignmentSchema);

@@ -75,11 +75,6 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'viewSubmissionController',
 			controllerAs: 'assignment'
 		})
-		.when('/submission/viewFiles/:submission_id',{
-			templateUrl: 'app/views/pages/submissions/viewFiles.html',
-			controller: 'viewSubmissionFilesController',
-			controllerAs: 'submission'
-		})
 		.otherwise({
             redirectTo: '/'
         });

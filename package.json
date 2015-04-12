@@ -9,6 +9,7 @@
     "express-jwt": "^2.1.0",
     "jsonwebtoken": "^4.2.2",
     "mongoose": "^4.0.1",
+    "mongoose-deep-populate": "^1.1.0",
     "morgan": "^1.5.2",
     "multer": "^0.1.8"
   }
