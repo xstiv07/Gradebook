@@ -140,3 +140,6 @@ input.ng-invalid.ng-dirty{
     margin: 10px;
     width: 100px;
 }
+.select{
+  cursor: pointer;
+}

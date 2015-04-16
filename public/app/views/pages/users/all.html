@@ -8,17 +8,21 @@
 <table class="table table-bordered table-striped" ng-show="user.users">
 	<thead>
 		<tr>
-			<th>_id</th>
 			<th>Name</th>
 			<th>Username</th>
+			<th>Roles</th>
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="person in user.users">
-			<td>{{ person._id }}</td>
 			<td>{{ person.name }}</td>
 			<td>{{ person.username }}</td>
+			<td >
+				<span ng-repeat="role in person.roles">
+					{{ role }}
+				</span>
+			</td>
 			<td class="col-sm-2">
 				<a ng-href="/users/{{ person._id }}" class="btn btn-default">Edit</a>
 				<a href="#" ng-click="user.deleteUser(person._id)" class="btn btn-default">Delete</a>

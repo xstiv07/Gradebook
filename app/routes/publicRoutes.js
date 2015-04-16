@@ -7,7 +7,8 @@ function sendToken (msg, user, res) {
 	var token = jwt.sign({
 					id: user._id,
 					name: user.name,
-					username: user.username
+					username: user.username,
+					roles: user.roles
 				}, supersecret, {
 					expiresInMinutes: 1440
 				});
@@ -23,7 +24,7 @@ module.exports = function (apiRouter) {
 	apiRouter.post('/authenticate', function (req, res) {
 		User.findOne({
 			username: req.body.username
-		}).select('name username password').exec(function (err, user) {
+		}).select('name username password roles').exec(function (err, user) {
 			if(err)
 				throw err;
 			//no user with that username was found

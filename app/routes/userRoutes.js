@@ -4,14 +4,12 @@ module.exports = function (apiRouter) {
 	//create a user on post and get all users on get
 	apiRouter.route('/users')
 		.get(function (req, res) {
-			User.find(function (err, users) {
+			User.find(function (err) {
 				if(err)
 					res.send(err);
-				else{
-					//return the users
-					res.json(users)
-				};
-			});
+			}).exec(function (err, users) {
+				res.json(users);
+			})
 		});
 
 
@@ -74,7 +72,36 @@ module.exports = function (apiRouter) {
 			});
 		});
 
-		apiRouter.get('/me', function (req, res) {
-			res.send(req.decoded);
+	apiRouter.get('/me', function (req, res) {
+		res.send(req.decoded);
+	});
+
+	apiRouter.post('/users/addRole/:user_id', function (req, res) {
+		//find all requested users and add them to class
+		for (var i in req.body) {
+			User.update({
+				_id: req.params.user_id},
+				{$addToSet: {roles: req.body[i]}}, function (err) {
+					if (err)
+						res.send(err)
+				});				
+		};
+		
+		res.json({
+			success: true
 		});
+
+	});
+
+	apiRouter.post('/users/deleteRole/:user_id', function (req, res) {
+		User.update({
+			_id: req.params.user_id},
+			{$pull: {roles: req.body.role}}, function (err) {
+				if (err)
+					res.send(err);
+		});
+		res.json({
+			success: true
+		});
+	});
 }

@@ -2,8 +2,9 @@ angular.module('classCtrl', ['classService'])
 
 .controller('classController', function ($location, Class) {
 	var vm = this;
-
 	vm.processing = true;
+
+	vm.isInstructor = isInstructor;
 
 	Class.all().success(function (data) {
 		vm.classes = data;
@@ -37,6 +38,7 @@ angular.module('classCtrl', ['classService'])
 
 .controller('addStudentsController', function ($routeParams, $location, User, Class) {
 	var vm = this;
+	vm.isInstructor = isInstructor;
 
 	vm.processing = true;
 	vm.selectedUsers = [];
@@ -66,6 +68,7 @@ angular.module('classCtrl', ['classService'])
 
 .controller('enrolledStudentsController', function ($location, $routeParams, Class) {
 	var vm = this;
+	vm.isInstructor = isInstructor;
 
 	vm.processing = true;
 

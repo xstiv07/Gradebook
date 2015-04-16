@@ -13,11 +13,11 @@ angular.module('mainCtrl', [])
 		Auth.getUser()
 			.then(function(data) {
 				vm.user = data.data;
+				isInstructor = data.data.roles.indexOf('Instructor') != -1;
 			});
-	});	
+	});
 
 	vm.doRegister = function (isValid) {
-
 		// clear the error
 		vm.error = '';
 

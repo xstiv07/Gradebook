@@ -22,6 +22,7 @@ var UserSchema = new Schema({
 		required: true,
 		select: false
 	},
+	roles: [String],
 	classes: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Class'

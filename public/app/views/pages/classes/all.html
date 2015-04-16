@@ -12,7 +12,6 @@
 <table class="table table-bordered table-striped" ng-show="class.classes">
 	<thead>
 		<tr>
-			<th>_id</th>
 			<th>Name</th>
 			<th>CRN</th>
 			<th>Description</th>
@@ -21,17 +20,16 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="gClass in class.classes">
-			<td>{{ gClass._id }}</td>
 			<td>{{ gClass.name }}</td>
 			<td>{{ gClass.crn }}</td>
 			<td>{{ gClass.description }}</td>
 			<td class="col-sm-2">
-				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Class</a>
-				<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-default">Delete Class</a>
-				<a ng-href="/assignments/create/{{ gClass._id }}" class="btn btn-default">New Assignment</a>
-				<a ng-href="/assignments/addAssignment/{{ gClass._id }}" class="btn btn-default">Add Existing Assignment</a>
+				<a ng-show="isInstructor" ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Class</a>
+				<a ng-show="isInstructor" href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-default">Delete Class</a>
+				<a ng-show="isInstructor" ng-href="/assignments/create/{{ gClass._id }}" class="btn btn-default">New Assignment</a>
+				<a ng-show="isInstructor" ng-href="/assignments/addAssignment/{{ gClass._id }}" class="btn btn-default">Add Existing Assignment</a>
 				<a ng-href="/assignments/view/{{ gClass._id }}" class="btn btn-default">View Assignments</a>
-				<a ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-default">Add Students</a>
+				<a ng-show="isInstructor" ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-default">Add Students</a>
 				<a ng-href="/classes/enrolledStudents/{{ gClass._id }}" class="btn btn-default">View Students</a>
 			</td>
 		</tr>
