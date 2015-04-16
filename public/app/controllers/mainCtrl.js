@@ -7,13 +7,14 @@ angular.module('mainCtrl', [])
 	vm.loggedIn = Auth.isLoggedIn();
 
 	//check to see if a user is logged in on every request
-	$rootScope.$on('$routeChangeStart', function() {
+	$rootScope.$on('$locationChangeStart', function() {
 		vm.loggedIn = Auth.isLoggedIn();
 		// get user information on page load
 		Auth.getUser()
 			.then(function(data) {
 				vm.user = data.data;
-				isInstructor = data.data.roles.indexOf('Instructor') != -1;
+				isInstructor = vm.isInstructor = data.data.roles.indexOf('Instructor') != -1;
+				isAdmin = vm.isAdmin = data.data.roles.indexOf('Admin') != -1;
 			});
 	});
 

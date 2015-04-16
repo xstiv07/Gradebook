@@ -43,7 +43,7 @@
 					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span>Gradebook</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li>
+					<li ng-show="main.isInstructor || main.isAdmin">
 						<a href="/users"><span class="glyphicon glyphicon-user"></span>Users</a>
 					</li>
 					<li>
@@ -51,9 +51,6 @@
 					</li>
 					<li>
 						<a href="/assignments"><span class="glyphicon glyphicon-pencil"></span>Assignments</a>
-					</li>
-					<li>
-						<a href="/roles"><span class="glyphicon glyphicon-settings"></span>Roles</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
