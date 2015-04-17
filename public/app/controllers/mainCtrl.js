@@ -2,6 +2,9 @@ angular.module('mainCtrl', [])
 
 .controller('mainController', function ($rootScope, $location, Auth) {
 	var vm = this;
+	isInstructor = false;
+	isAdmin = false;
+	console.log(isInstructor)
 
 	//get info if a person is logged in
 	vm.loggedIn = Auth.isLoggedIn();
@@ -15,6 +18,7 @@ angular.module('mainCtrl', [])
 				vm.user = data.data;
 				isInstructor = vm.isInstructor = data.data.roles.indexOf('Instructor') != -1;
 				isAdmin = vm.isAdmin = data.data.roles.indexOf('Admin') != -1;
+				console.log(isInstructor + 'from data')
 			});
 	});
 
