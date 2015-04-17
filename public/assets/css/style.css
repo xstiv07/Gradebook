@@ -1,8 +1,4 @@
-main{
-	padding-top: 30px;
-}
-
-@font-face {
+/*@font-face {
     font-family: Avengers;
     src: url('../fonts/BankGothicBold.ttf');
 }
@@ -17,60 +13,6 @@ header .navbar{
     font-family: Avengers;
 }
 
-* {
-  outline: 0px none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-a {
-  text-decoration: none;
-}
-input[type="text"],
-input[type="password"] {
-  font-family: "Open Sans", sans-serif;
-  width: 100%;
-  padding: 0.7em 2em 0.7em 1.7em;
-  font-size: 18px;
-  background: none repeat scroll 0% 0% transparent;
-  border: thin solid #b4b2b2;
-  border-radius: 2px;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-	border: thin solid #89C4F4;
-}
-
-form[novalidate] input{
-  border: thin solid #89C4F4;
-}
-
-input.ng-invalid.ng-dirty{
-  border-color: red;
-}
-
-.login-form {
-  background: none repeat scroll 0% 0% #fff;
-  border: thin solid #89c4f4;
-  margin: 9% auto;
-  position: relative;
-  width: 400px;
-  text-align: center;
-  -webkit-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
-}
-.login-form form {
-  padding: 5% 10% 20% 2.5em;
-}
-.login-form form div {
-  
-  margin-bottom: 25px;
-  width: 100%;
-  background: none repeat scroll 0% 0% transparent;
-  border-radius: 0.3em;
-}
 .btn {
   text-align: center;
   cursor: pointer;
@@ -133,13 +75,124 @@ input.ng-invalid.ng-dirty{
 
 .button-upload {
     -moz-appearance: button;
-    /* Firefox */
     -webkit-appearance: button;
-    /* Safari and Chrome */
     padding: 10px;
     margin: 10px;
     width: 100px;
 }
 .select{
   cursor: pointer;
+}*/
+/*---------------------------*/
+
+body {
+  font-family: Roboto,sans-serif;
+  font-size: 15px;
+  color: #5f5e5d;
+}
+* {
+  outline: 0px none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+input[type="text"],
+input[type="password"] {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  padding: 0.7em 2em 0.7em 1.7em;
+  font-size: 18px;
+  background: none repeat scroll 0% 0% transparent;
+  border: thin solid #b4b2b2;
+  border-radius: 2px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border: thin solid #89C4F4;
+}
+
+form[novalidate] input{
+  border: thin solid #89C4F4;
+}
+
+input.ng-invalid.ng-dirty{
+  border-color: red;
+}
+
+.login-form {
+  background: none repeat scroll 0% 0% #fff;
+  margin: 9% auto;
+  position: relative;
+  width: 400px;
+  text-align: center;
+}
+.login-form form {
+  padding: 5% 10% 20% 2.5em;
+}
+.login-form form div {
+  
+  margin-bottom: 25px;
+  width: 100%;
+  background: none repeat scroll 0% 0% transparent;
+  border-radius: 0.3em;
+}
+.header{
+  background-color: #1a1f2a;
+  background-image: url('../images/png.png');
+  background-position: center top;
+  background-size: cover;
+  color: white;
+  padding-top: 30px;
+  padding-bottom: 200px;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%
+}
+.header h1 {
+  padding-top: 90px;
+  font-size: 60px;
+  color: white;
+}
+.align-center{
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.silver {
+  color: #b9bcc3;
+}
+.login-box{
+  margin-top: 80px;
+  padding: 25px 50px;
+}
+.login-box .btn{
+  font-size: 25px;
+}
+.green{
+  color: #fff;
+  background-color: #26C281
+}
+.green:hover{
+  color: #fff;
+  background-color: #03A678
+}
+.btn-primary {
+  background-color: #F9690E;
+  border-color: #F9690E;
+}
+.btn-primary:hover {
+  background-color: #EB974E;
+  border-color: #EB974E;
+}
+.links li{
+  display: inline-block;
 }

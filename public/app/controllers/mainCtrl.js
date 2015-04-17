@@ -1,10 +1,19 @@
-angular.module('mainCtrl', [])
+angular.module('mainCtrl', ['ui.bootstrap'])
 
-.controller('mainController', function ($rootScope, $location, Auth) {
+.controller('mainController', function ($rootScope, $location, Auth, $modal) {
 	var vm = this;
 	isInstructor = false;
 	isAdmin = false;
-	console.log(isInstructor)
+
+
+	vm.openLogin = function (size) {
+		var modalInstance = $modal.open({
+			templateUrl: "loginModal.html",
+			controller: "loginModalController",
+			controllerAs: "login",
+			size: size
+		})
+	};
 
 	//get info if a person is logged in
 	vm.loggedIn = Auth.isLoggedIn();
@@ -18,7 +27,6 @@ angular.module('mainCtrl', [])
 				vm.user = data.data;
 				isInstructor = vm.isInstructor = data.data.roles.indexOf('Instructor') != -1;
 				isAdmin = vm.isAdmin = data.data.roles.indexOf('Admin') != -1;
-				console.log(isInstructor + 'from data')
 			});
 	});
 
@@ -42,7 +50,19 @@ angular.module('mainCtrl', [])
 		}	
 	};
 
+	vm.doLogout = function () {
+		Auth.logout();
+		//reset all user info
+		vm.user = {};
+		$location.path('/login');
+	};
+})
+
+.controller('loginModalController', function (Auth, $modalInstance, $location) {
+	var vm = this;
+
 	vm.doLogin = function (isValid) {
+		console.log('in doLogin')
 		vm.processing = true;
 
 		// clear the error
@@ -53,8 +73,10 @@ angular.module('mainCtrl', [])
 			Auth.login(vm.loginData).success(function (data) {
 				vm.processing = false;
 				// if a user successfully logs in, redirect to users page
-					if (data.success)			
+					if (data.success){		
 						$location.path('/users');
+						$modalInstance.dismiss('cancel');
+					}
 					else 
 						vm.error = data.message;
 			});
@@ -63,11 +85,4 @@ angular.module('mainCtrl', [])
 			vm.error = 'Fields marked with a * are mandatory.';
 		}
 	};
-
-	vm.doLogout = function () {
-		Auth.logout();
-		//reset all user info
-		vm.user = {};
-		$location.path('/login');
-	};
-});
+})

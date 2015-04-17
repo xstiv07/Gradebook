@@ -1,3 +1,46 @@
-<div class="jumbotron text-center">
-	<h1>Gradebook App Welcome screen</h1>
+<div class="header">
+	<div class="menu-top-home">
+	<div class="container">
+		<div class="col-sm-12 align-right">
+			<ul class="links">
+				<li>
+					<a href="/register" class="btn green">Register</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<div class="container align-center">
+		<h1>
+			This is a welcome message .. here ..
+		</h1>
+		<h4 class="silver">This is some description of the application here</h4>
+		<div class="login-box">
+			<div class="btn-group">
+				<span ng-click="main.openLogin()" class="btn btn-primary btn-lg">Sign In</span>
+			</div>
+		</div>
+	</div>
 </div>
+
+<script type="text/ng-template" id="loginModal.html">
+	<div class="alert alert-danger" ng-show="login.error">
+		{{login.error}}
+	</div>
+	<div class="login-form">
+		<span><img src="assets/images/u6.png" /></span>
+		<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
+			<div class="uname">
+				<input required type="text" placeholder="USERNAME*" ng-model="login.loginData.username">
+			</div>
+			<div class="pwd">
+				<input required name="password" type="password" placeholder="PASSWORD*" ng-model="login.loginData.password">
+			</div>
+			
+			<button type="submit" class="btn btn-default right">
+				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
+				<span ng-if="!login.processing">Log In</span>
+			</button>
+		</form>
+	</div>
+</script>
