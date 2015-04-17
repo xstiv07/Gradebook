@@ -20,11 +20,7 @@ angular.module('userService', [])
 	};
 
 	userFactory.postUserRoles = function (id, roles) {
-		return $http.post('/api/users/addRole/' + id, roles)
-	};
-
-	userFactory.removeRole = function (id, roleName) {
-		return $http.post('/api/users/deleteRole/' + id, roleName)
+		return $http.post('/api/users/setRole/' + id, roles)
 	};
 
 	return userFactory;

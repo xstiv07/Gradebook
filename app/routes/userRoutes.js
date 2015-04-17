@@ -76,32 +76,18 @@ module.exports = function (apiRouter) {
 		res.send(req.decoded);
 	});
 
-	apiRouter.post('/users/addRole/:user_id', function (req, res) {
-		//find all requested users and add them to class
-		for (var i in req.body) {
-			User.update({
-				_id: req.params.user_id},
-				{$addToSet: {roles: req.body[i]}}, function (err) {
-					if (err)
-						res.send(err)
-				});				
-		};
+	//set roles for the selected user
+	apiRouter.post('/users/setRole/:user_id', function (req, res) {
+		User.update({
+			_id: req.params.user_id},
+			{roles: req.body}, function (err) {
+				if (err)
+					res.send(err)
+			});				
 		
 		res.json({
 			success: true
 		});
 
-	});
-
-	apiRouter.post('/users/deleteRole/:user_id', function (req, res) {
-		User.update({
-			_id: req.params.user_id},
-			{$pull: {roles: req.body.role}}, function (err) {
-				if (err)
-					res.send(err);
-		});
-		res.json({
-			success: true
-		});
 	});
 }

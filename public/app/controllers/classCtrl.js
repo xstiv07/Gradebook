@@ -5,6 +5,7 @@ angular.module('classCtrl', ['classService'])
 	vm.processing = true;
 
 	vm.isInstructor = isInstructor;
+	console.log(isInstructor)
 
 	Class.all().success(function (data) {
 		vm.classes = data;
