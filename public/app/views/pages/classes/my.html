@@ -9,13 +9,12 @@
 	<div class="container">
 		<span class="calButton" ng-show="!class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Hide</span>
 		<div class="row padding-big" collapse="class.isCollapsed">
-		<div class="col-lg-6 col-centered">
-			<div id="calendar"></div>
+			<div class="col-lg-6 col-centered">
+				<div id="calendar"></div>
+			</div>
 		</div>
+		<span class="calButton" ng-show="class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Show Calendar</span>
 	</div>
-
-	<span class="calButton" ng-show="class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Show Calendar</span>
-</div>
 </div>
 <div class="padding-big"></div>
 

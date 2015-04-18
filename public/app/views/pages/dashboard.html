@@ -1,38 +1,22 @@
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
-	<div class="row padding-big" collapse="dashboard.isCollapsed">
-		<div class="col-lg-6 col-centered">
-			<div id="calendar"></div>
-		</div>
-	</div>
 
-	<div class="dashboard overlay">
-		<div class="container">
-			<div class="row padding-big holder">
-				<div class="col-md-5">
-					<a class="box grayscale" href="/classes/my" id="class">
-						<div class="centerH">
-							<h3>My Classes</h4>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a class="box grayscale" href="/grades" id="grade">
-						<div class="centerH">
-							<h3>My Grades</h4>
-						</div>
-					</a>
-				</div>
+<div class="dashboard overlay">
+	<div class="container">
+		<div class="row padding-big holder">
+			<div class="col-md-5">
+				<a class="box grayscale" href="/classes/my" id="class">
+					<div class="centerH">
+						<h3>My Classes</h4>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-6">
+				<a class="box grayscale" href="/grades" id="grade">
+					<div class="centerH">
+						<h3>My Grades</h4>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
-
-<script type="text/javascript" src="scripts/moment.min.js"></script>
-<script type="text/javascript" src="scripts/fullcalendar.min.js"></script>
-
-<script>
-	$(document).ready(function() {
-	    $('#calendar').fullCalendar({
-	        // put your options and callbacks here
-	    })
-	});
-</script>
+</div>
