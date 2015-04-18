@@ -5,14 +5,24 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 	isInstructor = false;
 	isAdmin = false;
 
-
+	//login modal handler
 	vm.openLogin = function (size) {
 		var modalInstance = $modal.open({
 			templateUrl: "loginModal.html",
 			controller: "loginModalController",
 			controllerAs: "login",
 			size: size
-		})
+		});
+	};
+
+	//register modal handler
+	vm.openRegister = function (size) {
+		var modalInstance = $modal.open({
+			templateUrl: "registerModal.html",
+			controller: "registerModalController",
+			controllerAs: "register",
+			size: size
+		});
 	};
 
 	//get info if a person is logged in
@@ -30,26 +40,6 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			});
 	});
 
-	vm.doRegister = function (isValid) {
-		// clear the error
-		vm.error = '';
-
-		if(isValid){
-			Auth.register(vm.registerData).success(function (data) {
-				if (data.success)			
-					$location.path('/users');
-				else{
-					vm.processing = false;
-					vm.error = data.message;
-				}
-
-			})
-		}else{
-			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
-		}	
-	};
-
 	vm.doLogout = function () {
 		Auth.logout();
 		//reset all user info
@@ -61,11 +51,13 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 .controller('loginModalController', function (Auth, $modalInstance, $location) {
 	var vm = this;
 
+	vm.close = function () {
+		$modalInstance.dismiss('cancel');
+	};
+
 	vm.doLogin = function (isValid) {
-		console.log('in doLogin')
 		vm.processing = true;
 
-		// clear the error
 		vm.error = '';
 
 		if(isValid){
@@ -84,5 +76,34 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			vm.processing = false;
 			vm.error = 'Fields marked with a * are mandatory.';
 		}
+	};
+})
+
+.controller('registerModalController', function (Auth, $modalInstance, $location) {
+	var vm = this;
+
+	vm.close = function () {
+		$modalInstance.dismiss('cancel');
+	};
+
+	vm.doRegister = function (isValid) {
+		vm.error = '';
+		console.log("in here")
+		if(isValid){
+			Auth.register(vm.registerData).success(function (data) {
+				if (data.success){		
+					$location.path('/users');
+					$modalInstance.dismiss('close');
+				}
+				else{
+					vm.processing = false;
+					vm.error = data.message;
+				}
+
+			})
+		}else{
+			vm.processing = false;
+			vm.error = 'Fields marked with a * are mandatory.';
+		}	
 	};
 })

@@ -156,6 +156,9 @@ input.ng-invalid.ng-dirty{
   padding-right: 15px;
   height: 100%
 }
+.sky-blue{
+  background-color: #E4F1FE;
+}
 .header h1 {
   padding-top: 90px;
   font-size: 60px;
@@ -166,6 +169,10 @@ input.ng-invalid.ng-dirty{
 }
 .align-right {
   text-align: right;
+}
+.logo{
+  position: fixed;
+  float: left;
 }
 .silver {
   color: #b9bcc3;
@@ -181,7 +188,7 @@ input.ng-invalid.ng-dirty{
   color: #fff;
   background-color: #26C281
 }
-.green:hover{
+.green:hover, .green:focus{
   color: #fff;
   background-color: #03A678
 }
@@ -189,10 +196,23 @@ input.ng-invalid.ng-dirty{
   background-color: #F9690E;
   border-color: #F9690E;
 }
-.btn-primary:hover {
+.float-right{
+  float: right;
+}
+.footer{
+  background-color: black;
+  height: 80px;
+}
+.cursor{
+  cursor: pointer;
+}
+.btn-primary:hover, .btn-primary:focus {
   background-color: #EB974E;
   border-color: #EB974E;
 }
 .links li{
   display: inline-block;
+}
+.padding-big{
+  padding: 15px;
 }

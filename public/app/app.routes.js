@@ -5,11 +5,6 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/', {
 			templateUrl: 'app/views/pages/home.html'
 		})
-		.when('/register',{
-			templateUrl: 'app/views/pages/register.html',
-			controller: 'mainController',
-			controllerAs: 'register'
-		})
 		.when('/users',{
 			templateUrl: 'app/views/pages/users/all.html',
 			controller: 'userController',

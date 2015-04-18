@@ -1,10 +1,11 @@
 <div class="header">
 	<div class="menu-top-home">
 	<div class="container">
+		<span class="logo"><img src="assets/images/logo.png"></span>
 		<div class="col-sm-12 align-right">
 			<ul class="links">
 				<li>
-					<a href="/register" class="btn green">Register</a>
+					<span class="btn green" ng-click="main.openRegister()">Register</span>
 				</li>
 			</ul>
 		</div>
@@ -22,11 +23,38 @@
 		</div>
 	</div>
 </div>
+<div class='padding-big'></div>
+<div class="container">
+	<div class="row align-center">
+		<h2>Some graph or some interesting stuff can add here</h2>
+	</div>
+</div>
+<div class='padding-big'></div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-5 info-big">
+			<h2>Functionality description</h2>
+			<p>Carousel with application's snapshots here and their description</p>
+			<p>sdfg sdf gsdfg dsfg sdfg sdfg sdfg sdfg sdfgs dfgsdfgs dfgsd fgsdf gdsfg dsfg dsfgdsf</p>
+		</div>
+		<div class="col-sm-7">
+			<img src="assets/images/descr.png">
+		</div>
+	</div>
+</div>
+<div class='padding-big'></div>
+<div class="footer align-center">
+	<div class="container">
+		<h4>Copyright and extra info goes here</h4>
+	</div>
+</div>	
+
 
 <script type="text/ng-template" id="loginModal.html">
-	<div class="alert alert-danger" ng-show="login.error">
+	<div class="alert alert-danger align-center" ng-show="login.error">
 		{{login.error}}
 	</div>
+	<span class="float-right padding-big cursor" ng-click="login.close()">Close</span>
 	<div class="login-form">
 		<span><img src="assets/images/u6.png" /></span>
 		<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
@@ -37,9 +65,36 @@
 				<input required name="password" type="password" placeholder="PASSWORD*" ng-model="login.loginData.password">
 			</div>
 			
-			<button type="submit" class="btn btn-default right">
+			<button type="submit" class="btn btn-primary btn-block">
 				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
-				<span ng-if="!login.processing">Log In</span>
+				<span ng-if="!login.processing">Sign In</span>
+			</button>
+		</form>
+	</div>
+</script>
+
+<script type="text/ng-template" id="registerModal.html">
+	<div class="alert alert-danger align-center" ng-show="register.error">
+		{{register.error}}
+	</div>
+	<span class="float-right padding-big cursor" ng-click="register.close()">Close</span>
+	<div class="login-form">
+		<span><img src="assets/images/u6.png" /></span>
+		<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
+			<div class="name">
+				<input required type="text" placeholder="FIRST NAME*" ng-model="register.registerData.name">
+			</div>
+			<div class="uname">
+				<input required type="text" placeholder="USERNAME*" ng-model="register.registerData.username">
+			</div>
+			<div class="pwd">
+				<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD*" ng-model="register.registerData.password">
+				<p class="help-block bg-danger" ng-show="form.password.$error.minlength">Min 6 characters required</p>
+			</div>
+			
+			<button type="submit" class="btn green btn-block">
+				<span ng-if="register.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
+				<span ng-if="!register.processing">Register</span>
 			</button>
 		</form>
 	</div>
