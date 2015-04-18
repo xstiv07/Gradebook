@@ -7,7 +7,7 @@ angular.module('app.routes', ['ngRoute'])
 		})
 		.when('/dashboard',{
 			templateUrl: 'app/views/pages/dashboard.html',
-			constroller: 'dashboardController',
+			controller: 'dashboardController',
 			controllerAs: 'dashboard'
 		})
 		.when('/users',{

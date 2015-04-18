@@ -9,8 +9,9 @@ angular.module('gradebookApp',
 	'classService',
 	'assignmentCtrl',
 	'assignmentService',
+	'dashboardCtrl',
 	'submissionCtrl',
-	'angularFileUpload',
+	'angularFileUpload'
 	])
 
 .config(function($httpProvider) {
