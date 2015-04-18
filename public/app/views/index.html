@@ -42,14 +42,18 @@
 <body ng-app="gradebookApp" ng-controller="mainController as main">
 
 <header ng-if="main.loggedIn">
+<div class="nav navbar">
 	<div class="container">
 		<div class="col-sm-12 align-right">
 			<div class="open">
 				<span class="cls"></span>
 				<span>
 				  <ul class="sub-menu ">
-					<li ng-show="main.isInstructor || main.isAdmin">
+					<li ng-show="main.isInstructor">
 						<a href="/users">Users</a>
+					</li>
+					<li>
+						<a href="/dashboard">Dashboard</a>
 					</li>
 					<li>
 						<a href="/classes">Classes</a>
@@ -65,6 +69,8 @@
 			</div>
 		</div>
 	</div>
+</div>
+	
 </header>
 
 <main>

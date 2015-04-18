@@ -30,6 +30,11 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'classController',
 			controllerAs: 'class'
 		})
+		.when('/classes/my',{
+			templateUrl: 'app/views/pages/classes/my.html',
+			controller: 'myClassController',
+			controllerAs: 'class'
+		})
 		.when('/classes/addStudents/:class_id', {
 			templateUrl: 'app/views/pages/classes/addStudents.html',
 			controller: 'addStudentsController',

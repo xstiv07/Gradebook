@@ -5,7 +5,6 @@ angular.module('classCtrl', ['classService'])
 	vm.processing = true;
 
 	vm.isInstructor = isInstructor;
-	console.log(isInstructor)
 
 	Class.all().success(function (data) {
 		vm.classes = data;
@@ -65,6 +64,16 @@ angular.module('classCtrl', ['classService'])
 			vm.processing = false;
 		});
 	};
+})
+
+.controller('myClassController', function (User) {
+	var vm = this;
+
+	vm.isCollapsed = false;
+
+	User.get(currentUserId).success(function (data) {
+		vm.userData = data;
+	})
 })
 
 .controller('enrolledStudentsController', function ($location, $routeParams, Class) {

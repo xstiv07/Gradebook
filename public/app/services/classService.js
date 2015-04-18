@@ -25,7 +25,7 @@ angular.module('classService', [])
 
 	classFactory.unenroll = function (classId, userId) {
 		return $http.put('/api/classes/enrolledStudents/' + classId, userId);
-	}
+	};
 
 	return classFactory;
 })

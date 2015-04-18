@@ -36,7 +36,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			.then(function(data) {
 				vm.user = data.data;
 				isInstructor = vm.isInstructor = data.data.roles.indexOf('Instructor') != -1;
-				isAdmin = vm.isAdmin = data.data.roles.indexOf('Admin') != -1;
+				currentUserId = data.data.id;
 			});
 	});
 

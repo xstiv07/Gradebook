@@ -28,7 +28,7 @@ angular.module('userCtrl', ['userService'])
 		vm.selectedRoles = data.roles;
 	});
 
-	vm.roles = ['Admin', 'Instructor']
+	vm.roles = ['Instructor']
 
 	vm.toggleCheck = function(role) {
 		

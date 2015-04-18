@@ -48,7 +48,7 @@ module.exports = function (apiRouter) {
 					});
 				});
 			});
-		})
+		});
 
 	apiRouter.route('/classes/addStudents/:class_id')
 		.post(function (req, res) {
