@@ -66,7 +66,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 				vm.processing = false;
 				// if a user successfully logs in, redirect to users page
 					if (data.success){		
-						$location.path('/users');
+						$location.path('/dashboard');
 						$modalInstance.dismiss('cancel');
 					}
 					else 
@@ -92,7 +92,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 		if(isValid){
 			Auth.register(vm.registerData).success(function (data) {
 				if (data.success){		
-					$location.path('/users');
+					$location.path('/dashboard');
 					$modalInstance.dismiss('close');
 				}
 				else{

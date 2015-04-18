@@ -5,6 +5,11 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/', {
 			templateUrl: 'app/views/pages/home.html'
 		})
+		.when('/dashboard',{
+			templateUrl: 'app/views/pages/dashboard.html',
+			constroller: 'dashboardController',
+			controllerAs: 'dashboard'
+		})
 		.when('/users',{
 			templateUrl: 'app/views/pages/users/all.html',
 			controller: 'userController',
