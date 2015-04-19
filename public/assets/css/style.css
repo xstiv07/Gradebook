@@ -526,10 +526,13 @@ input.ng-invalid.ng-dirty{
   margin: 30px;
   overflow: hidden;
 }
+.upper{
+  text-transform: uppercase;
+}
 .panel-heading > .panel-title{
   text-transform: uppercase;
   font-size: 25px;
-  text-align: right;
+  text-align: center;
 }
 .panel-title a{
   text-decoration: none;
@@ -542,13 +545,19 @@ input.ng-invalid.ng-dirty{
 }
 .gradebook .panel, .gradebook .panel-default{
   border-radius: 0px;
-  border: transparent;
+  border-bottom: thin dotted silver;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
   box-shadow: none;
+}
+.gradebook .panel:hover, .gradebook .panel-default:hover{
+  border-bottom: thin dotted #ff2462;
 }
 .panel-collapse > .panel-body{
   border-top: none !important;
 }
 .panel > .panel-heading {
-    background-color: #E4F1FE;
+    background-color: transparent;
     padding: 30px 15px;
 }

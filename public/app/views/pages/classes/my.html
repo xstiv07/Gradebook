@@ -2,16 +2,16 @@
 
 <div class="jumbotron text-center" ng-show="class.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading Classes...</p>
+	<p>Loading Gradebook...</p>
 </div>
 
-<div>
-	<div class="container">
-		<div class="row graphs">
-			<h3>Graphs here for a specific student. Average grade for all user's classes is one stat. Need something else to fill the space</h3>
-		</div>
+
+<div class="container">
+	<div class="row graphs">
+		<h3>Need to fill the space with some sort of interesting stuff. Probably notifications will be here</h3>
 	</div>
 </div>
+
 
 <div class="cal-holder">
 	<div class="container">
@@ -28,8 +28,9 @@
 <div class="overlay">
 	<div class="container">
 		<div class="row">
-			<div ng-show="class.userData.classes == 0">
-				<h3>Currently, you are not enrolled in any classes.</h3>
+			<div class="align-center" ng-show="class.userData.classes == 0">
+				<h3 class="upper">Currently, you are not enrolled in any classes.</h3>
+				<h5>Please contact your instructor to resolve the issue.</h5>
 			</div>
 			<div class="classTree">
 				<div class="circles" id="c-co">
