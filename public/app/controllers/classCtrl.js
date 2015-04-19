@@ -69,7 +69,7 @@ angular.module('classCtrl', ['classService'])
 .controller('myClassController', function (User) {
 	var vm = this;
 
-	vm.isCollapsed = false;
+	vm.isCollapsed = true;
 
 	User.get(currentUserId).success(function (data) {
 		vm.userData = data;

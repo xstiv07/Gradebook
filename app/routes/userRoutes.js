@@ -1,4 +1,5 @@
-var User = require('../models/user');
+var User = require('../models/user'),
+	deepPopulate = require('mongoose-deep-populate');
 
 module.exports = function (apiRouter) {
 	//create a user on post and get all users on get
@@ -11,6 +12,19 @@ module.exports = function (apiRouter) {
 				res.json(users);
 			})
 		});
+
+
+	apiRouter.get('/users/fullInfo/:user_id', function (req, res) {
+		User.findOne({
+			_id: req.params.user_id
+		}).deepPopulate('classes.assignments.submissions').exec(function (err, user) {
+			if (err)
+				res.send(err);
+			else{
+				res.json(user);
+			};
+		});
+	});
 
 
 	apiRouter.route('/users/:user_id')

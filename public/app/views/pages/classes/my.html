@@ -5,6 +5,14 @@
 	<p>Loading Classes...</p>
 </div>
 
+<div>
+	<div class="container">
+		<div class="row graphs">
+			<h3>Graphs here for a specific student. Average grade for all user's classes is one stat. Need something else to fill the space</h3>
+		</div>
+	</div>
+</div>
+
 <div class="cal-holder">
 	<div class="container">
 		<span class="calButton" ng-show="!class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Hide</span>
@@ -13,34 +21,25 @@
 				<div id="calendar"></div>
 			</div>
 		</div>
-		<span class="calButton" ng-show="class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Show Calendar</span>
+		<span class="calButton" ng-show="class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Calendar</span>
 	</div>
 </div>
-<div class="padding-big"></div>
 
-<div class="container">
-	<div class="row">
-		<div ng-show="class.userData.classes == 0">
-			<h3>Currently, you are not enrolled in any classes.</h3>
-		</div>
-		<div class="classTree">
-			<div class="circles" id="c-co">
-				<div ng-repeat="c in class.userData.classes" class="circle">
-					<a href="/assignments/view/{{ c._id }}">
-						<span>{{ c.name }}</span>
-					</a>
+<div class="overlay">
+	<div class="container">
+		<div class="row">
+			<div ng-show="class.userData.classes == 0">
+				<h3>Currently, you are not enrolled in any classes.</h3>
+			</div>
+			<div class="classTree">
+				<div class="circles" id="c-co">
+					<div ng-repeat="c in class.userData.classes" class="circle">
+						<a href="/assignments/view/{{ c._id }}">
+							<span>{{ c.name }}</span>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-</div>
-
-<div class="padding-big"></div>
-<div class="pink">
-	<div class="container">
-		<div class="row graphs">
-			<h3 style="color:#fff">Graps here for a specific student</h3>
 		</div>
 	</div>
 </div>

@@ -44,6 +44,9 @@
 <header ng-if="main.loggedIn">
 <div class="nav navbar">
 	<div class="container">
+		<a class="navbar-brand" href="/dashboard">
+			<span class="fa fa-connectdevelop fa-2x"></span>
+		</a>
 		<div class="col-sm-12 align-right">
 			<div class="open">
 				<span class="cls"></span>
@@ -51,9 +54,6 @@
 				  <ul class="sub-menu ">
 					<li ng-show="main.isInstructor">
 						<a href="/users">Users</a>
-					</li>
-					<li>
-						<a href="/dashboard">Dashboard</a>
 					</li>
 					<li>
 						<a href="/classes">Classes</a>

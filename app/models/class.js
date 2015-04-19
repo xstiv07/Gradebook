@@ -1,6 +1,7 @@
 var User = require('./user'),
 	Assignment = require('./assignment'),
 	mongoose = require('mongoose'),
+	deepPopulate = require('mongoose-deep-populate'),
 	Schema = mongoose.Schema;
 
 var classSchema = new Schema({
@@ -41,5 +42,7 @@ classSchema.pre('remove', function (next) {
 	Assignment.remove({_id: {$in: gClass.assignments}}).exec();
 	next();
 });
+
+classSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Class', classSchema);

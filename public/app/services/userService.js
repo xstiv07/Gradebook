@@ -11,6 +11,10 @@ angular.module('userService', [])
 		return $http.get('/api/users/' + id);
 	};
 
+	userFactory.getFullInfo = function (id) {
+		return $http.get('/api/users/fullInfo/' + id)
+	};
+
 	userFactory.update = function (id, data) {
 		return $http.put('/api/users/' + id, data);
 	};

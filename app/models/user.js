@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
+	deepPopulate = require('mongoose-deep-populate'),
 	bcrypt = require('bcrypt-nodejs'),
 	Class = require('./class');
 
@@ -67,6 +68,6 @@ UserSchema.methods.comparePassword = function (password) {
 	return bcrypt.compareSync(password, user.password);
 }
 
-//return the model
+UserSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('User', UserSchema);

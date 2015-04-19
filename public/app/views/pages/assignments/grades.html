@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="gradebook">
+		<accordion close-others="grade.oneAtATime">
+		    <accordion-group heading="{{class.name}}" ng-repeat="class in grade.userData.classes" is-open="false" is-disabled="false">
+		    	<h4 ng-show="class.assignments.length == 0">This class has no active assignments. Please contact your instructor.</h3>
+		   		<table ng-show="class.assignments.length > 0" class="table table-striped">
+					<thead>
+						<th>Assignment Name</th>
+						<th>Status</th>
+						<th>Grade</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="assignment in class.assignments">
+							<td>{{assignment.name}}</td>
+							<td>
+								<span>{{assignment.submissions[0].status}}</span>
+								<span ng-show="{{assignment.submissions.length == 0}}">Not submited</span>
+							</td>
+							<td>
+								<span>{{assignment.submissions[0].grade}}</span>
+								<span ng-show="{{assignment.submissions.length == 0}}">Not graded</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		    </accordion-group>
+		</accordion>
+	</div>
+</div>

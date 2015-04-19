@@ -50,6 +50,11 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'assignmentController',
 			controllerAs: 'assignment'
 		})
+		.when('/grades',{
+			templateUrl: 'app/views/pages/assignments/grades.html',
+			controller: 'gradesController',
+			controllerAs: 'grade'
+		})
 		.when('/assignments/create/:class_id',{
 			templateUrl: 'app/views/pages/assignments/create.html',
 			controller: 'assignmentController',

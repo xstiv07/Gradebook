@@ -1,4 +1,4 @@
-angular.module('assignmentCtrl', ['assignmentService'])
+angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 .controller('assignmentController', function ($location, $routeParams, Assignment) {
 	var vm = this;
@@ -53,6 +53,17 @@ angular.module('assignmentCtrl', ['assignmentService'])
 		};
 	};
 })
+
+.controller('gradesController', function ($routeParams, User) {
+	var vm = this;
+	vm.oneAtATime = false;
+
+	User.getFullInfo(currentUserId).success(function (data) {
+		vm.userData = data;
+	})
+})
+
+
 .controller('assignmentClassController', function ($routeParams, Assignment) {
 	var vm = this;
 

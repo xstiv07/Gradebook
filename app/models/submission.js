@@ -2,6 +2,7 @@ var User = require('./user'),
 	Assignment = require('./assignment'),
 	File = require('./file'),
 	mongoose = require('mongoose'),
+	deepPopulate = require('mongoose-deep-populate'),
 	Schema = mongoose.Schema;
 
 var submissionSchema = new Schema({
@@ -20,5 +21,8 @@ var submissionSchema = new Schema({
 	grade: String,
 	status: String
 })
+
+
+submissionSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Submission', submissionSchema);

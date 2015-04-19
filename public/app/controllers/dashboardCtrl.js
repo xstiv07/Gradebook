@@ -1,4 +1,4 @@
-angular.module('dashboardCtrl', ['ui.bootstrap'])
+angular.module('dashboardCtrl', [])
 
 .controller('dashboardController', function () {
 	var vm = this;
