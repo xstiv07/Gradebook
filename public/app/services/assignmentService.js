@@ -31,6 +31,10 @@ angular.module('assignmentService', [])
 		return $http.post('/api/assignments/submit/' + assignmentId, files)
 	};
 
+	assignmentFactory.setGradeOrComment = function (data) {
+		return $http.post('/api/assignment/setGradeOrComment/', data)
+	};
+
 	assignmentFactory.getSubmissions = function (assignmentId) {
 		return $http.get('/api/assignments/submit/' + assignmentId)
 	};

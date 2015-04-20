@@ -19,9 +19,13 @@ var submissionSchema = new Schema({
 		ref: 'File'
 	}],
 	grade: String,
+	comment: String,
+	date: { 
+		type: Date, 
+		default: Date.now 
+	},
 	status: String
 })
-
 
 submissionSchema.plugin(deepPopulate);
 

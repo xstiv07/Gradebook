@@ -1,4 +1,4 @@
-<div ng-show="user.isInstructor || user.isAdmin">
+<div>
 	<h1>Users</h1>
 
 	<div class="jumbotron text-center" ng-show="user.processing">
@@ -11,6 +11,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Username</th>
+				<th>Date registered</th>
 				<th>Roles</th>
 				<th class="col-sm-2"></th>
 			</tr>
@@ -19,6 +20,7 @@
 			<tr ng-repeat="person in user.users">
 				<td>{{ person.name }}</td>
 				<td>{{ person.username }}</td>
+				<td>{{ person.date | date : 'medium' }}</td>
 				<td>
 					<span ng-repeat="role in person.roles">
 						{{ role }}

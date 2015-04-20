@@ -18,6 +18,14 @@ var assignmentSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Class'
 	}],
+	dateAssigned: { 
+		type: Date, 
+		default: Date.now 
+	},
+	dateDue: {
+		type: Date,
+		required: true
+	},
 	submissions:[{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Submission'
@@ -30,6 +38,18 @@ assignmentSchema.pre('remove', function (next) {
 	//remove all references of object
 	assignment.model('Class').update(
 		{_id: this.gclass},
+		{$pull: {assignments: assignment._id}},
+		{multi: true},
+		next
+	);
+});
+
+//will remove an assignment from classes on delete cascade
+assignmentSchema.pre('remove', function (next) {
+	var assignment = this;
+
+	assignment.model('Class').update(
+		{_id: {$in: assignment.classes}},
 		{$pull: {assignments: assignment._id}},
 		{multi: true},
 		next

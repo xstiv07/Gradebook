@@ -21,12 +21,41 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 				vm.uploadPercent  =  parseInt(100.0 * e.loaded / e.total) + ' %'
 			}).success(function (data ,status, headers, config) {
 				vm.uploaded = true;
+				vm.processing = false;
 		});
 		};
 	};
 })
-.controller('viewSubmissionController', function ($routeParams, Assignment) {
+.controller('viewSubmissionController', function ($routeParams, Assignment, $location) {
 	var vm = this;
+	vm.postGrade = function (isValid, grade, submissionId) {
+		vm.error = '';
+
+		if(isValid){
+			var data = {
+				gradeToSet: grade,
+				submissionId: submissionId
+			};
+			Assignment.setGradeOrComment(data).success(function (data) {
+				$location.path('/assignments/viewSubmissions/' + $routeParams.assignment_id);
+			});
+		}else{
+			vm.processing = false;
+			vm.error = 'Fields marked with a * are mandatory.';
+		};
+	};
+
+	vm.postComment = function (isValid, commment, submissionId) {
+		if(isValid){
+			var data = {
+				commentToSet: commment,
+				submissionId: submissionId
+			};
+			Assignment.setGradeOrComment(data).success(function (data) {
+				console.log(data)
+			});
+		};
+	};
 
 	//get all submissions for the assignment
 	Assignment.getSubmissions($routeParams.assignment_id).success(function (data) {

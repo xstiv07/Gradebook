@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	deepPopulate = require('mongoose-deep-populate'),
 	bcrypt = require('bcrypt-nodejs'),
+	Submission = require('./submission'),
 	Class = require('./class');
 
 //user schema
@@ -27,7 +28,11 @@ var UserSchema = new Schema({
 	classes: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Class'
-	}]
+	}],
+	date: { 
+		type: Date, 
+		default: Date.now 
+	}
 });
 
 //hash the password before the user is saved

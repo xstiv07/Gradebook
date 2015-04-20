@@ -1,5 +1,6 @@
 var Assignment = require('../models/assignment'),
-	Class = require('../models/class');
+	Class = require('../models/class'),
+	User = require('../models/user'),
 	Submission = require('../models/submission'),
 	deepPopulate = require('mongoose-deep-populate'),
 	File = require('../models/file');
@@ -70,7 +71,6 @@ module.exports = function (apiRouter) {
 
 	apiRouter.route('/assignments/submit/:assignment_id')
 		.post(function (req, res) {
-			console.log(req.files)
 			var submission = new Submission();
 			submission.user = req.body.data; //userId
 			submission.assignment = req.params.assignment_id;
@@ -99,6 +99,13 @@ module.exports = function (apiRouter) {
 				};
 			};
 
+			User.update({
+				_id: req.body.data},
+				{$push: {submissions: submission}}, function (err) {
+					if(err)
+						res.send(err);
+			});
+
 			Assignment.update({
 				_id: req.params.assignment_id},
 				{$push: {submissions: submission}}, function (err) {
@@ -107,11 +114,11 @@ module.exports = function (apiRouter) {
 			});
 
 			submission.save(function (err) {
+				console.log('saving')
 				if (err)
 					res.send(err);
-			})
-			res.json({
-				success: true
+				else
+					res.json({success: true});
 			});
 		})
 		.get(function (req, res) {
@@ -130,25 +137,46 @@ module.exports = function (apiRouter) {
 				};
 			});
 		});
+
+		//will grade a submission based on the passed grade and submission id
+	apiRouter.post('/assignment/setGradeOrComment', function (req, res) {
+		var gradeToSet = req.body.gradeToSet;
+		var commentToSet = req.body.commentToSet;
+		var submissionId = req.body.submissionId;
+
+		var data;
+
+		if(commentToSet != null){
+			data = {
+				comment: commentToSet,
+			};
+		}else{
+			data = {
+				grade: gradeToSet,
+				status: 'Graded'
+			};
+		};
+
+		Submission.update({
+			_id: submissionId}, data, function (err) {
+				if (err)
+					res.send(err)
+		});
+	});
 		
 	apiRouter.post('/assignments/create/:class_id', function (req, res) {
 		var assignm = new Assignment();
 
 		assignm.name = req.body.name;
 		assignm.description = req.body.description;
+		assignm.dateDue = req.body.dateDue;
 		assignm.gclass = req.params.class_id;
 
-		Class.findById(req.params.class_id, function (err, gClass) {
-
-			if (err)
-				res.send(err);
-			else
-				gClass.assignments.push(assignm);
-
-			gClass.save(function (err) {
+		Class.update({
+			_id: req.params.class_id},
+			{$push: {assignments: assignm}}, function (err) {
 				if (err)
-					res.send(err);
-			});
+					res.send(err)
 		});
 
 		assignm.save(function (err) {

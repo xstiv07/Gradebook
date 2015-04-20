@@ -2,14 +2,17 @@
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Loading Submissions...</p>
 </div>
+<div class="alert alert-danger align-center" ng-show="assignment.error">
+		{{assignment.error}}
+</div>
 <div class="page-header">
-<h1>Submissions for {{assignment.assignmentName}}</h1> 
+	<h1>Submissions for {{assignment.assignmentName}}</h1> 
 </div>
 <table class="table table-bordered table-striped">
 	<thead>
 		<tr>
-			<th>_id</th>
 			<th>Grade</th>
+			<th>Comments</th>
 			<th>User</th>
 			<th>Status</th>
 			<th>Attachments</th>
@@ -17,13 +20,30 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="subm in assignment.submissions">
-			<td>{{ subm._id }}</td>
-			<td>{{ subm.grade }}</td>
+			<td>
+				<span ng-show="subm.grade != null">{{ subm.grade }} </span>
+				<form class="form-inline align-center" name="form" ng-show="subm.grade == null" ng-submit="assignment.postGrade(form.$valid, assignment.subm[$index].grade, subm._id)" novalidate>
+					<div class="form-group"> 
+						<input pattern="[A-Za-z]{1}" name="grade" required type="text" ng-model="assignment.subm[$index].grade" placeholder="Grade*" class="form-control">
+						<button type="submit" class="btn btn-primary">Set Grade</button>
+						<p class="help-block bg-danger" ng-show="form.grade.$error.pattern">Only one character is allowed.</p>
+					</div>
+				</form>
+			</td>
+			<td>
+				<span ng-show="subm.comment != null">{{ subm.comment }} </span>
+				<form ng-show="subm.comment == null" class="form-inline align-center" name="formComment" ng-show="subm.comment == null" ng-submit="assignment.postComment(formComment.$valid, assignment.subm[$index].comment, subm._id)" novalidate>
+					<div class="form-group"> 
+						<input type="text" name="comment" type="text" ng-model="assignment.subm[$index].comment" placeholder="Comment" class="form-control" rows="1" id="comment" required />
+						<button type="submit" class="btn btn-primary">Comment</button>
+					</div>
+				</form>
+			</td>
 			<td>{{ subm.user.name}}</td>
 			<td>{{ subm.status }}</td>
 			<td>
 				<span ng-repeat='file in subm.files'>
-					<a target="_self" download="{{file.name}}" href="{{file.path}}">{{file.name}}</a>
+					<a target="_self" download="{{file.name}}" href="{{file.path}}"><i class="fa fa-file-o"></i></a>
 				</span>
 			</td>
 		</tr>

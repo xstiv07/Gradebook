@@ -125,7 +125,9 @@ form[novalidate] input{
 input.ng-invalid.ng-dirty{
   border-color: red;
 }
-
+form[novalidate].ng-submitted input.ng-invalid{
+  border-color: red;
+}
 .spinner {
   animation:spin 1s infinite;
   -webkit-animation:spin 1s infinite;
@@ -234,6 +236,9 @@ input.ng-invalid.ng-dirty{
 }
 .float-right{
   float: right;
+}
+.float-left{
+  float: left
 }
 .footer{
   background-color: black;
@@ -560,4 +565,31 @@ input.ng-invalid.ng-dirty{
 .panel > .panel-heading {
     background-color: transparent;
     padding: 30px 15px;
+}
+
+/*---------------------------------*/
+label{
+  display: block;
+}
+textarea{
+  resize: none;
+}
+.align-left{
+  text-align: left;
+}
+.inline .form-group {
+  display: inline-block;
+  padding: 10px;
+}
+.inline a{
+  margin-top: 10px;
+}
+.block{
+  display: block;
+}
+.comment{
+  padding-right: 20px
+}
+.vertical-top{
+  vertical-align: top;
 }

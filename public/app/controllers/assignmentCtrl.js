@@ -12,6 +12,45 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.selectedAssignments = [];
 
+
+	// -----------------Datepicker----------------------//
+	vm.today = function() {
+	    vm.dt = new Date();
+  	};
+  	vm.today();
+
+  	vm.clear = function () {
+  		$vm.dt = null;
+	 };
+
+	// Disable weekend selection
+	vm.disabled = function(date, mode) {
+		return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	};
+
+	vm.toggleMin = function() {
+		vm.minDate = vm.minDate ? null : new Date();
+	};
+
+	vm.toggleMin();
+
+	vm.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		vm.opened = true;
+	};
+
+	vm.dateOptions = {
+		formatYear: 'yy',
+		startingDay: 1
+	};
+
+	vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	vm.format = vm.formats[0];
+
+	//---------------------------------------------------------
+
 	vm.toggleCheck = function (assignm) {
 		if(vm.selectedAssignments.indexOf(assignm) === -1)
 			vm.selectedAssignments.push(assignm);
@@ -58,9 +97,11 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	var vm = this;
 	vm.oneAtATime = false;
 
+	//assuming there will be only one submission allowed for an assignment
 	User.getFullInfo(currentUserId).success(function (data) {
+		console.log(data)
 		vm.userData = data;
-	})
+	});
 })
 
 

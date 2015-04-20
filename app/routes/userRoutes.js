@@ -1,4 +1,7 @@
 var User = require('../models/user'),
+	Class = require('../models/class'),
+	Assignment = require('../models/assignment'),
+	Submission = require('../models/submission'),
 	deepPopulate = require('mongoose-deep-populate');
 
 module.exports = function (apiRouter) {
@@ -15,14 +18,15 @@ module.exports = function (apiRouter) {
 
 
 	apiRouter.get('/users/fullInfo/:user_id', function (req, res) {
-		User.findOne({
-			_id: req.params.user_id
-		}).deepPopulate('classes.assignments.submissions').exec(function (err, user) {
+
+		User.findOne({_id: req.params.user_id})
+		.deepPopulate('classes.assignments.submissions', {
+			populate: {'classes.assignments.submissions': {match: {user: req.params.user_id.toString()}}}
+		})
+		.exec(function (err, user) {
 			if (err)
 				res.send(err);
-			else{
-				res.json(user);
-			};
+			res.send(user);
 		});
 	});
 
