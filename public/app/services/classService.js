@@ -27,5 +27,9 @@ angular.module('classService', [])
 		return $http.put('/api/classes/enrolledStudents/' + classId, userId);
 	};
 
+	classFactory.getFullInfoForInstructor = function (instructorId) {
+		return $http.get('/api/classes/instructorInfo/' +  instructorId);
+	};
+
 	return classFactory;
 })

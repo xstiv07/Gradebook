@@ -16,7 +16,7 @@ angular.module('authService', [])
 
 		// return the promise object and its data
 		return $http.post('/api/authenticate', {
-			username: loginData.username,
+			email: loginData.email,
 			password: loginData.password
 		})
 			.success(function(data) {
@@ -26,11 +26,7 @@ angular.module('authService', [])
 	};
 
 	authFactory.register = function (registerData) {
-		return $http.post('/api/register/', {
-			name: registerData.name,
-			username: registerData.username,
-			password: registerData.password
-		}).success(function(data) {
+		return $http.post('/api/register/', registerData).success(function(data) {
 			AuthToken.setToken(data.token);
    			return data;
 		});
@@ -54,7 +50,7 @@ angular.module('authService', [])
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
-			return $http.get('/api/me', { cache: true });
+			return $http.get('/api/me');
 		else
 			return $q.reject({ message: 'User has no token.' });		
 	};

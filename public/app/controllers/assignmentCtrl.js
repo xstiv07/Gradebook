@@ -78,9 +78,8 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 		vm.error = '';
 		if (isValid){
 			Assignment.create(vm.assignmentData, $routeParams.class_id).success(function (data) {
-				if (data.success){
-					$location.path('/assignments/view/' + $routeParams.class_id)
-				}
+				if (data.success)
+					$location.path('/cpanel')
 				else{
 					vm.processing = false;
 					vm.error = data.message;

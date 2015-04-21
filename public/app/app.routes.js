@@ -8,7 +8,12 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/dashboard',{
 			templateUrl: 'app/views/pages/dashboard.html',
 			controller: 'dashboardController',
-			controllerAs: 'dashboard'
+			controllerAs: 'dash'
+		})
+		.when('/cpanel',{
+			templateUrl: 'app/views/pages/cpanel.html',
+			controller: 'cpanelController',
+			controllerAs: 'cpanel'
 		})
 		.when('/users',{
 			templateUrl: 'app/views/pages/users/all.html',

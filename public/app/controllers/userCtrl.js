@@ -3,7 +3,6 @@ angular.module('userCtrl', ['userService'])
 .controller('userController', function (User) {
 	var vm = this;
 	vm.isInstructor = isInstructor;
-	vm.isAdmin = isAdmin;
 
 	vm.processing = true;
 

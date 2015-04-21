@@ -6,8 +6,7 @@ var User = require('../models/user'),
 function sendToken (msg, user, res) {
 	var token = jwt.sign({
 					id: user._id,
-					name: user.name,
-					username: user.username,
+					fname: user.fname,
 					roles: user.roles
 				}, supersecret, {
 					expiresInMinutes: 1440
@@ -23,15 +22,15 @@ function sendToken (msg, user, res) {
 module.exports = function (apiRouter) {
 	apiRouter.post('/authenticate', function (req, res) {
 		User.findOne({
-			username: req.body.username
-		}).select('name username password roles').exec(function (err, user) {
+			email: req.body.email
+		}).select('fname password roles').exec(function (err, user) {
 			if(err)
 				throw err;
 			//no user with that username was found
 			if(!user){
 				res.json({
 					success: false,
-					message: 'Authentication failed. User not found'
+					message: 'Authentication failed.'
 				})
 			}
 			else if(user){
@@ -40,7 +39,7 @@ module.exports = function (apiRouter) {
 				if(!validPassword){
 					res.json({
 						success: false,
-						message: 'Authentication failed. Password does not match'
+						message: 'Authentication failed.'
 					})
 				}else{
 					sendToken('Successfully passed a token', user, res);
@@ -53,15 +52,20 @@ module.exports = function (apiRouter) {
 		.post(function (req, res) {
 			var user = new User();
 
-			user.name = req.body.name;
-			user.username =  req.body.username;
+			console.log(req.body)
+
+			user.fname = req.body.fname;
+			user.lname = req.body.lname;
+			user.email =  req.body.email;
 			user.password = req.body.password;
 
 			user.save(function(err){
 				if (err){
 					//duplicate entry
-					if(err.code == 11000)
-						return res.json({success: false, message: "Username already exists."});
+					if(err.code == 11000){
+						console.log(err)
+						return res.json({success: false, message: "Email already exists."});
+					}
 					else
 						return res.send(err);
 				}

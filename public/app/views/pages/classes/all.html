@@ -14,7 +14,8 @@
 		<tr>
 			<th>Name</th>
 			<th>CRN</th>
-			<th>Description</th>
+			<th>Term</th>
+			<th>Instructor</th>
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
@@ -22,7 +23,8 @@
 		<tr ng-repeat="gClass in class.classes">
 			<td>{{ gClass.name }}</td>
 			<td>{{ gClass.crn }}</td>
-			<td>{{ gClass.description }}</td>
+			<td>{{ gClass.term }}</td>
+			<td>{{ gClass.instructor.fname }} {{gClass.instructor.lname}}</td>
 			<td class="col-sm-2">
 				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Class</a>
 				<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-default">Delete Class</a>

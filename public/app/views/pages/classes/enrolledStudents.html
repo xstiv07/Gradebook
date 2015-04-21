@@ -7,17 +7,15 @@
 <table class="table table-bordered table-striped" ng-show="enrolledStudents.users">
 	<thead>
 		<tr>
-			<th>_id</th>
-			<th>Name</th>
-			<th>Username</th>
+			<th>Full Name</th>
+			<th>Email</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="person in enrolledStudents.users">
-			<td>{{ person._id }}</td>
-			<td>{{ person.name }}</td>
-			<td>{{ person.username }}</td>
+			<td>{{ person.fname }} {{person.lname}}</td>
+			<td>{{ person.email }}</td>
 			<td>
 				<a href="#" ng-click="enrolledStudents.unenroll(person._id)" class="btn btn-default">Delete from class</a>
 			</td>

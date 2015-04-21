@@ -1,18 +1,18 @@
 var Class = require('../models/class'),
+	deepPopulate = require('mongoose-deep-populate'),
 	User = require('../models/user');
 
 module.exports = function (apiRouter) {
 	apiRouter.route('/classes')
 		.get(function (req, res) {
 			//sending all classes
-			Class.find(function (err, classes) {
-				if (err)
+			Class.find()
+			.populate('instructor')
+			.exec(function (err, classes) {
+				if(err)
 					res.send(err);
-				else{
-					//return classes
-					res.json(classes);
-				}
-			})
+				res.send(classes);
+			});
 		})
 
 		.post(function (req, res) {
@@ -20,7 +20,8 @@ module.exports = function (apiRouter) {
 
 			gClass.crn = req.body.crn;
 			gClass.name = req.body.name;
-			gClass.description = req.body.description;
+			gClass.term = req.body.term;
+			gClass.instructor = req.body.instructor;
 
 			//save a class
 			gClass.save(function (err) {
@@ -49,6 +50,18 @@ module.exports = function (apiRouter) {
 				});
 			});
 		});
+
+	apiRouter.get('/classes/instructorInfo/:instructor_id', function (req, res) {
+
+		Class.find({instructor: req.params.instructor_id})
+		.deepPopulate('assignments.submissions.files users instructor')
+		.exec(function (err, classes) {
+			if (err)
+				res.send(err);
+			else
+				res.send(classes);
+		});
+	});
 
 	apiRouter.route('/classes/addStudents/:class_id')
 		.post(function (req, res) {
@@ -82,7 +95,9 @@ module.exports = function (apiRouter) {
 
 	apiRouter.route('/classes/enrolledStudents/:class_id')
 		.get(function (req, res) {
-			Class.findOne({_id: req.params.class_id})
+			Class.findOne({
+				_id: req.params.class_id
+			})
 			.populate('users')
 			.exec(function (err, gClass) {
 				if (err){

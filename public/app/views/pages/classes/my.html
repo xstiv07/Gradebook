@@ -6,12 +6,6 @@
 </div>
 
 
-<div class="container">
-	<div class="row graphs">
-		<h3>Need to fill the space with some sort of interesting stuff. Probably notifications will be here</h3>
-	</div>
-</div>
-
 
 <div class="cal-holder">
 	<div class="container">
@@ -22,26 +16,6 @@
 			</div>
 		</div>
 		<span class="calButton" ng-show="class.isCollapsed" ng-click="class.isCollapsed = !class.isCollapsed" id="cal">Calendar</span>
-	</div>
-</div>
-
-<div class="overlay">
-	<div class="container">
-		<div class="row">
-			<div class="align-center" ng-show="class.userData.classes == 0">
-				<h3 class="upper">Currently, you are not enrolled in any classes.</h3>
-				<h5>Please contact your instructor to resolve the issue.</h5>
-			</div>
-			<div class="classTree">
-				<div class="circles" id="c-co">
-					<div ng-repeat="c in class.userData.classes" class="circle">
-						<a href="/assignments/view/{{ c._id }}">
-							<span>{{ c.name }}</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 

@@ -17,17 +17,15 @@
 <table class="table table-bordered table-striped" ng-show="addStudents.users">
 	<thead>
 		<tr>
-			<th>_id</th>
-			<th>Name</th>
-			<th>Username</th>
+			<th>Full Name</th>
+			<th>Email</th>
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="person in addStudents.users">
-			<td>{{ person._id }}</td>
-			<td>{{ person.name }}</td>
-			<td>{{ person.username }}</td>
+			<td>{{ person.fname }} {{person.lname}}</td>
+			<td>{{ person.email }}</td>
 			<td class="col-sm-2">
 				<input type="checkbox" ng-checked="addStudents.selectedUsers.indexOf(person) != -1" ng-click="addStudents.toggleCheck(person._id)">
 			</td>

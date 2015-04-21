@@ -21,9 +21,11 @@ angular.module('classCtrl', ['classService'])
 	vm.doNewClass = function (isValid) {
 		vm.error = '';
 		if (isValid){
+			vm.classData.instructor = currentUserId;
+			console.log(vm.classData.instructor)
 			Class.create(vm.classData).success(function (data) {
 				if(data.success)
-					$location.path('/classes');
+					$location.path('/cpanel');
 				else{
 					vm.processing = false;
 					vm.error = data.message;
@@ -43,7 +45,7 @@ angular.module('classCtrl', ['classService'])
 	vm.processing = true;
 	vm.selectedUsers = [];
 
-	//geting all users
+	//geting all users who are not instructors
 	User.all().success(function (data) {
 		vm.processing = false;
 		vm.users = data;

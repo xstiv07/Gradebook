@@ -1,0 +1,69 @@
+<div class="row absolute text-center" ng-show="cpanel.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading...</p>
+</div>
+
+<div class="container">
+
+	<div class="gradebook">
+		<a href="/classes/create/" class="float-right btn-link">New Class</a>
+	<div ng-show="cpanel.instructorData.length > 0">
+		<h5 class="upper">Classes I'm teaching right now</h5>
+	</div>
+
+		<accordion close-others="cpanel.oneAtATime">
+
+			<accordion-group ng-show="cpanel.instructorData.length == 0" heading="You are not teaching at the moment!" is-open="false" is-disabled="false">
+				<h5 class="align-center">Create a new class now!</h5>
+			</accordion-group>
+
+		    <accordion-group heading="{{class.name}} - {{class.term}}" ng-repeat="class in cpanel.instructorData" is-open="false" is-disabled="false">
+
+		    	<div class="row yellow">
+		    		<a ng-href="/assignments/create/{{ class._id }}" class="btn btn-link">New Assignment</a>
+		    		<a ng-href="/classes/addStudents/{{ class._id }}" class="btn btn-link">Add Students</a>
+		    		<a ng-href="/classes/enrolledStudents/{{ class._id }}" class="btn btn-link">Enrolled Students</a>
+		    		<a ng-href="/class/edit/{{ class._id }}" class="btn btn-link">Edit Class</a>
+		    		<a href="#" ng-click="cpanel.deleteClass(class._id)" class="btn btn-link">Delete Class</a>
+		    	</div>
+
+		    	<h5 class="align-center" ng-show="class.assignments.length == 0">
+		    		This class has no active assignments. <a href="/assignments/create/{{ class._id }}">Create</a> one.
+		    	</h5>
+
+		    	<h6 class="padding-big" ng-show="class.assignments.length > 0" class="upper">{{class.name}} has following assignments:</h6>
+		    	<div class="inline" ng-repeat="assignment in class.assignments">
+
+					<div class="form-group">
+						<label for="name">Assignment Name</label>
+						<span id="name">{{ assignment.name}}</span>
+					</div>
+					<div class="form-group float-right align-right">
+						<label for="due">Due Date</label>
+						<span id="due">{{ assignment.dateDue | date : 'medium' }}<span>
+					</div>
+					<div class="form-group" ng-show="assignment.attachments.length > 0">
+						<label for="attachm">Attachments</label>
+						<span id="attachm"><span>
+					</div>
+
+					<div class="form-group" ng-show="assignment.attachments.length == 0 || assignment.attachments.length == null">
+						<label for="attachm">Attachments</label>
+						<span id="attachm">N/A<span>
+					</div>
+
+					<div class="assign-descr">
+						<label for="descr">Description</label>
+						<span>{{ assignment.description }}</span>
+					</div>
+
+					<div class="align-right">
+						<a ng-href="/assignments/viewSubmissions/{{ assignment._id }}" class="btn btn-info">View Submissions</a>
+						<a ng-href="/assignments/edit/{{ assignment._id }}" class="btn btn-default">Edit Assignment</a> <!-- to-do -->
+						<a href="#" ng-click="cpanel.deleteAssignment(assignment._id)" class="btn btn-default">Delete Assignment</a>
+					</div>
+				</div>
+		    </accordion-group>
+		</accordion>
+	</div>
+</div>

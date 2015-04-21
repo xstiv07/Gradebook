@@ -1,12 +1,31 @@
 <div class="gradeWrapper">
+
+	<div class="overlay tree-display">
+		<div class="row">
+			<div class="classTree">
+				<div class="circles" id="c-co">
+					<div ng-repeat="class in grade.userData.classes" class="circle">
+						<a href="/assignments/view/{{ c._id }}">
+							<span>{{ class.name }}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="gradebook">
+			<h5 ng-show="grade.userData.classes.length > 0" class="upper">My gradebook</h5>
 			<accordion close-others="grade.oneAtATime">
-				<accordion-group ng-show="grade.userData.user.classes.length == 0" heading="Currently, you are not enrolled in any classes" is-open="false" is-disabled="false">
-					<h5 class="align-center">Contact your instructor for enrollment questions.</h5>
+				<accordion-group ng-show="grade.userData.classes.length == 0" heading="It looks like you are not enrolled in any classes yet." is-open="false" is-disabled="false">
+					<h5 class="align-center">Contact your instructor about enrollment questions.</h5>
 				</accordion-group>
 			    <accordion-group heading="{{class.name}}" ng-repeat="class in grade.userData.classes" is-open="false" is-disabled="false">
-			    	<h4 ng-show="class.assignments.length == 0">This class has no active assignments. Please contact your instructor to resolve the issue.</h3>
+			    	<div class="form-group yellow align-center">
+			    		<label style="display: inline">Class instructor: </label>
+			    		<span>{{class.instructor.fname}} {{class.instructor.lname}}</span>
+			    	</div>
+			    	<h5 class="align-center" ng-show="class.assignments.length == 0">This class has no active assignments. Please contact your instructor to resolve the issue.</h5>
 
 			    	<div class="inline" ng-repeat="assignment in class.assignments">
 
@@ -14,12 +33,20 @@
 							<label for="name">Assignment Name</label>
 							<span id="name">{{ assignment.name}}</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group float-right align-right">
 							<label for="due">Due Date</label>
 							<span id="due">{{ assignment.dateDue | date : 'medium' }}<span>
 						</div>
 
-						<a ng-show="assignment.submissions[0].status == null" ng-href="/assignments/submit/{{ assignment._id }}" class="btn btn-primary float-right">Submit</a>
+						<div class="form-group" ng-show="assignment.attachments.length == 0 || assignment.attachments.length == null">
+							<label for="attachm">Attachments</label>
+							<span id="attachm">N/A<span>
+						</div>
+
+						<div class="assign-descr">
+							<label for="descr">Description</label>
+							<span>{{ assignment.description }}</span>
+						</div>
 
 						<div class="align-right" ng-show="assignment.submissions.length == 0">
 							<div class="form-group">
@@ -31,6 +58,9 @@
 								<span id='status'>Not submitted</span>
 							</div>
 						</div>
+						
+						<a ng-show="assignment.submissions[0].status == null" ng-href="/assignments/submit/{{ assignment._id }}" class="btn btn-primary float-right">Submit</a>
+						
 
 						<div class="align-right" ng-repeat="subm in assignment.submissions">
 							<div class="form-group">

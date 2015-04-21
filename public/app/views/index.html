@@ -41,58 +41,62 @@
 
 <body ng-app="gradebookApp" ng-controller="mainController as main">
 
-<header ng-if="main.loggedIn">
-<div class="nav navbar">
-	<div class="container">
-		<a class="navbar-brand" href="/dashboard">
-			<span class="fa fa-connectdevelop fa-2x"></span>
-		</a>
-		<div class="col-sm-12 align-right">
-			<div class="open">
-				<span class="cls"></span>
-				<span>
-				  <ul class="sub-menu ">
-					<li>
-						<a href="/users">Users</a>
+	<header ng-if="main.loggedIn">
+		<div class="container">
+			<nav class="navbar">
+				<ul class="nav navbar-nav">
+					<li class="navbar-brand">
+						<a href="/dashboard"><span class="fa fa-connectdevelop fa-2x"></span></a>
 					</li>
-					<li>
-						<a href="/classes">Classes</a>
-					</li>
-					<li>
-						<a href="/assignments">Assignments</a>
-					</li>
-					<li ng-if="main.loggedIn"><a href="#">{{main.user.name}} profile</a></li>
-					<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
-				  </ul>
-				 </span> 
-				 <span class="cls"></span> 
+				</ul>
+		      	<ul class="nav navbar-nav navbar-right">
+		        	<li>
+		        		<a href="#">Logged in as {{main.user.fname}}</a>
+		        	</li>
+		      	</ul>
+			</nav>
+
+			<div class="col-sm-12 align-right">
+				<div class="open">
+					<span class="cls"></span>
+					<span>
+					  <ul class="sub-menu ">
+					  	<li><a href="/dashboard">Dashboard</a></li>
+					  	<li><a href="/grades">Gradebook</a></li>
+					  	<li><a href="/cpanel">Instructor Panel</a></li>
+						<li><a href="/users">Manage Users</a></li> <!-- admins's role -->
+						<li><a href="/classes">Manage Classes</a></li> <!-- admins's role -->
+						<li><a href="/assignments">Manage Assignments</a></li> <!-- admins's role -->
+						<li class="select" ng-click="main.doLogout()"><a href="#">Logout</a></li>
+					  </ul>
+					 </span> 
+					 <span class="cls"></span> 
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-	
-</header>
+		
+	</header>
 
-<main>
-	<div id="wrapper">
-		<div ng-view></div>
-	</div>
-</main>
+	<main>
+		<div id="wrapper">
+			<div ng-view></div>
+		</div>
+	</main>
 
-<script>
-	$(document).ready(function() {
-		$(document).delegate('.open', 'click', function(event){
-			$(this).addClass('oppenned');
-			event.stopPropagation();
-		})
-		$(document).delegate('body', 'click', function(event) {
-			$('.open').removeClass('oppenned');
-		})
-		$(document).delegate('.cls', 'click', function(event){
-			$('.open').removeClass('oppenned');
-			event.stopPropagation();
+	<script>
+		$(document).ready(function() {
+			$(document).delegate('.open', 'click', function(event){
+				$(this).addClass('oppenned');
+				event.stopPropagation();
+			})
+			$(document).delegate('body', 'click', function(event) {
+				$('.open').removeClass('oppenned');
+			})
+			$(document).delegate('.cls', 'click', function(event){
+				$('.open').removeClass('oppenned');
+				event.stopPropagation();
+			});
 		});
-	});
-</script>
+	</script>
 </body>
 </html>

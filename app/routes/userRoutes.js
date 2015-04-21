@@ -20,7 +20,7 @@ module.exports = function (apiRouter) {
 	apiRouter.get('/users/fullInfo/:user_id', function (req, res) {
 
 		User.findOne({_id: req.params.user_id})
-		.deepPopulate('classes.assignments.submissions', {
+		.deepPopulate('classes.assignments.submissions classes.instructor', {
 			populate: {'classes.assignments.submissions': {match: {user: req.params.user_id.toString()}}}
 		})
 		.exec(function (err, user) {
@@ -91,6 +91,7 @@ module.exports = function (apiRouter) {
 		});
 
 	apiRouter.get('/me', function (req, res) {
+		console.log(req.decoded)
 		res.send(req.decoded);
 	});
 

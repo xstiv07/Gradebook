@@ -3,7 +3,6 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 .controller('mainController', function ($rootScope, $location, Auth, $modal) {
 	var vm = this;
 	isInstructor = false;
-	isAdmin = false;
 
 	//login modal handler
 	vm.openLogin = function (size) {
@@ -36,7 +35,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			.then(function(data) {
 				vm.user = data.data;
 				isInstructor = vm.isInstructor = data.data.roles.indexOf('Instructor') != -1;
-				currentUserId = data.data.id;
+				currentUserId = data.data.id || '';
 			});
 	});
 
@@ -88,7 +87,6 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 
 	vm.doRegister = function (isValid) {
 		vm.error = '';
-		console.log("in here")
 		if(isValid){
 			Auth.register(vm.registerData).success(function (data) {
 				if (data.success){		

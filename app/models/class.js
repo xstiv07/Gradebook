@@ -13,9 +13,13 @@ var classSchema = new Schema({
 		type: String,
 		required: true
 	},
-	description: {
+	term: {
 		type: String,
 		required: true
+	},
+	instructor: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
 	},
 	users : [{
 		type: mongoose.Schema.Types.ObjectId,
@@ -39,7 +43,7 @@ classSchema.pre('remove', function (next) {
 	);
 
 	//should remove all assignments of a class when it is deleted
-	Assignment.remove({_id: {$in: gClass.assignments}}).exec();
+	gClass.model('Assignment').remove({_id: {$in: gClass.assignments}}).exec();
 	next();
 });
 
