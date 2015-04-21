@@ -26,8 +26,15 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 		};
 	};
 })
-.controller('viewSubmissionController', function ($routeParams, Assignment, $location) {
+.controller('viewSubmissionController', function ($routeParams, Assignment, $location, $modalInstance, assignmentId) {
 	var vm = this;
+
+	//get all submissions for the assignment
+	Assignment.getSubmissions(assignmentId).success(function (data) {
+		vm.submissions = data.submissions;
+		vm.assignmentName = data.assignmentName;
+	});
+
 	vm.postGrade = function (isValid, grade, submissionId) {
 		vm.error = '';
 
@@ -45,6 +52,10 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 		};
 	};
 
+	vm.close = function () {
+		$modalInstance.dismiss('cancel');
+	};
+
 	vm.postComment = function (isValid, commment, submissionId) {
 		if(isValid){
 			var data = {
@@ -56,10 +67,4 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 			});
 		};
 	};
-
-	//get all submissions for the assignment
-	Assignment.getSubmissions($routeParams.assignment_id).success(function (data) {
-		vm.submissions = data.submissions;
-		vm.assignmentName = data.assignmentName;
-	});
 })

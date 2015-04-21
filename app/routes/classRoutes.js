@@ -126,8 +126,17 @@ module.exports = function (apiRouter) {
 						res.send(err);
 			});
 
-			res.json({
-				success: true
+			//get students for a class and return
+			Class.findOne({
+				_id: req.params.class_id
+			})
+			.populate('users')
+			.exec(function (err, gClass) {
+				if (err)
+					res.send(err);
+				else
+					res.json(gClass.users);
 			});
+		
 		})
 }

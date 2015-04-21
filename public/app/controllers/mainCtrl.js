@@ -5,22 +5,20 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 	isInstructor = false;
 
 	//login modal handler
-	vm.openLogin = function (size) {
+	vm.openLogin = function () {
 		var modalInstance = $modal.open({
 			templateUrl: "loginModal.html",
 			controller: "loginModalController",
-			controllerAs: "login",
-			size: size
+			controllerAs: "login"
 		});
 	};
 
 	//register modal handler
-	vm.openRegister = function (size) {
+	vm.openRegister = function () {
 		var modalInstance = $modal.open({
 			templateUrl: "registerModal.html",
 			controller: "registerModalController",
-			controllerAs: "register",
-			size: size
+			controllerAs: "register"
 		});
 	};
 

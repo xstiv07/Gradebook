@@ -13,7 +13,7 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	});
 })
 
-.controller('cpanelController', function (Assignment, Class, $location, $route) {
+.controller('cpanelController', function (Assignment, Class, $location, $route, $modal) {
 	var vm = this;
 	vm.processing = false;
 
@@ -21,6 +21,34 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 		console.log(data)
 		vm.instructorData = data;
 	});
+
+	vm.openEnrolledStudents = function (size, id) {
+		var modalInstance = $modal.open({
+			templateUrl: "enrolledStudentsModal.html",
+			controller: "enrolledStudentsController",
+			controllerAs: "enrolledStudents",
+			size: size,
+			resolve:{
+				classId: function () {
+					return id;
+				}
+			}
+		});
+	};
+
+	vm.openViewSubmissions = function (size, id) {
+		var modalInstance = $modal.open({
+			templateUrl: "viewSubmissionsModal.html",
+			controller: "viewSubmissionController",
+			controllerAs: "assignment",
+			size: size,
+			resolve:{
+				assignmentId: function () {
+					return id;
+				}
+			}
+		});
+	};
 
 	vm.deleteClass = function (classId) {
 		vm.processing = true;

@@ -447,9 +447,6 @@ form[novalidate].ng-submitted input.ng-invalid{
 .graphs{
   height: 400px;
 }
-.cal-holder{
-  background-color:#1f1f1f;
-}
 .cal{
   padding: 10px;
   border: 7px solid #FFF;
@@ -458,7 +455,7 @@ form[novalidate].ng-submitted input.ng-invalid{
 .calButton{
   text-transform:uppercase;
   float: right;
-  color: #fff;
+  color: black;
   font-size: 20px;
 }
 /*-------------------------------*/
@@ -545,7 +542,8 @@ textarea{
   padding-right: 10px;
 }
 .holder{
-  height: 310px;
+  height: 330px;
+  margin-top: -50px;
 }
 .absolute{
   position: absolute;
@@ -562,9 +560,6 @@ textarea{
 }
 .padding-huge{
   padding: 35px;
-}
-.inline a{
-  margin-top: 10px;
 }
 .block{
   display: block;
