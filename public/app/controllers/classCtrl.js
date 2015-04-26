@@ -1,4 +1,4 @@
-angular.module('classCtrl', ['classService'])
+angular.module('classCtrl', [])
 
 .controller('classController', function ($rootScope, $location, Class) {
 	var vm = this;

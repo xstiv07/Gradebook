@@ -97,8 +97,7 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	vm.oneAtATime = false;
 
 	//assuming there will be only one submission allowed for an assignment
-	User.getFullInfo(currentUserId).success(function (data) {
-		console.log(data)
+	User.getFullInfo(currentUser.id).success(function (data) {
 		vm.userData = data;
 	});
 })

@@ -41,7 +41,7 @@
 
 <body ng-app="gradebookApp" ng-controller="mainController as main">
 
-	<header ng-if="main.loggedIn">
+	<header ng-if="isLoggedIn">
 		<div class="container">
 			<nav class="navbar">
 				<ul class="nav navbar-nav">
@@ -70,13 +70,13 @@
 					  	<li>
 					  		<a href="/cpanel">Instructor Panel</a>
 					  	</li>
-						<li ng-if='isAdmin'>
+						<li ng-if='main.isAdmin'>
 							<a href="/users">Manage Users</a>
 						</li>
-						<li>
+						<li ng-if='main.isAdmin'>
 							<a href="/classes">Manage Classes</a>
 						</li>
-						<li>
+						<li ng-if='main.isAdmin'>
 							<a href="/assignments">Manage Assignments</a>
 						</li>
 						<li class="select" ng-click="main.doLogout()">

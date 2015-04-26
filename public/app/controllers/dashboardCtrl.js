@@ -8,7 +8,7 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	vm.showTree = false;
 
 	//assuming there will be only one submission allowed for an assignment
-	User.getFullInfo(currentUserId).success(function (data) {
+	User.getFullInfo(currentUser.id).success(function (data) {
 		vm.userData = data;
 	});
 })
@@ -17,8 +17,7 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	var vm = this;
 	vm.processing = false;
 
-	Class.getFullInfoForInstructor(currentUserId).success(function (data) {
-		console.log(data)
+	Class.getFullInfoForInstructor(currentUser.id).success(function (data) {
 		vm.instructorData = data;
 	});
 
