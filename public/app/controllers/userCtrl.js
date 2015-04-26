@@ -2,10 +2,9 @@ angular.module('userCtrl', ['userService'])
 
 .controller('userController', function (User) {
 	var vm = this;
-	vm.isInstructor = isInstructor;
 
 	vm.processing = true;
-
+	console.log('rendered a controller action, soon to call the api');
 	User.all().success(function (data) {
 		vm.processing = false;
 		vm.users = data;
@@ -27,7 +26,7 @@ angular.module('userCtrl', ['userService'])
 		vm.selectedRoles = data.roles;
 	});
 
-	vm.roles = ['Instructor']
+	vm.roles = ['Instructor', 'Admin']
 
 	vm.toggleCheck = function(role) {
 		

@@ -1,12 +1,12 @@
 <div>
 	<h1>Users</h1>
 
-	<div class="jumbotron text-center" ng-show="user.processing">
+	<div class="row absolute text-center" ng-show="user.processing">
 		<span class="glyphicon glyphicon-repeat spinner"></span>
-		<p>Loading Users...</p>
+		<p>Loading...</p>
 	</div>
 
-	<table class="table table-bordered table-striped" ng-show="user.users">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -35,4 +35,10 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<!-- no registered users in the app -->
+	<div class="row" ng-show="!user.users && isAdmin">
+		<h5>Currently, there are no users in the database.</h5>
+	</div>
+
 </div>

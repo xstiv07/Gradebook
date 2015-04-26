@@ -1,10 +1,8 @@
 angular.module('classCtrl', ['classService'])
 
-.controller('classController', function ($location, Class) {
+.controller('classController', function ($rootScope, $location, Class) {
 	var vm = this;
 	vm.processing = true;
-
-	vm.isInstructor = isInstructor;
 
 	Class.all().success(function (data) {
 		vm.classes = data;
@@ -12,6 +10,7 @@ angular.module('classCtrl', ['classService'])
 	});
 
 	vm.doDeleteClass = function (id) {
+		vm.processing = true;
 		Class.delete(id).success(function (data) {
 			vm.processing = false;
 			vm.classes = data.classes;
@@ -20,16 +19,17 @@ angular.module('classCtrl', ['classService'])
 
 	vm.doNewClass = function (isValid) {
 		vm.error = '';
+		vm.processing = true;
+
 		if (isValid){
 			vm.classData.instructor = currentUserId;
-			console.log(vm.classData.instructor)
+
 			Class.create(vm.classData).success(function (data) {
 				if(data.success)
 					$location.path('/cpanel');
-				else{
-					vm.processing = false;
+				else
 					vm.error = data.message;
-				};
+				vm.processing = false;
 			});
 		}else{
 			vm.processing = false;
@@ -40,29 +40,30 @@ angular.module('classCtrl', ['classService'])
 
 .controller('addStudentsController', function ($routeParams, $location, User, Class) {
 	var vm = this;
-	vm.isInstructor = isInstructor;
 
 	vm.processing = true;
 	vm.selectedUsers = [];
 
 	//geting all users who are not instructors
 	User.all().success(function (data) {
-		vm.processing = false;
 		vm.users = data;
+		vm.processing = false;
 	});
 
 	vm.toggleCheck = function(usr) {
+		vm.processing = true;
 		if (vm.selectedUsers.indexOf(usr) === -1)
 			vm.selectedUsers.push(usr)
 		else
 			vm.selectedUsers.splice(vm.selectedUsers.indexOf(usr), 1);
+		vm.processing = false;
 	};
 
 	vm.postStudents = function () {
+		vm.processing = true;
 		Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
 			if (data.success)			
 				$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
-				
 			vm.processing = false;
 		});
 	};
@@ -70,8 +71,7 @@ angular.module('classCtrl', ['classService'])
 
 .controller('enrolledStudentsController', function ($location, $routeParams, Class, $modalInstance, classId) {
 	var vm = this;
-	vm.isInstructor = isInstructor;
-	vm.processing = false;
+	vm.processing = true;
 
 	Class.getStudents(classId).success(function (data) {
 		vm.users = data.students;

@@ -15,16 +15,36 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'cpanelController',
 			controllerAs: 'cpanel'
 		})
+		.when('/grades',{
+			templateUrl: 'app/views/pages/assignments/grades.html',
+			controller: 'gradesController',
+			controllerAs: 'grade'
+		})
+		// ------------user-routes---------------
 		.when('/users',{
 			templateUrl: 'app/views/pages/users/all.html',
 			controller: 'userController',
-			controllerAs: 'user'
+			controllerAs: 'user',
+			resolve: {
+				"check": function ($rootScope, $location) {
+					if (!$rootScope.isAdmin){
+						$location.path('/dashboard');
+						alert('access denied');
+					};
+				}
+			}
 		})
 		.when('/users/:user_id',{
 			templateUrl: 'app/views/pages/users/edit.html',
 			controller: 'userEditController',
-			controllerAs: 'user'
+			controllerAs: 'user',
+			resolve:{
+				"check": function () {
+					
+				}
+			}
 		})
+		// ------------class-routes---------------
 		.when('/classes',{
 			templateUrl: 'app/views/pages/classes/all.html',
 			controller: 'classController',
@@ -40,15 +60,11 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'addStudentsController',
 			controllerAs: 'addStudents'
 		})
+		// ------------assignment-routes---------------
 		.when('/assignments',{
 			templateUrl: 'app/views/pages/assignments/all.html',
 			controller: 'assignmentController',
 			controllerAs: 'assignment'
-		})
-		.when('/grades',{
-			templateUrl: 'app/views/pages/assignments/grades.html',
-			controller: 'gradesController',
-			controllerAs: 'grade'
 		})
 		.when('/assignments/create/:class_id',{
 			templateUrl: 'app/views/pages/assignments/create.html',

@@ -1,7 +1,8 @@
-<div class="jumbotron text-center" ng-show="class.processing">
+<div class="row absolute text-center" ng-show="class.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading Classes...</p>
+	<p>Loading...</p>
 </div>
+
 <div class="page-header">
 <h1>Classes</h1>
 	<a href="/classes/create" class="btn btn-default">
@@ -9,7 +10,7 @@
 				New Class
 			</a>
 </div>
-<table class="table table-bordered table-striped" ng-show="class.classes">
+<table class="table table-bordered table-striped">
 	<thead>
 		<tr>
 			<th>Name</th>

@@ -61,13 +61,27 @@
 					<span class="cls"></span>
 					<span>
 					  <ul class="sub-menu ">
-					  	<li><a href="/dashboard">Dashboard</a></li>
-					  	<li><a href="/grades">Gradebook</a></li>
-					  	<li><a href="/cpanel">Instructor Panel</a></li>
-						<li><a href="/users">Manage Users</a></li> <!-- admins's role -->
-						<li><a href="/classes">Manage Classes</a></li> <!-- admins's role -->
-						<li><a href="/assignments">Manage Assignments</a></li> <!-- admins's role -->
-						<li class="select" ng-click="main.doLogout()"><a href="#">Logout</a></li>
+					  	<li>
+					  		<a href="/dashboard">Dashboard</a>
+					  	</li>
+					  	<li>
+					  		<a href="/grades">Gradebook</a>
+					  	</li>
+					  	<li>
+					  		<a href="/cpanel">Instructor Panel</a>
+					  	</li>
+						<li ng-if='isAdmin'>
+							<a href="/users">Manage Users</a>
+						</li>
+						<li>
+							<a href="/classes">Manage Classes</a>
+						</li>
+						<li>
+							<a href="/assignments">Manage Assignments</a>
+						</li>
+						<li class="select" ng-click="main.doLogout()">
+							<a href="#">Logout</a>
+						</li>
 					  </ul>
 					 </span> 
 					 <span class="cls"></span> 
