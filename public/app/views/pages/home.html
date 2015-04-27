@@ -14,14 +14,20 @@
 	</div>
 	</div>
 	<div class="container">
-		<!-- extra content goes here -->
 		<div class="content-box align-center">
 			<span class="logo-font">&nbsp;&nbsp;&nbsp;&nbsp;Simple</span><i id="intro" class="fa fa-circle-o big-icon"></i><span class="logo-font">Gradebook.</span>
+		</div>
+		<div class="bottom-bar">
+			<div class="container align-center">
+				<a scroll-on-click href="#content">
+					<i class="fa fa-angle-double-down fa-5x cursor-animate"></i>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
 <div class='padding-big'></div>
-<div class="container">
+<div class="container" id="content">
 	<div class="row align-center">
 		<div id="sp-links">
 	        <a id="sp-github" href="https://github.com/WVUP"><span class="fa fa-github fa-4x"></span></a>
@@ -43,7 +49,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		console.log('executing !@')
-		$("#intro").addClass("flash"); 
+		$("#intro").addClass("change-color"); 
 	});
 </script>
 
@@ -114,6 +120,5 @@
 	            '-ms-transform': 'rotate(' + offset + 'deg)',
 	            'transform': 'rotate(' + offset + 'deg)',
 	        });
-
 	    });
 	</script>

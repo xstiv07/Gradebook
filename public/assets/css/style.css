@@ -112,7 +112,6 @@ form[novalidate].ng-submitted input.ng-invalid{
   background-size: cover;
   color: white;
   padding-top: 30px;
-  padding-bottom: 200px;
   height: 100%;
 }
 .container {
@@ -635,15 +634,60 @@ textarea{
 .big-icon{
   font-size: 300px !important;
 }
-.flash{
+/*.flash{
   -webkit-animation:flash 6s both linear;
   -webkit-animation-iteration-count: infinite;
   -moz-animation:flash 6s both linear;
   -moz-animation-iteration-count: infinite;
   animation:flash 6s both linear;
   animation-iteration-count: infinite;
+}*/
+.change-color{
+  -webkit-animation: color_change 5s infinite alternate;
+  -moz-animation: color_change 5s infinite alternate;
+  -ms-animation: color_change 5s infinite alternate;
+  -o-animation: color_change 5s infinite alternate;
+  animation: color_change 5s infinite alternate;
 }
+@-webkit-keyframes color_change {
+  from { color: #fff; }
+  to { color: #F07444; }
+}
+@-moz-keyframes color_change {
+  from { color: white; }
+  to { color: #F07444; }
+}
+@-ms-keyframes color_change {
+  from { color: white; }
+  to { color: #F07444; }
+}
+@-o-keyframes color_change {
+  from { color: white; }
+  to { color: #F07444; }
+}
+@keyframes color_change {
+  from { color: white; }
+  to { color: #F07444; }
+}
+
 .logo-font{
   font-family: 'Montez', cursive;
   font-size: 60pt
+}
+.bottom-bar{
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 100%
+}
+.fa-angle-double-down{
+  color: #fff;
+}
+.cursor-animate{
+  -webkit-animation:rubberBand 10s both linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation:rubberband 10s both linear;
+  -moz-animation-iteration-count: infinite;
+  animation:rubberBand 10s both linear;
+  animation-iteration-count: infinite;
 }
