@@ -1,19 +1,12 @@
 angular.module('customDirectives', [])
 
-.directive('scrollOnClick', function () {
-	return {
+.directive('scrollOnClick', function($window) {
+  return {
     restrict: 'A',
-    link: function(scope, $elm, attrs) {
-      var idToScroll = attrs.href;
+    link: function(scope, $elm) {
       $elm.on('click', function() {
-        var $target;
-        if (idToScroll) {
-          $target = $(idToScroll);
-        } else {
-          $target = $elm;
-        }
-        $("body").animate({scrollTop: $target.offset().top}, 2000);
+        $("body").animate({scrollTop: $window.innerHeight}, 2000);
       });
     }
   }
-})
+});

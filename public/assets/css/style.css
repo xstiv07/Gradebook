@@ -650,29 +650,34 @@ textarea{
   animation: color_change 5s infinite alternate;
 }
 @-webkit-keyframes color_change {
-  from { color: #fff; }
-  to { color: #F07444; }
+  0% { color: #fff; }
+  50% { color: #F07444; }
+  100% { color: #03A678; }
 }
 @-moz-keyframes color_change {
-  from { color: white; }
-  to { color: #F07444; }
+  0% { color: #fff; }
+  50% { color: #F07444; }
+  100% { color: #03A678; }
 }
 @-ms-keyframes color_change {
-  from { color: white; }
-  to { color: #F07444; }
+  0% { color: #fff; }
+  50% { color: #F07444; }
+  100% { color: #03A678; }
 }
 @-o-keyframes color_change {
-  from { color: white; }
-  to { color: #F07444; }
+  0% { color: #fff; }
+  50% { color: #F07444; }
+  100% { color: #03A678; }
 }
 @keyframes color_change {
-  from { color: white; }
-  to { color: #F07444; }
+  0% { color: #fff; }
+  50% { color: #F07444; }
+  100% { color: #03A678; }
 }
 
 .logo-font{
   font-family: 'Montez', cursive;
-  font-size: 60pt
+  font-size: 400%
 }
 .bottom-bar{
   position: absolute;
