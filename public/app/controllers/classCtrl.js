@@ -22,7 +22,7 @@ angular.module('classCtrl', [])
 		vm.processing = true;
 
 		if (isValid){
-			vm.classData.instructor = currentUserId;
+			vm.classData.instructor = currentUser.id;
 
 			Class.create(vm.classData).success(function (data) {
 				if(data.success)

@@ -2,6 +2,7 @@ angular.module('app.routes', ['ngRoute'])
 
 .config(function ($routeProvider, $locationProvider) {
 	$routeProvider
+		// -----------------main-routes----------------
 		.when('/', {
 			templateUrl: 'app/views/pages/home.html'
 		})
@@ -44,33 +45,42 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/classes/create.html',
 			controller: 'classController',
 			controllerAs: 'class',
-			instructorAccess: true
+			instructorAccess: true,
+			adminAccess: true
 		})
 		.when('/classes/addStudents/:class_id', {
 			templateUrl: 'app/views/pages/classes/addStudents.html',
 			controller: 'addStudentsController',
-			controllerAs: 'addStudents'
+			controllerAs: 'addStudents',
+			instructorAccess: true,
+			adminAccess: true
 		})
 		// ------------assignment-routes---------------
 		.when('/assignments',{
 			templateUrl: 'app/views/pages/assignments/all.html',
 			controller: 'assignmentController',
-			controllerAs: 'assignment'
+			controllerAs: 'assignment',
+			adminAccess: true
 		})
 		.when('/assignments/create/:class_id',{
 			templateUrl: 'app/views/pages/assignments/create.html',
 			controller: 'assignmentController',
-			controllerAs: 'assignment'
+			controllerAs: 'assignment',
+			adminAccess: true,
+			instructorAccess: true
 		})
 		.when('/assignments/view/:class_id',{
 			templateUrl: 'app/views/pages/assignments/classAssignments.html',
 			controller: 'assignmentClassController',
-			controllerAs: 'assignment'
+			controllerAs: 'assignment',
+			adminAccess: true
 		})
 		.when('/assignments/addAssignment/:class_id',{
 			templateUrl: 'app/views/pages/assignments/addExistingAssignment.html',
 			controller: 'assignmentController',
-			controllerAs: 'assignment'
+			controllerAs: 'assignment',
+			instructorAccess: true,
+			adminAccess: true
 		})
 		.when('/assignments/submit/:assignment_id',{
 			templateUrl: 'app/views/pages/assignments/submit.html',
@@ -103,24 +113,27 @@ angular.module('app.routes', ['ngRoute'])
 	});
 
 	$rootScope.$on('$routeChangeStart', function (e, nextLocation, currentLocation) {
+		var trigger = false; //used to control redirection based on user roles
 		var isAdminRoute = adminRoutes.indexOf(nextLocation.originalPath) != -1;
 		var isInstructorRoute = instructorRoutes.indexOf(nextLocation.originalPath) != -1;
-
-		console.log(instructorRoutes)
 
 		Auth.getUser()
 			.then(function(data) {
 				currentUser = data.data;
-				//'shortcut' variables to access in child controllers
+
 				isAdmin = data.data.roles.indexOf('Admin') != -1;
 				isInstructor = data.data.roles.indexOf('Instructor') != -1;
 
 				//if the route is admin route and user is not an admin
-				if(isAdminRoute &&  currentUser.roles.indexOf('Admin') === -1)
-					$location.path('/');
-				//if the route is instructor route and usere is not an instructor
-				if(isInstructorRoute && currentUser.roles.indexOf('Instructor') === -1)
-					$location.path('/');
+				if(isAdminRoute && isAdmin)
+						trigger = true;
+
+				if (isInstructorRoute && isInstructor)
+						trigger = true; //allow admin to access instructor routes
+
+				if((isAdminRoute || isInstructorRoute) && trigger == false)
+					$location.path('/'); //redirect if no conditions are met
+				
 				else
 					$rootScope.deferredRounting.resolve(true);
 			});
