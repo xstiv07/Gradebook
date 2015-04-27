@@ -1,3 +1,6 @@
+html, body{
+  height: 100%;
+}
 body {
   font-family: Roboto,sans-serif;
   font-size: 15px;
@@ -381,9 +384,10 @@ form[novalidate].ng-submitted input.ng-invalid{
   background-repeat: no-repeat;
 }
 .tree-display{
-  position: absolute;
+  position: fixed;
   bottom:0;
   width: 100%;
+  z-index: 9999999;
 }
 .circles{
   margin: 0 auto;
@@ -463,6 +467,7 @@ form[novalidate].ng-submitted input.ng-invalid{
 .gradebook {
   display: block;
   margin: 30px;
+  margin-bottom: 120px;
   overflow: hidden;
 }
 .nav>li>a:focus, .nav>li>a:hover{
@@ -570,11 +575,13 @@ textarea{
 .vertical-top{
   vertical-align: top;
 }
+.margin-top-big{
+  margin-top: 20px;
+}
 .yellow{
   padding: 10px;
   background-color: #f7f9f9;
 }
-
 .fixed{
   position: fixed;
   top: 100px;
@@ -584,9 +591,13 @@ textarea{
   width: 628px;
   height: 295px;
 }
-
-.smallpics
-{
+.smallpics{
   width: 50px;
   height: 50px;
+}
+.gradebook-box{
+  border-bottom: thin solid #ff2462;
+}
+.instructor-box{
+  border-bottom: thin solid silver;
 }

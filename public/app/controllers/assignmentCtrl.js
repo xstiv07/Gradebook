@@ -96,6 +96,12 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	var vm = this;
 	vm.oneAtATime = false;
 
+	vm.statusText = 'Not Submitted';
+
+	vm.showStatus = function () {
+		vm.statusText = 'Submit'
+	};
+
 	//assuming there will be only one submission allowed for an assignment
 	User.getFullInfo(currentUser.id).success(function (data) {
 		vm.userData = data;

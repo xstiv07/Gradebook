@@ -32,7 +32,7 @@
 		    	</h5>
 
 		    	<h6 class="padding-big" ng-show="class.assignments.length > 0" class="upper">{{class.name}} has following assignments:</h6>
-		    	<div class="inline" ng-repeat="assignment in class.assignments">
+		    	<div class="inline padding-big margin-top-big instructor-box" ng-repeat="assignment in class.assignments">
 
 					<div class="form-group">
 						<label for="name">Assignment Name</label>
@@ -144,7 +144,7 @@
 							</div>
 						</form>
 					</td>
-					<td>{{ subm.user.name}}</td>
+					<td>{{ subm.user.fname}} {{ subm.user.lname}}</td>
 					<td>{{ subm.status }}</td>
 					<td>
 						<span ng-repeat='file in subm.files'>
