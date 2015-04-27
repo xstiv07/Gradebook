@@ -139,12 +139,8 @@ form[novalidate].ng-submitted input.ng-invalid{
 .silver {
   color: #b9bcc3;
 }
-.login-box{
-  margin-top: 80px;
-  padding: 25px 50px;
-}
-.login-box .btn{
-  font-size: 25px;
+.content-box{
+  margin-top: 25%;
 }
 .green{
   color: #fff;
@@ -635,4 +631,19 @@ textarea{
 }
 .instructor-box{
   border-bottom: thin solid silver;
+}
+.big-icon{
+  font-size: 300px !important;
+}
+.flash{
+  -webkit-animation:flash 6s both linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation:flash 6s both linear;
+  -moz-animation-iteration-count: infinite;
+  animation:flash 6s both linear;
+  animation-iteration-count: infinite;
+}
+.logo-font{
+  font-family: 'Montez', cursive;
+  font-size: 60pt
 }
