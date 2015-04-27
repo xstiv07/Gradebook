@@ -1,25 +1,22 @@
 <div class="header">
 	<div class="menu-top-home">
 	<div class="container">
-		<span class="logo"><img src="assets/images/logo.png"></span>
-		<div class="col-sm-12 align-right">
+		<div class="align-right">
 			<ul class="links" ng-if="!isLoggedIn">
 				<li>
-					<span class="btn green" ng-click="main.openRegister()">Register</span>
+					<span ng-click="main.openLogin()" class="ghost-btn ghost ghost-orange">Sign In</span>
+				</li>
+				<li>
+					<span class="ghost-btn ghost ghost-green" ng-click="main.openRegister()">Register</span>
 				</li>
 			</ul>
 		</div>
 	</div>
 	</div>
 	<div class="container align-center">
-		<h1>
-			This is a welcome message ..
-		</h1>
-		<h4 ng-if="!isLoggedIn" class="silver">Please Sign in Below</h4>
+		<!-- extra content goes here -->
 		<div class="login-box">
-			<div ng-if="!isLoggedIn" class="btn-group">
-				<span ng-click="main.openLogin()" class="btn btn-primary btn-lg">Sign In</span>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -36,11 +33,10 @@
 </div>
 
 
-
 <div class='padding-big'></div>
 <div class="footer align-center">
 	<div class="container">
-		<h4>Extra info goes here</h4>
+		<h4>Copyright and extra info goes here</h4>
 	</div>
 </div>	
 

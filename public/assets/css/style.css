@@ -5,6 +5,10 @@ body {
   font-family: Roboto,sans-serif;
   font-size: 15px;
   color: #5f5e5d;
+  height: 100%
+}
+.ui-view{
+  height: 100%
 }
 * {
   outline: 0px none;
@@ -109,6 +113,7 @@ form[novalidate].ng-submitted input.ng-invalid{
   color: white;
   padding-top: 30px;
   padding-bottom: 200px;
+  height: 100%;
 }
 .container {
   margin-right: auto;
@@ -130,10 +135,6 @@ form[novalidate].ng-submitted input.ng-invalid{
 }
 .align-right {
   text-align: right;
-}
-.logo{
-  position: fixed;
-  float: left;
 }
 .silver {
   color: #b9bcc3;
@@ -189,6 +190,40 @@ form[novalidate].ng-submitted input.ng-invalid{
   background-color: transparent;
 }
 
+/*--------------------------------*/
+
+.ghost-btn{
+  display: inline-block;
+  border-radius: 2px;
+  border: none;
+  padding: 40px;
+  text-transform: uppercase;
+}
+
+.ghost{
+  background-color: transparent;
+  color: silver;
+  width: 150px;
+  transition: .2s ease;
+}
+  
+.ghost:hover {
+  color: white;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.ghost-green{
+  border: 1px solid #03A678;
+}
+/*.ghost-green:hover{
+  background-color: #03A678;
+}*/
+.ghost-orange{
+  border: 1px solid #F07444;
+}
+/*.ghost-orange:hover{
+  background-color: #F07444;
+}*/
 
 /*-----------------------------*/
 
