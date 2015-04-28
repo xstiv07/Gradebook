@@ -177,8 +177,13 @@ form[novalidate].ng-submitted input.ng-invalid{
   padding: 15px;
 }
 #sp-links a { 
-  display:inline-block; 
-  color: #1a1f2a;
+  display:inline-block;
+  opacity: .5
+}
+.fixed-left{
+  position: fixed;
+  left: 10px;
+  top: 10px;
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
@@ -200,6 +205,9 @@ form[novalidate].ng-submitted input.ng-invalid{
   color: silver;
   width: 150px;
   transition: .2s ease;
+}
+.white{
+  color: #fff;
 }
   
 .ghost:hover {
@@ -679,6 +687,22 @@ textarea{
   font-family: 'Montez', cursive;
   font-size: 400%
 }
+.title-font{
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase; 
+  font-size: 40px;
+}
+.regular-small-font{
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase; 
+  font-size: 12px;
+}
+.regular-normal-font{
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase; 
+  font-size: 22px;
+  font-weight: bold
+}
 .bottom-bar{
   position: absolute;
   left: 0;
@@ -695,4 +719,31 @@ textarea{
   -moz-animation-iteration-count: infinite;
   animation:rubberBand 10s both linear;
   animation-iteration-count: infinite;
+}
+.person{
+  height: 120px;
+  width: 100px;
+  background-image: url('../images/faces2.jpg');
+  display: inline-block;
+}
+.instructor1{
+  background-position: 0 33.6%;
+}
+.green-color{
+  color: #03A678;
+}
+.orange{
+  color: #F07444;
+}
+.rules *{
+  padding-bottom: 20px;
+}
+.instructor2{
+  background-position: 33% 0;
+}
+.student1{
+  background-position: 33% 66.5%;
+}
+.student2{
+  background-position: 100% 66.6%;
 }
