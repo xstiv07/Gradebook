@@ -119,19 +119,17 @@ angular.module('app.routes', ['ngRoute'])
 
 		Auth.getUser()
 			.then(function(data) {
-				currentUser = data.data;
-
-				isAdmin = data.data.roles.indexOf('Admin') != -1;
-				isInstructor = data.data.roles.indexOf('Instructor') != -1;
+				console.log('defining current user')
+				currentUser = data.data || '';
 
 				//if the route is admin route and user is not an admin
-				if(isAdminRoute && isAdmin)
+				if(isAdminRoute && currentUser.isAdmin)
 						trigger = true;
 
-				if (isInstructorRoute && isInstructor)
+				if (isInstructorRoute && currentUser.isInstructor)
 						trigger = true; //allow admin to access instructor routes
 
-				if((isAdminRoute || isInstructorRoute) && trigger == false)
+				if((isAdminRoute || isInstructorRoute) && !trigger)
 					$location.path('/'); //redirect if no conditions are met
 				
 				else

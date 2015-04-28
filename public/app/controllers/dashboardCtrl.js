@@ -7,6 +7,7 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	vm.isCollapsed = true;
 	vm.showTree = false;
 
+	console.log('current user shoul be defined, will get info now')
 	//assuming there will be only one submission allowed for an assignment
 	User.getFullInfo(currentUser.id).success(function (data) {
 		vm.userData = data;

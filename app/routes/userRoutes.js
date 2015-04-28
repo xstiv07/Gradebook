@@ -8,7 +8,7 @@ module.exports = function (apiRouter) {
 	//create a user on post and get all users on get
 	apiRouter.route('/users')
 		.get(function (req, res) {
-			console.log('-----called all users-----');
+			console.log('getting user info')
 			User.find(function (err) {
 				if(err)
 					res.send(err);

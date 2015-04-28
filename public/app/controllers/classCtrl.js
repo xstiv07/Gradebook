@@ -7,7 +7,10 @@ angular.module('classCtrl', [])
 	Class.all().success(function (data) {
 		vm.classes = data;
 		vm.processing = false;
-	});
+	})
+	.error(function (err) {
+		vm.processing = true;
+	})
 
 	vm.doDeleteClass = function (id) {
 		vm.processing = true;

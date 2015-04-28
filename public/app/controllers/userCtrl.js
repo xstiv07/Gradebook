@@ -9,6 +9,8 @@ angular.module('userCtrl', ['userService'])
 	User.all().success(function (data) {
 		vm.processing = false;
 		vm.users = data;
+	}).error(function () {
+		vm.processing = false;
 	});
 
 	vm.deleteUser = function (id) {

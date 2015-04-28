@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken'),
 	config = require('../../config'),
-	supersecret = config.secret;
+	supersecret = config.secret,
+	isAuthorized = false;
 
 module.exports = function (apiRouter) {
 	apiRouter.use(function (req, res, next) {
@@ -29,5 +30,42 @@ module.exports = function (apiRouter) {
 			});
 			
 		}
+	})
+
+// defining access to routes based on user roles here
+
+	apiRouter.all('/users', function (req, res, next) {
+		var currentUser = req.decoded;
+
+		if (currentUser.isInstructor || currentUser.isAdmin)
+			isAuthorized = true;
+
+		if(!isAuthorized)
+			res.sendStatus(404)
+		next();
+	});
+
+	apiRouter.all('/classes', function (req, res, next) {
+		var currentUser = req.decoded;
+
+		if (currentUser.isInstructor || currentUser.isAdmin)
+			isAuthorized = true;
+
+		if(!isAuthorized)
+			res.sendStatus(404)
+
+		next();
+	});
+
+	apiRouter.all('/assignments', function (req, res, next) {
+		var currentUser = req.decoded;
+
+		if (currentUser.isInstructor || currentUser.isAdmin)
+			isAuthorized = true;
+
+		if(!isAuthorized)
+			res.sendStatus(404)
+
+		next();
 	});
 }
