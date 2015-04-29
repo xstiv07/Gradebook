@@ -35,15 +35,15 @@ module.exports = function (apiRouter) {
 // defining access to routes based on user roles here
 
 	apiRouter.all('/users', function (req, res, next) {
-		isUserAuthorized();
+		isUserAuthorized(req, res, next);
 	});
 
 	apiRouter.all('/classes', function (req, res, next) {
-		isUserAuthorized();
+		isUserAuthorized(req, res, next);
 	});
 
 	apiRouter.all('/assignments', function (req, res, next) {
-		isUserAuthorized();
+		isUserAuthorized(req, res, next);
 	});
 
 

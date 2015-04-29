@@ -121,6 +121,7 @@ angular.module('app.routes', ['ngRoute'])
 
 		Auth.getUser()
 			.then(function(data) {
+				console.log(data + 'this is a data')
 				console.log('defining current user')
 				currentUser = data.data;
 
@@ -136,7 +137,7 @@ angular.module('app.routes', ['ngRoute'])
 				
 				else
 					$rootScope.deferredRounting.resolve(true);
-			});
+			})
 
 		$rootScope.isLoggedIn = Auth.isLoggedIn();
 
