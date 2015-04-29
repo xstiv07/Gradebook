@@ -23,7 +23,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 	};
 
 	$rootScope.deferredRounting.promise.then(function () {
-		vm.user = currentUser;
+		vm.user = currentUser || '';
 		vm.isAdmin = currentUser.isAdmin;
 		vm.isInstructor = currentUser.isInstructor;
 		console.log(currentUser.id + ' from main, resolved user')

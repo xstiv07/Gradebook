@@ -26,38 +26,28 @@ module.exports = function (apiRouter) {
 					//if everything is good save to request to use in other routes
 					req.decoded = decoded;
 					next();
-				}
+				};
 			});
 			
-		}
-	})
+		};
+	});
 
 // defining access to routes based on user roles here
 
 	apiRouter.all('/users', function (req, res, next) {
-		var currentUser = req.decoded;
-
-		if (currentUser.isInstructor || currentUser.isAdmin)
-			isAuthorized = true;
-
-		if(!isAuthorized)
-			res.sendStatus(404)
-		next();
+		isUserAuthorized();
 	});
 
 	apiRouter.all('/classes', function (req, res, next) {
-		var currentUser = req.decoded;
-
-		if (currentUser.isInstructor || currentUser.isAdmin)
-			isAuthorized = true;
-
-		if(!isAuthorized)
-			res.sendStatus(404)
-
-		next();
+		isUserAuthorized();
 	});
 
 	apiRouter.all('/assignments', function (req, res, next) {
+		isUserAuthorized();
+	});
+
+
+	function isUserAuthorized (req, res, next) {
 		var currentUser = req.decoded;
 
 		if (currentUser.isInstructor || currentUser.isAdmin)
@@ -67,5 +57,5 @@ module.exports = function (apiRouter) {
 			res.sendStatus(404)
 
 		next();
-	});
-}
+	};
+};
