@@ -139,7 +139,9 @@ form[novalidate].ng-submitted input.ng-invalid{
   color: #b9bcc3;
 }
 .content-box{
-  margin-top: 25%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
 }
 .green{
   color: #fff;
