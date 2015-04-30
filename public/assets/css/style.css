@@ -719,6 +719,18 @@ textarea{
   animation:rubberBand 10s both linear;
   animation-iteration-count: infinite;
 }
+
+.fadeInUp1s{
+  -webkit-animation:fadeInUp 1s both linear;
+  -moz-animation:fadeInUp 1s both linear;
+  animation:fadeInUp 1s both linear;
+
+}
+.fadeInUp2s{
+  -webkit-animation:fadeInUp 2s both linear;
+  -moz-animation:fadeInUp 2s both linear;
+  animation:fadeInUp 2s both linear;
+}
 .person{
   height: 120px;
   width: 100px;
