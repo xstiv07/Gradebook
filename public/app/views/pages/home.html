@@ -102,7 +102,7 @@
 	</div>
 	<span class="float-right padding-big cursor" ng-click="login.close()">Close</span>
 	<div class="login-form">
-		<span><i id="intro" class="fa fa-circle-o big-icon"></i></span>
+		<span class="logo-font">Welcome back</span>
 		<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
 			<div>
 				<input required type="text" placeholder="E-MAIL*" ng-model="login.loginData.email">
@@ -125,7 +125,7 @@
 	</div>
 	<span class="float-right padding-big cursor" ng-click="register.close()">Close</span>
 	<div class="login-form">
-		<span><img src="assets/images/u6.png" /></span>
+		<span class="logo-font">registration</span>
 		<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
 			<div>
 				<input required type="text" placeholder="FIRST NAME*" ng-model="register.registerData.fname">
