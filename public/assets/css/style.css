@@ -138,11 +138,6 @@ form[novalidate].ng-submitted input.ng-invalid{
 .silver {
   color: #b9bcc3;
 }
-.content-box{
-  position: absolute;
-  top: 30%;
-  left: 30%;
-}
 .green{
   color: #fff;
   background-color: #03A678
