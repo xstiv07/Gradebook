@@ -78,7 +78,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log('executing !@')
+		$("#intro").addClass("change-color");
 
 		var in_view = new Waypoint.Inview({
         element: $('.students'),
@@ -102,7 +102,7 @@
 	</div>
 	<span class="float-right padding-big cursor" ng-click="login.close()">Close</span>
 	<div class="login-form">
-		<span><img src="assets/images/u6.png" /></span>
+		<span><i id="intro" class="fa fa-circle-o big-icon"></i></span>
 		<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
 			<div>
 				<input required type="text" placeholder="E-MAIL*" ng-model="login.loginData.email">
