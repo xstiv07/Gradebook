@@ -6,6 +6,7 @@ body {
   font-size: 15px;
   color: #5f5e5d;
   height: 100%
+  overflow-y:hidden;
 }
 .ui-view{
   height: 100%
@@ -74,7 +75,9 @@ form[novalidate].ng-submitted input.ng-invalid{
   -moz-animation:fadeIn .8s both linear;
   animation:fadeIn .8s both linear;
 }
+.dashboard{
 
+}
 .circle a:hover{
   -webkit-animation:flash .8s both linear;
   -moz-animation:flash .8s both linear;
@@ -113,16 +116,6 @@ form[novalidate].ng-submitted input.ng-invalid{
   color: white;
   padding-top: 30px;
   height: 100%;
-}
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 100%
-}
-.sky-blue{
-  background-color: #E4F1FE;
 }
 .header h1 {
   padding-top: 90px;

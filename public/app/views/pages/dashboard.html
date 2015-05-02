@@ -1,5 +1,25 @@
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
 
+
+<div class="dashboard overlay">
+	<div class="container">
+		<div class="row holder align-center">
+			<div class="col-md-6 padding-big col-centered">
+				<a class="box grayscale" href="/grades" id="class" ng-if="!dash.isInstructor">
+					<div class="centerH">
+						<h3>My Gradebook</h4>
+					</div>
+				</a>
+				<a class="box grayscale" href="/cpanel" id="class" ng-if="dash.isInstructor">
+					<div class="centerH">
+						<h3>Instructor Panel</h4>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="cal-holder">
 	<div class="container">
 		<span class="calButton" ng-show="!dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Hide</span>
@@ -9,25 +29,6 @@
 			</div>
 		</div>
 		<span class="calButton" ng-show="dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Calendar</span>
-	</div>
-</div>
-
-<div class="dashboard overlay">
-	<div class="container">
-		<div class="row holder align-center">
-			<div class="col-md-6 padding-big col-centered">
-				<a class="box grayscale" href="/grades" id="class">
-					<div class="centerH">
-						<h3>My Gradebook</h4>
-					</div>
-				</a>
-				<a class="box grayscale" href="/cpanel" id="class">
-					<div class="centerH">
-						<h3>Instructor Panel</h4>
-					</div>
-				</a>
-			</div>
-		</div>
 	</div>
 </div>
 

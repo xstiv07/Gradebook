@@ -46,7 +46,7 @@
 <body ng-app="gradebookApp" ng-controller="mainController as main">
 
 	<header ng-if="isLoggedIn">
-		<div class="container">
+		
 			<nav class="navbar">
 				<ul class="nav navbar-nav">
 					<li class="navbar-brand">
@@ -91,11 +91,13 @@
 					 <span class="cls"></span> 
 				</div>
 			</div>
-		</div>
 		
 	</header>
 
-	<div class="ui-view" ng-view></div>
+
+	<div class="ui-view" ng-view>
+
+	</div>
 
 	<script>
 		$(document).ready(function() {
