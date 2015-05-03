@@ -4,21 +4,35 @@ angular.module('classCtrl', [])
 	var vm = this;
 	vm.processing = true;
 
+	vm.itemsPerPage = 3;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
+
 	Class.all().success(function (data) {
-		vm.classes = data;
+		
+		vm.notFiletereedClasses = data;
+		vm.totalItems = data.length;
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.classes = vm.notFiletereedClasses.slice(begin, end);
+
 		vm.processing = false;
 	})
 	.error(function (err) {
 		vm.processing = true;
 	})
 
-	vm.dynamicPopover = {
-	    content: 'Hello, World!',
-	    templateUrl: 'myPopoverTemplate.html',
-	    controller: 'classController',
-	    controllerAs: 'class',
-	    title: 'Title'
-	  };
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.classes = vm.notFiletereedClasses.slice(begin, end);
+	}
+
+	vm.pageCount = function () {
+		return Math.ceil(vm.totalItems / vm.itemsPerPage)
+	}
 
 	vm.doDeleteClass = function (id) {
 		vm.processing = true;

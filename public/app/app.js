@@ -12,7 +12,8 @@ angular.module('gradebookApp',
 	'dashboardCtrl',
 	'submissionCtrl',
 	'angularFileUpload',
-	"customDirectives"
+	"customDirectives",
+	'ui.bootstrap'
 	])
 
 .config(function($httpProvider) {

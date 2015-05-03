@@ -4,11 +4,14 @@
 </div>
 
 <div class="container">
+	<a href="/classes/create" class="btn btn-link">
+			New Class
+		</a>
 	<h1 class="logo-font align-center">Classes</h1>
-	<a href="/classes/create" class="btn btn-link align-right">
-		New Class
-	</a>
-	<table class="table table-striped table-bordered table-condensed table-hover">
+
+		<pagination class="float-right" rotate="false" max-size="class.maxSize" total-items="class.totalItems" items-per-page="class.itemsPerPage" ng-model="class.currentPage" ng-change="class.pageChanged()"></pagination>
+
+	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
 				<th>Name</th>

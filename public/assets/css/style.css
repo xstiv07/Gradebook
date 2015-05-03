@@ -52,6 +52,14 @@ form[novalidate].ng-submitted input.ng-invalid{
   -moz-animation:spin 1s infinite;
 }
 
+.table>thead>tr>th{
+  border: none;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+table{
+  border: none;
+}
+
 @keyframes spin {
   from  { transform:rotate(0deg); }
   to  { transform:rotate(360deg); }
@@ -100,12 +108,12 @@ form[novalidate].ng-submitted input.ng-invalid{
   padding: 5% 10% 20% 2.5em;
 }
 .login-form form div {
-  
   margin-bottom: 25px;
   width: 100%;
   background: none repeat scroll 0% 0% transparent;
   border-radius: 0.3em;
 }
+
 .header{
   background-color: #1a1f2a;
   background-image: url('../images/png.png');
