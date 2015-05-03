@@ -108,7 +108,7 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	};
 })
 
-.controller('gradesController', function ($routeParams, User) {
+.controller('gradesController', function ($routeParams, User, $rootScope) {
 	var vm = this;
 	vm.oneAtATime = false;
 
@@ -119,7 +119,7 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	};
 
 	//assuming there will be only one submission allowed for an assignment
-	User.getFullInfo(currentUser.id).success(function (data) {
+	User.getFullInfo($rootScope.currentUser.id).success(function (data) {
 		vm.userData = data;
 	});
 })

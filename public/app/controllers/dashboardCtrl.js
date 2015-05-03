@@ -8,12 +8,8 @@ angular.module('dashboardCtrl', [])
 	vm.showTree = false;
 
 	$rootScope.deferredRounting.promise.then(function () {
-		vm.isInstructor = currentUser.isInstructor;
-	});
-
-	//assuming there will be only one submission allowed for an assignment
-	User.getFullInfo(currentUser.id).success(function (data) {
-		vm.userData = data;
+		vm.isInstructor = $rootScope.currentUser.isInstructor;
+		console.log('resolved')
 	});
 })
 

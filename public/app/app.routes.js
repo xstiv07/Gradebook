@@ -121,7 +121,7 @@ angular.module('app.routes', ['ngRoute'])
 
 		Auth.getUser()
 			.then(function(data) {
-				currentUser = data.data;
+				$rootScope.currentUser = data.data;
 
 				//if the route is admin route and user is not an admin
 				if(isAdminRoute && currentUser.isAdmin)

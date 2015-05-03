@@ -59,6 +59,9 @@ form[novalidate].ng-submitted input.ng-invalid{
 table{
   border: none;
 }
+.nav>li>a:focus, {
+  outline: none;
+}
 
 @keyframes spin {
   from  { transform:rotate(0deg); }

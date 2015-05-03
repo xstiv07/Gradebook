@@ -23,10 +23,9 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 	};
 
 	$rootScope.deferredRounting.promise.then(function () {
-		vm.user = currentUser;
-		vm.isAdmin = currentUser.isAdmin;
-		vm.isInstructor = currentUser.isInstructor;
-		console.log(currentUser.id + ' from main, resolved user')
+		vm.user = $rootScope.currentUser;
+		vm.isAdmin = vm.user.isAdmin;
+		vm.isInstructor = vm.user.isInstructor;
 	})
 
 	vm.doLogout = function () {
