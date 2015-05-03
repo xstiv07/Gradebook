@@ -114,14 +114,15 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.statusText = 'Not Submitted';
 
+	$rootScope.deferredRounting.promise.then(function () {
+		User.getFullInfo($rootScope.currentUser.id).success(function (data) {
+			vm.userData = data;
+		});
+	})
+
 	vm.showStatus = function () {
 		vm.statusText = 'Submit'
 	};
-
-	//assuming there will be only one submission allowed for an assignment
-	User.getFullInfo($rootScope.currentUser.id).success(function (data) {
-		vm.userData = data;
-	});
 })
 
 
@@ -129,6 +130,13 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	var vm = this;
 
 	vm.processing = true;
+
+	Assignment.allForClass($routeParams.class_id).success(function (data) {
+		vm.assignments = data.assignments;
+		vm.classNm = data.classNm;
+		console.log(vm.classNm);
+		vm.processing = false;
+	});
 
 	vm.doDeleteAssignment = function (id) {
 		Assignment.delete(id).success(function (data) {
@@ -149,11 +157,4 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 			});
 		});
 	};
-
-	Assignment.allForClass($routeParams.class_id).success(function (data) {
-		vm.assignments = data.assignments;
-		vm.classNm = data.classNm;
-		console.log(vm.classNm);
-		vm.processing = false;
-	});
 })
