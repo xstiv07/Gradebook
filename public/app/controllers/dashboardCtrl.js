@@ -13,12 +13,14 @@ angular.module('dashboardCtrl', [])
 	});
 })
 
-.controller('cpanelController', function (Assignment, Class, $location, $route, $modal) {
+.controller('cpanelController', function (Assignment, Class, $location, $route, $modal, $rootScope) {
 	var vm = this;
 	vm.processing = false;
 
-	Class.getFullInfoForInstructor(currentUser.id).success(function (data) {
-		vm.instructorData = data;
+	$rootScope.deferredRounting.promise.then(function () {
+		Class.getFullInfoForInstructor($rootScope.currentUser.id).success(function (data) {
+			vm.instructorData = data;
+		});
 	});
 
 	vm.openEnrolledStudents = function (size, id) {
