@@ -46,17 +46,15 @@
 <body ng-app="gradebookApp" ng-controller="mainController as main">
 
 	<header ng-if="isLoggedIn">
-		
+		<div class="container">
 			<nav class="navbar">
-				<ul class="nav navbar-nav">
-					<li class="navbar-brand">
-						<a href="/dashboard"><span class="fa fa-connectdevelop fa-2x"></span></a>
-					</li>
-				</ul>
 		      	<ul class="nav navbar-nav navbar-right">
 		        	<li>
-		        		<a href="#">{{main.user.fname}}</a>
+		        		<a class="regular-small-font" href="#">Logged in as {{main.user.fname}}</a>
 		        	</li>
+		        	<li>
+						<a href="/dashboard"><span class="fa fa-connectdevelop fa-2x select"></span></a>
+					</li>
 		      	</ul>
 			</nav>
 
@@ -91,16 +89,18 @@
 					 <span class="cls"></span> 
 				</div>
 			</div>
-		
+		</div>
 	</header>
+	<div ng-if="isLoggedIn" class="padding-header"></div>
 
 
-	<div class="ui-view" ng-view>
+	<div ng-class="main.myClass" id="ui" ng-view>
 
 	</div>
 
 	<script>
 		$(document).ready(function() {
+			$(".fa-connectdevelop").addClass("change-color");
 			$(document).delegate('.open', 'click', function(event){
 				$(this).addClass('oppenned');
 				event.stopPropagation();

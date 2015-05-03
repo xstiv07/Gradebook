@@ -3,38 +3,37 @@
 	<p>Loading...</p>
 </div>
 
-<div class="page-header">
-<h1>Classes</h1>
-	<a href="/classes/create" class="btn btn-default">
-				<span class="glyphicon glyphicon-plus"></span> 
-				New Class
-			</a>
+<div class="container">
+	<h1 class="logo-font align-center">Classes</h1>
+	<a href="/classes/create" class="btn btn-link align-right">
+		New Class
+	</a>
+	<table class="table table-striped table-bordered table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>CRN</th>
+				<th>Term</th>
+				<th>Instructor</th>
+				<th class="col-sm-2"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="gClass in class.classes">
+				<td>{{ gClass.name }}</td>
+				<td>{{ gClass.crn }}</td>
+				<td>{{ gClass.term }}</td>
+				<td>{{ gClass.instructor.fname }} {{gClass.instructor.lname}}</td>
+				<td class="col-sm-2">
+					<a ng-href="/classes/{{ gClass._id }}" class="btn btn-link">Edit Class</a>
+					<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-link">Delete Class</a>
+					<a ng-href="/assignments/create/{{ gClass._id }}" class="btn btn-link">New Assignment</a>
+					<a ng-href="/assignments/addAssignment/{{ gClass._id }}" class="btn btn-link">Add Existing Assignment</a>
+					<a ng-href="/assignments/view/{{ gClass._id }}" class="btn btn-link">View Assignments</a>
+					<a ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-link">Add Students</a>
+					<a ng-href="/classes/enrolledStudents/{{ gClass._id }}" class="btn btn-link">View Students</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-<table class="table table-bordered table-striped">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>CRN</th>
-			<th>Term</th>
-			<th>Instructor</th>
-			<th class="col-sm-2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="gClass in class.classes">
-			<td>{{ gClass.name }}</td>
-			<td>{{ gClass.crn }}</td>
-			<td>{{ gClass.term }}</td>
-			<td>{{ gClass.instructor.fname }} {{gClass.instructor.lname}}</td>
-			<td class="col-sm-2">
-				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Class</a>
-				<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-default">Delete Class</a>
-				<a ng-href="/assignments/create/{{ gClass._id }}" class="btn btn-default">New Assignment</a>
-				<a ng-href="/assignments/addAssignment/{{ gClass._id }}" class="btn btn-default">Add Existing Assignment</a>
-				<a ng-href="/assignments/view/{{ gClass._id }}" class="btn btn-default">View Assignments</a>
-				<a ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-default">Add Students</a>
-				<a ng-href="/classes/enrolledStudents/{{ gClass._id }}" class="btn btn-default">View Students</a>
-			</td>
-		</tr>
-	</tbody>
-</table>

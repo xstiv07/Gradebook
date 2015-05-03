@@ -7,7 +7,6 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	vm.isCollapsed = true;
 	vm.showTree = false;
 	vm.isInstructor = currentUser.isInstructor;
-	console.log(vm.isInstructor);
 
 	//assuming there will be only one submission allowed for an assignment
 	User.getFullInfo(currentUser.id).success(function (data) {

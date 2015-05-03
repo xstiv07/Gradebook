@@ -12,6 +12,14 @@ angular.module('classCtrl', [])
 		vm.processing = true;
 	})
 
+	vm.dynamicPopover = {
+	    content: 'Hello, World!',
+	    templateUrl: 'myPopoverTemplate.html',
+	    controller: 'classController',
+	    controllerAs: 'class',
+	    title: 'Title'
+	  };
+
 	vm.doDeleteClass = function (id) {
 		vm.processing = true;
 		Class.delete(id).success(function (data) {

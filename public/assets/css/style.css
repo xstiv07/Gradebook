@@ -5,11 +5,6 @@ body {
   font-family: Roboto,sans-serif;
   font-size: 15px;
   color: #5f5e5d;
-  height: 100%;
-  overflow-y:hidden;
-}
-.ui-view{
-  height: 100%
 }
 * {
   outline: 0px none;
@@ -42,7 +37,9 @@ input[type="password"]:focus {
 form[novalidate] input{
   border: thin solid #89C4F4;
 }
-
+.fa-connectdevelop{
+  color: #ff2462;
+}
 input.ng-invalid.ng-dirty{
   border-color: red;
 }
@@ -76,8 +73,9 @@ form[novalidate].ng-submitted input.ng-invalid{
   animation:fadeIn .8s both linear;
 }
 .dashboard{
-
+  margin-top: 5%;
 }
+
 .circle a:hover{
   -webkit-animation:flash .8s both linear;
   -moz-animation:flash .8s both linear;
@@ -115,7 +113,7 @@ form[novalidate].ng-submitted input.ng-invalid{
   background-size: cover;
   color: white;
   padding-top: 30px;
-  height: 100%;
+  height: 100vh;
 }
 .header h1 {
   padding-top: 90px;
@@ -462,16 +460,23 @@ form[novalidate].ng-submitted input.ng-invalid{
   border-color: #ff2462;
   opacity: 1
 }
-.navbar-brand:focus{
+.fa-connectdevelop:focus{
   color: #ff2462;
 }
 .select{
   cursor: pointer;
 }
-.navbar-brand:hover{
+.fa-connectdevelop:hover{
   -webkit-animation:wobble.8s both linear;
   -moz-animation:wobble .8s both linear;
   animation:wobble .8s both linear;
+}
+.table *{
+  text-align: center;
+  vertical-align: middle!important;
+}
+.navbar-nav>li>a{
+  line-height: 30px;
 }
 .gray{
   background-color: #DCDCDC;
@@ -486,9 +491,11 @@ form[novalidate].ng-submitted input.ng-invalid{
 }
 .calButton{
   text-transform:uppercase;
-  float: right;
   color: black;
   font-size: 20px;
+}
+.calButton:hover{
+  color:#AEA8D3;
 }
 /*-------------------------------*/
 

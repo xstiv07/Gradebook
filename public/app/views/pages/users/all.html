@@ -1,12 +1,11 @@
-<div>
-	<h1>Users</h1>
-
-	<div class="row absolute text-center" ng-show="user.processing">
-		<span class="glyphicon glyphicon-repeat spinner"></span>
-		<p>Loading...</p>
-	</div>
-
-	<table class="table table-bordered table-striped">
+<div class="row absolute text-center" ng-show="user.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading...</p>
+</div>
+	
+<div class="container">
+	<h1 class="logo-font align-center">Users</h1>
+	<table class="table table-striped table-bordered table-condensed table-hover">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -29,16 +28,15 @@
 					</span>
 				</td>
 				<td class="col-sm-2">
-					<a ng-href="/users/{{ person._id }}" class="btn btn-default">Edit</a>
-					<a href="#" ng-click="user.deleteUser(person._id)" class="btn btn-default">Delete</a>
+					<a ng-href="/users/{{ person._id }}" class="btn btn-link">Edit</a>
+					<a href="#" ng-click="user.deleteUser(person._id)" class="btn btn-link">Delete</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
 
-	<!-- no registered users in the app -->
-	<div class="row" ng-show="!user.users && isAdmin">
-		<h5>Currently, there are no users in the database.</h5>
-	</div>
-
+<!-- no registered users in the app -->
+<div class="row" ng-show="!user.users && isAdmin">
+	<h5>Currently, there are no users in the database.</h5>
 </div>

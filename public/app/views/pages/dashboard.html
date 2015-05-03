@@ -1,5 +1,16 @@
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
 
+<div class="cal-holder">
+	<div class="container">
+		<span class="calButton" ng-show="!dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Hide</span>
+		<div class="row padding-big" collapse="dash.isCollapsed">
+			<div class="col-lg-6 col-centered">
+				<div id="calendar"></div>
+			</div>
+		</div>
+		<span class="calButton" ng-show="dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Calendar</span>
+	</div>
+</div>
 
 <div class="dashboard overlay">
 	<div class="container">
@@ -17,18 +28,6 @@
 				</a>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div class="cal-holder">
-	<div class="container">
-		<span class="calButton" ng-show="!dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Hide</span>
-		<div class="row padding-big" collapse="dash.isCollapsed">
-			<div class="col-lg-6 col-centered">
-				<div id="calendar"></div>
-			</div>
-		</div>
-		<span class="calButton" ng-show="dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Calendar</span>
 	</div>
 </div>
 
