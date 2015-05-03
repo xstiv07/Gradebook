@@ -5,13 +5,29 @@ angular.module('userCtrl', ['userService'])
 
 	vm.processing = true;
 
-	console.log('rendered a user controller, soon to call the api');
+	vm.itemsPerPage = 10;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
+	
 	User.all().success(function (data) {
+		vm.notFilteredUsers = data;
+		vm.totalItems = data.length;
+
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
+
 		vm.processing = false;
-		vm.users = data;
 	}).error(function () {
 		vm.processing = false;
 	});
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
+	}
 
 	vm.deleteUser = function (id) {
 		User.delete(id).success(function (data) {

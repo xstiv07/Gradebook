@@ -5,10 +5,26 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.processing = true;
 
+	vm.itemsPerPage = 10;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
+
 	Assignment.all().success(function (data) {
-		vm.assignments = data;
+		vm.notFilteredAsssignments = data;
+		vm.totalItems = data.length;
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.assignments = vm.notFilteredAsssignments.slice(begin, end);
+
 		vm.processing = false;
 	});
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.assignments = vm.notFilteredAsssignments.slice(begin, end);
+	};
 
 	vm.selectedAssignments = [];
 

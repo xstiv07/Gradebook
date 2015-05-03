@@ -10,12 +10,12 @@ angular.module('classCtrl', [])
 
 	Class.all().success(function (data) {
 		
-		vm.notFiletereedClasses = data;
+		vm.notFilteredClasses = data;
 		vm.totalItems = data.length;
 
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
 		end = begin + vm.itemsPerPage;
-		vm.classes = vm.notFiletereedClasses.slice(begin, end);
+		vm.classes = vm.notFilteredClasses.slice(begin, end);
 
 		vm.processing = false;
 	})
@@ -27,7 +27,7 @@ angular.module('classCtrl', [])
 	vm.pageChanged = function () {
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
 		end = begin + vm.itemsPerPage;
-		vm.classes = vm.notFiletereedClasses.slice(begin, end);
+		vm.classes = vm.notFilteredClasses.slice(begin, end);
 	}
 
 	vm.pageCount = function () {
