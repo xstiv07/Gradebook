@@ -13,7 +13,6 @@ angular.module('userCtrl', ['userService'])
 		vm.notFilteredUsers = data;
 		vm.totalItems = data.length;
 
-
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
 		end = begin + vm.itemsPerPage;
 		vm.users = vm.notFilteredUsers.slice(begin, end);
@@ -68,7 +67,6 @@ angular.module('userCtrl', ['userService'])
 			vm.processing = false;
 		});
 	};
-
 
 	vm.saveUser = function () {
 		vm.processing = true;

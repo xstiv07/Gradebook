@@ -1,4 +1,4 @@
-angular.module('dashboardCtrl', ['ui.bootstrap'])
+angular.module('dashboardCtrl', [])
 
 .controller('dashboardController', function (User, $routeParams) {
 	var vm = this;
@@ -6,7 +6,10 @@ angular.module('dashboardCtrl', ['ui.bootstrap'])
 	vm.oneAtATime = false;
 	vm.isCollapsed = true;
 	vm.showTree = false;
-	vm.isInstructor = currentUser.isInstructor;
+
+	$rootScope.deferredRounting.promise.then(function () {
+		vm.isInstructor = currentUser.isInstructor;
+	};
 
 	//assuming there will be only one submission allowed for an assignment
 	User.getFullInfo(currentUser.id).success(function (data) {
