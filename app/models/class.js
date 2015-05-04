@@ -2,6 +2,7 @@ var User = require('./user'),
 	Assignment = require('./assignment'),
 	mongoose = require('mongoose'),
 	deepPopulate = require('mongoose-deep-populate'),
+	async = require('async'),
 	Schema = mongoose.Schema;
 
 var classSchema = new Schema({
@@ -41,11 +42,20 @@ classSchema.pre('remove', function (next) {
 		{multi: true},
 		next
 	);
-
-	//should remove all assignments of a class when it is deleted
-	gClass.model('Assignment').remove({_id: {$in: gClass.assignments}}).exec();
-	next();
 });
+
+classSchema.pre('remove', function (next) {
+	var gClass = this;
+
+	async.each(gClass.assignments, function (assignmId, next) {
+		gClass.model('Assignment').findByIdAndRemove(assignmId).exec(function (err, assignm) {
+
+			assignm.remove();
+			next();
+		})
+	});
+})
+
 
 classSchema.plugin(deepPopulate);
 

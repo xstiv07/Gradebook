@@ -3,7 +3,7 @@
 	<p>Loading...</p>
 </div>
 	
-<div class="container">
+<div ng-if="assignment.assignments.length > 0" class="container">
 	<h1 class="logo-font align-center">Assignments</h1>
 	<pagination class="float-right" rotate="true" max-size="assignment.maxSize" total-items="assignment.totalItems" items-per-page="assignment.itemsPerPage" ng-model="assignment.currentPage" ng-change="assignment.pageChanged()"></pagination>
 	<table class="table table-striped table-bordered table-condensed">
@@ -25,14 +25,28 @@
 				
 				<td class="col-sm-2">
 					<a ng-href="/classes/{{ gClass._id }}" class="btn btn-link">Edit</a>
-					<a href="#" ng-click="assignment.doDeleteAssignment(assignm._id)" class="btn btn-link">Delete</a>
-					<a ng-href="/assignments/viewSubmissions/{{ assignm._id }}" class="btn btn-link">View Submissions</a>
+					<a href="#" ng-click="assignment.areYouSure(assignm._id)" class="btn btn-link">Delete</a>
+					<a ng-href="/assignments/viewSubmissions/{{ assignm._id }}" class="btn btn-link">Submissions</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 
-<div class="row" ng-show="!assignment.assignments">
-	<h5>Currently, there are no assignemnts in the database.</h5>
+
+<div class="container align-center" ng-show="assignment.assignments.length == 0">
+	<h5 class="regular-small-font">Currently, there are no assignments in the database.</h5>
 </div>
+
+<script type="text/ng-template" id="areYouSure.html">
+    <div class="modal-header">
+        <h3 class="modal-title">You are about to delete stuff...</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to do this?!</h5>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="assignment.ok()">Yes, Go Ahead..</button>
+        <button class="btn btn-warning" ng-click="assignment.cancel()">No, wait...</button>
+    </div>
+</script>

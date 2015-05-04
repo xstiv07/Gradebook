@@ -67,3 +67,15 @@ angular.module('dashboardCtrl', [])
 		});
 	};
 })
+
+.controller('areYouSureController', function ($modalInstance) {
+	vm = this;
+
+	vm.ok = function () {
+		$modalInstance.close();
+	};
+
+	vm.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+})

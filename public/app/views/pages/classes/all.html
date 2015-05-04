@@ -3,7 +3,7 @@
 	<p>Loading...</p>
 </div>
 
-<div class="container">
+<div class="container" ng-if="class.classes.length > 0">
 	<a href="/classes/create" class="btn btn-link">
 			New Class
 		</a>
@@ -39,4 +39,8 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+<div class="container align-center" ng-show="class.classes.length == 0">
+	<h5 class="regular-small-font">Currently, there are no active classes.</h5>
 </div>

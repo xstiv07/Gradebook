@@ -1,5 +1,6 @@
 var Submission = require('./submission'),
 	mongoose = require('mongoose'),
+	fs = require('fs'),
 	Schema = mongoose.Schema;
 
 var fileSchema = new Schema({

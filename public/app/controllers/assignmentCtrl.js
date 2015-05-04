@@ -1,6 +1,6 @@
 angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
-.controller('assignmentController', function ($location, $routeParams, Assignment) {
+.controller('assignmentController', function ($location, $routeParams, Assignment, $modal) {
 	var vm = this;
 
 	vm.processing = true;
@@ -8,6 +8,8 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	vm.itemsPerPage = 10;
 	vm.currentPage = 1;
 	vm.maxSize = 5;
+
+	vm.animationsEnabled = true;
 
 	Assignment.all().success(function (data) {
 		vm.notFilteredAsssignments = data;
@@ -26,8 +28,19 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 		vm.assignments = vm.notFilteredAsssignments.slice(begin, end);
 	};
 
-	vm.selectedAssignments = [];
+	vm.areYouSure = function (id) {
+		var modalInstance = $modal.open({
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSure.html',
+			controller: "areYouSureController",
+			controllerAs: "assignment",
+		});
+		modalInstance.result.then(function () {
+			vm.doDeleteAssignment(id)
+		});
+	};
 
+	vm.selectedAssignments = [];
 
 	// -----------------Datepicker----------------------//
 	vm.today = function() {
