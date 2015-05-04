@@ -2,13 +2,11 @@
 
 <div class="cal-holder">
 	<div class="container">
-		<span class="calButton" ng-show="!dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Hide</span>
-		<div class="row padding-big" collapse="dash.isCollapsed">
-			<div class="col-lg-6 col-centered">
-				<div id="calendar"></div>
+		<div class="row padding-big">
+			<div class="col-centered col-md-10">
+				<div ui-calendar="dash.uiConfig.calendar" ng-model="dash.eventSources"></div>
 			</div>
 		</div>
-		<span class="calButton" ng-show="dash.isCollapsed" ng-click="dash.isCollapsed = !dash.isCollapsed" id="cal">Calendar</span>
 	</div>
 </div>
 
@@ -33,11 +31,3 @@
 
 <script type="text/javascript" src="scripts/moment.min.js"></script>
 <script type="text/javascript" src="scripts/fullcalendar.min.js"></script>
-
-<script>
-	$(document).ready(function() {
-	    $('#calendar').fullCalendar({
-	        // put your options and callbacks here
-	    })
-	});
-</script>

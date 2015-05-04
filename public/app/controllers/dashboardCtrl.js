@@ -4,12 +4,30 @@ angular.module('dashboardCtrl', [])
 	var vm = this;
 
 	vm.oneAtATime = false;
-	vm.isCollapsed = true;
+	vm.isCollapsed = false;
 	vm.showTree = false;
+
+
+	// ---------------calendar---------------
+	vm.eventSources = [];
+
+	$rootScope.deferredRounting.promise.then(function () {
+			User.getCalendarInfo($rootScope.currentUser.id).success(function (data) {
+				vm.eventSources.push(data);
+			})
+		});
+
+	vm.uiConfig = {
+		calendar:{
+			height: 500,
+			editable: false
+		}
+	}
+
+	// ------------------------------------------
 
 	$rootScope.deferredRounting.promise.then(function () {
 		vm.isInstructor = $rootScope.currentUser.isInstructor;
-		console.log('resolved')
 	});
 })
 

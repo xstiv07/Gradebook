@@ -14,6 +14,9 @@ angular.module('userService', [])
 	userFactory.getFullInfo = function (id) {
 		return $http.get('/api/users/fullInfo/' + id)
 	};
+	userFactory.getCalendarInfo = function (userId) {
+		return $http.get('/api/calendarInfo/' + userId)
+	}
 
 	userFactory.update = function (id, data) {
 		return $http.put('/api/users/' + id, data);

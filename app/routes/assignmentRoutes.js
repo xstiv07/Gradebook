@@ -165,6 +165,7 @@ module.exports = function (apiRouter) {
 	});
 		
 	apiRouter.post('/assignments/create/:class_id', function (req, res) {
+
 		var assignm = new Assignment();
 
 		assignm.name = req.body.name;

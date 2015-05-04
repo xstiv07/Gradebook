@@ -51,7 +51,6 @@ form[novalidate].ng-submitted input.ng-invalid{
   -webkit-animation:spin 1s infinite;
   -moz-animation:spin 1s infinite;
 }
-
 .table>thead>tr>th{
   border: none;
 }
@@ -85,6 +84,7 @@ table{
 }
 .dashboard{
   margin-top: 5%;
+  margin-bottom: 5%
 }
 
 .circle a:hover{
@@ -358,6 +358,15 @@ table{
   background-size: cover;
   z-index: 11;
   height: 350px;
+}
+.fc-time {
+    display:none;
+}
+.fc-title{
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase; 
+  font-size: 12px;
+  font-weight: 100;
 }
 .box:hover{
   -webkit-filter: grayscale(0%);

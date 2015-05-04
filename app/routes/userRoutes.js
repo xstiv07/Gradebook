@@ -2,6 +2,7 @@ var User = require('../models/user'),
 	Class = require('../models/class'),
 	Assignment = require('../models/assignment'),
 	Submission = require('../models/submission'),
+	async = require('async'),
 	deepPopulate = require('mongoose-deep-populate');
 
 module.exports = function (apiRouter) {
@@ -29,6 +30,52 @@ module.exports = function (apiRouter) {
 				res.send(err);
 			res.send(user);
 		});
+	});
+
+	apiRouter.get('/calendarInfo/:user_id', function (req, res) {
+		//if user is instructor select his classes
+		//else select classes only from current user and populate them with assignment start date ,end date and title.
+
+		User.findOne({_id: req.params.user_id})
+		.deepPopulate('classes.assignments')
+		.exec(function (err, user) {
+
+			function getRandomColor() {
+
+			   var letters = ['9DBEF8','73D397','598EA6']; //Set your colors here
+			   var color = '#';
+			   var random = Math.floor(Math.random() * letters.length);
+
+			   
+
+			   color += letters[Math.floor(Math.random() * letters.length)];
+			   return color;
+			}
+
+			if(err)
+				res.send(err)
+
+			var calendarData = [];
+
+
+			for (var i = 0; i < user.classes.length; i++) {
+				var gClass = user.classes[i];
+				for (var i = 0; i < gClass.assignments.length; i++) {
+					var assignm = gClass.assignments[i];
+
+					var obj = {
+						title: gClass.name + " " + gClass.term + " " + assignm.name,
+						start: assignm.dateAssigned.toUTCString(),
+						end: assignm.dateDue.toUTCString(),
+						color: getRandomColor()
+					}
+
+					calendarData.push(obj)
+				};
+
+			};
+			res.json(calendarData)
+		})
 	});
 
 
