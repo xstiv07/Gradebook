@@ -39,19 +39,6 @@ module.exports = function (apiRouter) {
 		User.findOne({_id: req.params.user_id})
 		.deepPopulate('classes.assignments')
 		.exec(function (err, user) {
-
-			function getRandomColor() {
-
-			   var letters = ['9DBEF8','73D397','598EA6']; //Set your colors here
-			   var color = '#';
-			   var random = Math.floor(Math.random() * letters.length);
-
-			   
-
-			   color += letters[Math.floor(Math.random() * letters.length)];
-			   return color;
-			}
-
 			if(err)
 				res.send(err)
 
@@ -67,7 +54,6 @@ module.exports = function (apiRouter) {
 						title: gClass.name + " " + gClass.term + " " + assignm.name,
 						start: assignm.dateAssigned.toUTCString(),
 						end: assignm.dateDue.toUTCString(),
-						color: getRandomColor()
 					}
 
 					calendarData.push(obj)

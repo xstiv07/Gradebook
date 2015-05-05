@@ -20,7 +20,21 @@ angular.module('dashboardCtrl', [])
 	vm.uiConfig = {
 		calendar:{
 			height: 500,
-			editable: false
+			editable: false,
+			eventBorderColor: '#fff',
+			eventAfterRender: function (event, element, view) {
+		        var today = new Date();
+		        if (event.start < today && event.end > today) {
+		        	//in progress
+		            element.css('background-color', '#1BBC9B');
+		        } else if (event.start < today && event.end < today) {
+		            //past event
+		            element.css('background-color', 'red');
+		        } else if (event.start > today && event.end > today) {
+		            //future event, hasn't started yet
+		            element.css('background-color', '#AEC6CF');
+		        }
+		    }
 		}
 	}
 
