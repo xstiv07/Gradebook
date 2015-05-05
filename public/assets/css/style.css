@@ -107,9 +107,6 @@ table{
     margin: 10px;
     width: 100px;
 }
-.login-form form {
-  padding: 5% 10% 20% 2.5em;
-}
 .login-form form div {
   margin-bottom: 25px;
   width: 100%;
@@ -359,8 +356,23 @@ table{
   z-index: 11;
   height: 350px;
 }
+.form-control{
+  border: thin dashed #000 !important;
+  background-color: transparent;
+}
+.form-control:focus{
+  box-shadow: none;
+  border: thin solid #000 !important;
+}
+.btn-no-color{
+  background-color: transparent;
+  border-color: #000;
+}
 .fc-time {
     display:none;
+}
+.glyphicon-calendar{
+  color: #ff2462
 }
 .fc-title{
   font-family: 'Raleway', sans-serif;
@@ -470,6 +482,9 @@ table{
 .pink{
   background-color: #ff2462;
 }
+.pink-color{
+  color: #ff2462;
+}
 .btn-info{
   background-color: #ff2462;
   border-color: #ff2462;
@@ -574,6 +589,7 @@ label{
 }
 textarea{
   resize: none;
+  background-color: none;
 }
 .dropdown-menu{
   box-shadow: none;
@@ -704,6 +720,10 @@ textarea{
   font-family: 'Montez', cursive;
   font-size: 400%
 }
+.logo-font-small{
+  font-family: 'Montez', cursive;
+  font-size: 100%
+}
 .title-font{
   font-family: 'Raleway', sans-serif;
   text-transform: uppercase; 
@@ -778,3 +798,85 @@ textarea{
 .student2{
   background-position: 100% 66.6%;
 }
+.Tghost-btn {
+  font-family: "Arial";
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #000;
+  height: 25px;
+  min-width: 75px;
+  line-height: 25px;
+  color: #ff2462;
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+  font-size: 1em;
+  padding: .5em 1.5em;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  background: #ffffff;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  zoom: 1;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+}
+.Tghost-btn:hover {
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+  background-color: #1a1f2a;
+  border-color: transparent;
+  color: #ffffff;
+}
+.Tghost-btn:focus {
+  outline: none;
+}
+.Tghost-auth{
+  background-color: transparent;
+}
+.Tgost-auth:hover{
+  background-color: none;
+}
+
+.center-form{
+  margin: 0 auto;
+  width: 30%
+}
+
+.lines{
+  background: url(../images/lines.png);
+  background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

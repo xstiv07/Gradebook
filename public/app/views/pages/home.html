@@ -32,36 +32,32 @@
 </div>
 <div class='padding-big'></div>
 
-<div class="align-center">
-    <div class="container">
-		<h2 class="title-font">How does it work?</h2>
 
-		<div class="padding-big"></div>
+<div class="container align-center">
+	<div class="padding-big"></div>
 
-		<p ng-click="main.openRegister()" class="regular-normal-font select">Register and</p>
+	<div class="col-md-4 rules instructors">
+		<p class="regular-small-font orange">Instructors</p>
+		<div class="person instructor1"></div>
+		<div class="person instructor2"></div>
 
-		<div class="col-md-4 rules instructors">
-			<p class="regular-small-font orange">Instructors</p>
-			<div class="person instructor1"></div>
-			<div class="person instructor2"></div>
+		<p class="regular-normal-font">Start creating classes and assignments for your students right away</p>
+		
+	</div>
+	<div class="col-md-4 col-md-offset-4 rules students">
+		<p class="regular-small-font green-color">Students</p>
+		<div class="person student1"></div>
+		<div class="person student2"></div>
+		<p class="regular-normal-font">Contact your instructor about class enrollment.</p>
+	</div>
 
-			<p class="regular-normal-font">Start creating classes and assignments for your students right away</p>
-			
-		</div>
-		<div class="col-md-4 col-md-offset-4 rules students">
-			<p class="regular-small-font green-color">Students</p>
-			<div class="person student1"></div>
-			<div class="person student2"></div>
-			<p class="regular-normal-font">You can start using a gradebook if you are enrolled to a class.</p>
-		</div>
-    </div>
-    <div class="gray">
-    	<div class="container" style="height:500px"> <!-- temporary -->
-    		<h2 class="title-font white">features</h2>
-    	</div>
-
-    </div>
 </div>
+<div class="container align-center ">
+	<h2 class="title-font">features</h2>
+</div>
+<div class="padding-big"></div>
+
+
 <div class="footer align-center">
 	<div class="container">
 		<h4>Something interesting here</h4>
@@ -84,81 +80,94 @@
             $('.students').addClass('fadeInUp2s');
             $('.instructors').addClass('fadeInUp1s')
         }
-        // ,
-        // exit: function() {  // optionally
-        //     $('.students').removeClass('swing');
-        // }
     });
 		 
 	});
 </script>
 
+<script type="text/javascript">
+    $(window).scroll(function() {
+        // get how far we've scrolled from the top of our screen
+        var offset = $(window).scrollTop();
+        offset = offset * 2.2;
+        // apply the offset as a css transform to our buttons
+        $('#sp-links a').css({
+            '-moz-transform': 'rotate(' + offset + 'deg)',
+            '-webkit-transform': 'rotate(' + offset + 'deg)',
+            '-o-transform': 'rotate(' + offset + 'deg)',
+            '-ms-transform': 'rotate(' + offset + 'deg)',
+            'transform': 'rotate(' + offset + 'deg)',
+        });
+    });
+</script>
+
+
 
 <script type="text/ng-template" id="loginModal.html">
-	<div class="alert alert-danger align-center" ng-show="login.error">
-		{{login.error}}
-	</div>
 	<span class="float-right padding-big cursor" ng-click="login.close()">Close</span>
 	<div class="login-form">
-		<span class="logo-font">Welcome back</span>
 		<form ng-submit="login.doLogin(form.$valid)" name="form" novalidate>
-			<div>
-				<input required type="text" placeholder="E-MAIL*" ng-model="login.loginData.email">
+			<div class="align-right">
+				<span class="logo-font-small">Welcome back...</span>
 			</div>
 			<div>
-				<input required name="password" type="password" placeholder="PASSWORD*" ng-model="login.loginData.password">
+				<label class="upper align-left">E-mail<span class="pink-color">*</span></label>
+				<input required type="text" class="form-control" ng-model="login.loginData.email">
 			</div>
-			
-			<button type="submit" class="btn btn-primary btn-block">
-				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
-				<span ng-if="!login.processing">Sign In</span>
-			</button>
+			<div>
+				<label class="upper align-left">Password<span class="pink-color">*</span></label>
+				<input required name="password" class="form-control" type="password" ng-model="login.loginData.password">
+			</div>
+
+			<div>
+				<button type="submit" class="Tghost-btn Tghost-auth">
+					<span ng-if="login.processing" class="spinner">
+						<span class="glyphicon glyphicon-repeat"></span>
+					</span>
+					<span ng-if="!login.processing" class="glyphicon glyphicon-education"></span>
+				</button>
+			</div>
 		</form>
+	</div>
+	<div class="alert alert-danger upper align-center" ng-show="login.error">
+		{{login.error}}
 	</div>
 </script>
 
+
 <script type="text/ng-template" id="registerModal.html">
-	<div class="alert alert-danger align-center" ng-show="register.error">
-		{{register.error}}
-	</div>
 	<span class="float-right padding-big cursor" ng-click="register.close()">Close</span>
 	<div class="login-form">
 		<span class="logo-font">registration</span>
 		<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
 			<div>
-				<input required type="text" placeholder="FIRST NAME*" ng-model="register.registerData.fname">
+				<label class="upper align-left">First Name<span class="pink-color">*</span></label>
+				<input required type="text" class="form-control" ng-model="register.registerData.fname">
 			</div>
 			<div>
-				<input required type="text" placeholder="LAST NAME*" ng-model="register.registerData.lname">
+				<label class="upper align-left">Last Name<span class="pink-color">*</span></label>
+				<input required type="text" class="form-control" ng-model="register.registerData.lname">
 			</div>
 			<div>
-				<input required type="text" placeholder="E-MAIL*" ng-model="register.registerData.email">
+				<label class="upper align-left">E-mail<span class="pink-color">*</span></label>
+				<input type="email" name="email" required type="text" class="form-control" ng-model="register.registerData.email">
+				<p class="help-block bg-danger" ng-show="form.email.$error.email">Invalid e-mail</p>
 			</div>
 			<div>
-				<input required name="password" ng-minlength="6" type="password" placeholder="PASSWORD*" ng-model="register.registerData.password">
+				<label class="upper align-left">Password<span class="pink-color">*</span></label>
+				<input required name="password" ng-minlength="6" type="password" class="form-control" ng-model="register.registerData.password">
 				<p class="help-block bg-danger" ng-show="form.password.$error.minlength">Min 6 characters required</p>
 			</div>
-			
-			<button type="submit" class="btn green btn-block">
-				<span ng-if="register.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
-				<span ng-if="!register.processing">Register</span>
+
+			<button type="submit" class="Tghost-btn Tghost-auth">
+				<span ng-if="login.processing" class="spinner">
+					<span class="glyphicon glyphicon-repeat"></span>
+				</span>
+				<span ng-if="!login.processing" class="glyphicon glyphicon-education"></span>
 			</button>
 		</form>
 	</div>
+	<div class="alert alert-danger upper align-center" ng-show="register.error">
+		{{register.error}}
+	</div>
 </script>
-
-<script type="text/javascript">
-	    $(window).scroll(function() {
-	        // get how far we've scrolled from the top of our screen
-	        var offset = $(window).scrollTop();
-	        offset = offset * 2.2;
-	        // apply the offset as a css transform to our buttons
-	        $('#sp-links a').css({
-	            '-moz-transform': 'rotate(' + offset + 'deg)',
-	            '-webkit-transform': 'rotate(' + offset + 'deg)',
-	            '-o-transform': 'rotate(' + offset + 'deg)',
-	            '-ms-transform': 'rotate(' + offset + 'deg)',
-	            'transform': 'rotate(' + offset + 'deg)',
-	        });
-	    });
-	</script>

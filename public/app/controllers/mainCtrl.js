@@ -44,12 +44,12 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 	};
 
 	vm.doLogin = function (isValid) {
+		console.log(vm.loginData)
 		vm.processing = true;
 
 		vm.error = '';
 
 		if(isValid){
-
 			Auth.login(vm.loginData).success(function (data) {
 				vm.processing = false;
 				// if a user successfully logs in, redirect to users page
@@ -62,7 +62,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			});
 		}else{
 			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
+			vm.error = 'Invalid form';
 		}
 	};
 })
@@ -90,7 +90,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
 			})
 		}else{
 			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
+			vm.error = 'Invalid form';
 		}	
 	};
 })

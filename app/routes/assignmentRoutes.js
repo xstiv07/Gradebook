@@ -168,10 +168,14 @@ module.exports = function (apiRouter) {
 
 		var assignm = new Assignment();
 
+		console.log(req.body)
+
 		assignm.name = req.body.name;
 		assignm.description = req.body.description;
 		assignm.dateDue = req.body.dateDue;
 		assignm.gclass = req.params.class_id;
+		if(assignm.dateAssigned != null || assignm.dateAssigned != '')
+			assignm.dateAssigned = req.body.dateAssigned;
 
 		Class.update({
 			_id: req.params.class_id},

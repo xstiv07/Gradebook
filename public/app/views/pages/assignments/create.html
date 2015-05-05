@@ -1,41 +1,45 @@
-<h1>Create a new assignment</h1>
+<div class="container lines">
+	<div class="col-md-offset-6 col-md-5">
+		<h5 class="logo-font align-center">New assignment</h5>
+		<div class="alert alert-danger upper align-center" ng-show="assignment.error">
+			{{assignment.error}}
+		</div>
 
-<div class="alert alert-danger" ng-show="assignment.error">
-	{{assignment.error}}
+		<form class="form-horizontal" name="form" ng-submit="assignment.doNewAssignment(form.$valid)" novalidate>
+			
+			<div class="form-group">
+				<label>Name<span class="pink-color">*</span></label>
+				<input required type="text" class="form-control" ng-model="assignment.assignmentData.name">
+			</div>
+
+			<div class="form-group">
+				<label>Description<span class="pink-color">*</span></label>
+				<textarea required rows="5" class="form-control" ng-model="assignment.assignmentData.description"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Start Date</label>
+				<p class="input-group">
+	              <input ng-model="assignment.assignmentData.dateAssigned" type="text" class="form-control" datepicker-popup="{{assignment.format}}" name='dt' ng-model="assignment.dt" is-open="assignment.datepickers.dt" min-date="assignment.minDate" datepicker-options="assignment.dateOptions" date-disabled="assignment.disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-no-color" ng-click="assignment.open($event, 'dt')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+			</div>
+
+			<div class="form-group">
+				<label>Date Due<span class="pink-color">*</span></label>
+				<p class="input-group">
+	              <input ng-model="assignment.assignmentData.dateDue" required type="text" class="form-control" datepicker-popup="{{assignment.format}}" ng-model="assignment.dtSecond" is-open="assignment.datepickers.dtSecond" min-date="assignment.minDate" datepicker-options="assignment.dateOptions" date-disabled="assignment.disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-no-color" ng-click="assignment.open($event, 'dtSecond')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+			</div>
+			
+			<div class="form-group align-center">
+				<button type="submit" class="Tghost-btn"><span class="glyphicon glyphicon-pencil"></span></button>
+			</div>
+		</form>  
+	</div>
 </div>
-
-<form class="form-horizontal" name="form" ng-submit="assignment.doNewAssignment(form.$valid)" novalidate>
-	
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Name*</label>
-		<div class="col-sm-6">
-			<input required type="text" class="form-control" ng-model="assignment.assignmentData.name">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Description*</label>
-		<div class="col-sm-6">
-			<input required type="text" class="form-control" ng-model="assignment.assignmentData.description">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Date Due*</label>
-		<div class="col-sm-6">
-			<p class="input-group">
-              <input ng-model="assignment.assignmentData.dateDue" required type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="assignment.opened" min-date="assignment.minDate" max-date="'2015-06-22'" datepicker-options="assignment.dateOptions" date-disabled="assignment.disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="assignment.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-		</div>
-	</div>
-	
-	<div class="form-group">
-	<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-default btn-lg btn-block">Create</button>
-	</div>
-	</div>
-
-</form>

@@ -31,7 +31,7 @@ module.exports = function (apiRouter) {
 			if(!user){
 				res.json({
 					success: false,
-					message: 'Authentication failed.'
+					message: 'Authentication failed'
 				})
 			}
 			else if(user){
@@ -40,7 +40,7 @@ module.exports = function (apiRouter) {
 				if(!validPassword){
 					res.json({
 						success: false,
-						message: 'Authentication failed.'
+						message: 'Authentication failed'
 					})
 				}else{
 					sendToken('Successfully passed a token', user, res);

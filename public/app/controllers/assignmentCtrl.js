@@ -43,9 +43,17 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 	vm.selectedAssignments = [];
 
 	// -----------------Datepicker----------------------//
+
+	vm.datepickers = {
+		dt: false,
+		dtSecond: false
+	},
+
 	vm.today = function() {
 	    vm.dt = new Date();
+	    vm.dtSecond = new Date();
   	};
+
   	vm.today();
 
   	vm.clear = function () {
@@ -63,11 +71,11 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.toggleMin();
 
-	vm.open = function($event) {
+	vm.open = function($event, which) {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		vm.opened = true;
+		vm.datepickers[which] = true;
 	};
 
 	vm.dateOptions = {
