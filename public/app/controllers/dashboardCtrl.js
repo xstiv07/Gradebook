@@ -48,6 +48,7 @@ angular.module('dashboardCtrl', [])
 .controller('cpanelController', function (Assignment, Class, $location, $route, $modal, $rootScope) {
 	var vm = this;
 	vm.processing = false;
+	vm.isOpen = false;
 
 	$rootScope.deferredRounting.promise.then(function () {
 		Class.getFullInfoForInstructor($rootScope.currentUser.id).success(function (data) {
@@ -55,17 +56,15 @@ angular.module('dashboardCtrl', [])
 		});
 	});
 
-	vm.openEnrolledStudents = function (size, id) {
+	vm.areYouSure = function (id) {
 		var modalInstance = $modal.open({
-			templateUrl: "enrolledStudentsModal.html",
-			controller: "enrolledStudentsController",
-			controllerAs: "enrolledStudents",
-			size: size,
-			resolve:{
-				classId: function () {
-					return id;
-				}
-			}
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSure.html',
+			controller: "areYouSureController",
+			controllerAs: "assignment",
+		});
+		modalInstance.result.then(function () {
+			vm.deleteAssignment(id)
 		});
 	};
 

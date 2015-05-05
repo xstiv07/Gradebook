@@ -23,25 +23,7 @@ module.exports = function (apiRouter) {
 						});
 					};
 				});
-			})
-		//it is not an array that is why I cannot pull
-		.put(function (req, res) {
-			Assignment.update({
-				_id: req.body.assignmentId},
-				{$pull: {gclass: req.params.class_id}}, function (err) {
-					if (err)
-						res.send(err);
 			});
-			Class.update({
-				_id: req.params.class_id},
-				{$pull: {assignments: req.body.assignmentId}}, function (err) {
-					if (err)
-						res.send(err);
-			});
-			res.json({
-				success: true
-			});
-		});
 
 	apiRouter.post('/assignments/addExisting/:class_id', function (req, res) {
 		Class.findById(req.params.class_id, function (err, gxClass) {

@@ -49,7 +49,6 @@ angular.module('authService', [])
 
 	// get the logged in user
 	authFactory.getUser = function() {
-		console.log('called getUser')
 		if (AuthToken.getToken())
 			return $http.get('/api/me')
 		else{

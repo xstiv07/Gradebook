@@ -165,17 +165,4 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 			vm.assignments = data.assignments;
 		});
 	};
-
-	vm.deleteAssignmentFromClass = function (assignmentId) {
-		var assignmId = {
-			assignmentId: assignmentId
-		};
-
-		Assignment.deleteFromClass($routeParams.class_id, assignmId).success(function () {
-			Assignment.allForClass($routeParams.class_id).success(function (data) {
-				vm.assignments = data.assignments;
-				vm.processing = false;
-			});
-		});
-	};
 })

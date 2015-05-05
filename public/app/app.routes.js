@@ -64,6 +64,13 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'assignment',
 			adminAccess: true
 		})
+		.when('/classes/enrolled/:class_id',{
+			templateUrl: 'app/views/pages/classes/enrolledStudents.html',
+			controller: 'enrolledStudentsController',
+			controllerAs: 'enrolledStudents',
+			instructorAccess: true,
+			adminAccess: true
+		})
 		.when('/assignments/create/:class_id',{
 			templateUrl: 'app/views/pages/assignments/create.html',
 			controller: 'assignmentController',

@@ -19,7 +19,7 @@ angular.module('classCtrl', [])
 
 		vm.processing = false;
 	})
-	.error(function (err) {
+	.error(function () {
 		vm.processing = true;
 	})
 
@@ -63,17 +63,49 @@ angular.module('classCtrl', [])
 	};
 })
 
-.controller('addStudentsController', function ($routeParams, $location, User, Class) {
+.controller('addStudentsController', function ($routeParams, $location, User, Class, $scope) {
 	var vm = this;
-
 	vm.processing = true;
+
 	vm.selectedUsers = [];
 
-	//geting all users who are not instructors
+	vm.itemsPerPage = 5;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
+
 	User.all().success(function (data) {
-		vm.users = data;
+		vm.notFilteredUsers = data;
+		vm.totalItems = data.length;
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
+
+		vm.processing = false;
+	}).error(function () {
 		vm.processing = false;
 	});
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
+	}
+
+	vm.pageCount = function () {
+		return Math.ceil(vm.totalItems / vm.itemsPerPage)
+	}
+
+	vm.checkAll = function () {
+		if(vm.selectedAll){
+			vm.selectedUsers = vm.notFilteredUsers.slice(0);
+			vm.selectedAll = true;
+		}
+		else{
+			vm.selectedUsers = [];
+			vm.selectedAll = false;
+		}
+	}
 
 	vm.toggleCheck = function(usr) {
 		vm.processing = true;
@@ -85,35 +117,34 @@ angular.module('classCtrl', [])
 	};
 
 	vm.postStudents = function () {
-		vm.processing = true;
-		Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
-			if (data.success)			
-				$location.path('/classes/enrolledStudents/' + $routeParams.class_id);
-			vm.processing = false;
-		});
+		if(vm.selectedUsers.length > 0){
+			vm.processing = true;
+			Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
+				if (data.success)			
+					$location.path('/cpanel');
+				vm.processing = false;
+			});
+		}else
+			vm.error = "You must select at least one student"
 	};
 })
 
-.controller('enrolledStudentsController', function ($location, $routeParams, Class, $modalInstance, classId) {
+.controller('enrolledStudentsController', function ($location, $routeParams, Class) {
 	var vm = this;
 	vm.processing = true;
 
-	Class.getStudents(classId).success(function (data) {
+	Class.getStudents($routeParams.class_id).success(function (data) {
 		vm.users = data.students;
 		vm.className = data.className;
 		vm.processing = false;
 	});
-
-	vm.close = function () {
-		$modalInstance.dismiss('cancel');
-	};
 
 	vm.unenroll = function (userId) {
 		vm.processing = true;
 		var usrId = {
 			userId : userId
 		};
-		Class.unenroll(classId, usrId).success(function (data) {
+		Class.unenroll($routeParams.class_id, usrId).success(function (data) {
 			vm.users = data
 			vm.processing = false;
 		});

@@ -356,6 +356,9 @@ table{
   z-index: 11;
   height: 350px;
 }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{
+  outline: none;
+}
 .form-control{
   border: thin dashed #000 !important;
   background-color: transparent;

@@ -19,10 +19,6 @@ angular.module('assignmentService', [])
 		return $http.delete('/api/assignments/' + id);
 	};
 
-	assignmentFactory.deleteFromClass = function (classId, assignmentId) {
-		return $http.put('/api/assignments/view/' + classId, assignmentId)
-	};
-
 	assignmentFactory.postAssignments = function (classId, assignmentIds) {
 		return $http.post('/api/assignments/addExisting/' + classId, assignmentIds);
 	};

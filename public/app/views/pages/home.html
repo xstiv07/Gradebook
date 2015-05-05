@@ -4,34 +4,32 @@
 
 <div class="header">
 	<div class="menu-top-home">
-	<div class="container">
-		<div class="align-right">
-			<ul class="links" ng-if="!isLoggedIn">
-				<li>
-					<span ng-click="main.openLogin()" class="ghost-btn ghost ghost-orange">Sign In</span>
-				</li>
-				<li>
-					<span class="ghost-btn ghost ghost-green" ng-click="main.openRegister()">Register</span>
-				</li>
-			</ul>
-		</div>
-	</div>
-	</div>
-
-		
-		<div class="bottom-bar">
-			<div class="container align-center">
-				<span class="logo-font">&nbsp;&nbsp;&nbsp;&nbsp;Simple</span><i id="intro" class="fa fa-circle-o big-icon"></i><span class="logo-font">Gradebook</span>
-				<p class="regular-small-font">Online learning</p>
-				<div class="align-right">
-					<i scroll-on-click class="fa fa-angle-double-down fa-5x cursor-animate select"></i>
-				</div>
+		<div class="container">
+			<div class="align-right">
+				<ul class="links" ng-if="!isLoggedIn">
+					<li>
+						<span ng-click="main.openLogin()" class="ghost-btn ghost ghost-orange">Sign In</span>
+					</li>
+					<li>
+						<span class="ghost-btn ghost ghost-green" ng-click="main.openRegister()">Register</span>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
 
+	<div class="bottom-bar">
+		<div class="container align-center">
+			<span class="logo-font">&nbsp;&nbsp;&nbsp;&nbsp;Simple</span><i id="intro" class="fa fa-circle-o big-icon"></i><span class="logo-font">Gradebook</span>
+			<p class="regular-small-font">Online learning</p>
+			<div class="align-right">
+				<i scroll-on-click class="fa fa-angle-double-down fa-5x cursor-animate select"></i>
+			</div>
+		</div>
+	</div>
 </div>
-<div class='padding-big'></div>
 
+<div class='padding-big'></div>
 
 <div class="container align-center">
 	<div class="padding-big"></div>
@@ -57,7 +55,6 @@
 </div>
 <div class="padding-big"></div>
 
-
 <div class="footer align-center">
 	<div class="container">
 		<h4>Something interesting here</h4>
@@ -67,8 +64,6 @@
 
 <script type="text/javascript" src="scripts/jquery.waypoints.min.js"></script>
 <script type="text/javascript" src="scripts/inview.min.js"></script>
-
-
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -101,8 +96,6 @@
     });
 </script>
 
-
-
 <script type="text/ng-template" id="loginModal.html">
 	<span class="float-right padding-big cursor" ng-click="login.close()">Close</span>
 	<div class="login-form">
@@ -133,7 +126,6 @@
 		{{login.error}}
 	</div>
 </script>
-
 
 <script type="text/ng-template" id="registerModal.html">
 	<span class="float-right padding-big cursor" ng-click="register.close()">Close</span>

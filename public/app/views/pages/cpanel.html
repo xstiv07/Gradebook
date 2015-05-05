@@ -13,16 +13,16 @@
 
 		<accordion close-others="cpanel.oneAtATime">
 
-			<accordion-group ng-show="cpanel.instructorData.length == 0" heading="You are not teaching at the moment!" is-open="false" is-disabled="false">
+			<accordion-group ng-show="cpanel.instructorData.length == 0" heading="You are not teaching at the moment!" is-open="cpanel.isOpen" is-disabled="false">
 				<h5 class="align-center">Create a new class now!</h5>
 			</accordion-group>
 
-		    <accordion-group heading="{{class.name}} - {{class.term}}" ng-repeat="class in cpanel.instructorData" is-open="false" is-disabled="false">
+		    <accordion-group heading="{{class.name}} - {{class.term}}" ng-repeat="class in cpanel.instructorData" is-open="cpanel.isOpen" is-disabled="false">
 
 		    	<div class="row yellow">
 		    		<a ng-href="/assignments/create/{{ class._id }}" class="btn btn-link">New Assignment</a>
 		    		<a ng-href="/classes/addStudents/{{ class._id }}" class="btn btn-link">Add Students</a>
-		    		<span ng-click="cpanel.openEnrolledStudents('lg', class._id)" class="btn btn-link">Enrolled Students</span>
+		    		<a ng-href="/classes/enrolled/{{ class._id }}" class="btn btn-link">Enrolled Students</a>
 		    		<a ng-href="/class/edit/{{ class._id }}" class="btn btn-link">Edit Class</a>
 		    		<a href="#" ng-click="cpanel.deleteClass(class._id)" class="btn btn-link">Delete Class</a>
 		    	</div>
@@ -60,7 +60,7 @@
 					<div class="align-right">
 						<span ng-click="cpanel.openViewSubmissions('lg', assignment._id)" class="btn btn-info">View Submissions</span>
 						<a ng-href="/assignments/edit/{{ assignment._id }}" class="btn btn-default">Edit Assignment</a> <!-- to-do -->
-						<a href="#" ng-click="cpanel.deleteAssignment(assignment._id)" class="btn btn-default">Delete Assignment</a>
+						<a href="#" ng-click="cpanel.areYouSure(assignment._id)" class="btn btn-default">Delete Assignment</a>
 					</div>
 				</div>
 		    </accordion-group>
@@ -68,35 +68,17 @@
 	</div>
 </div>
 
-<!-- enrolledStudents -->
-<script type="text/ng-template" id="enrolledStudentsModal.html">
-	<span class="float-right padding-big cursor" ng-click="enrolledStudents.close()">Close</span>
-
-	<div class="row absolute text-center" ng-show="enrolledStudents.processing">
-		<span class="glyphicon glyphicon-repeat spinner"></span>
-		<p>Loading...</p>
-	</div>
-
-	<div class="col-md-10 padding-big col-centered">
-		<table class="table table-bordered table-striped" ng-show="enrolledStudents.users">
-			<thead>
-				<tr>
-					<th>Full Name</th>
-					<th>Email</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="person in enrolledStudents.users">
-					<td>{{ person.fname }} {{person.lname}}</td>
-					<td>{{ person.email }}</td>
-					<td>
-						<a href="#" ng-click="enrolledStudents.unenroll(person._id)" class="btn btn-link">Delete from class</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<script type="text/ng-template" id="areYouSure.html">
+    <div class="modal-header">
+        <h3 class="modal-title">You are about to delete stuff...</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to do this?!</h5>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="assignment.ok()">Yes, Go Ahead..</button>
+        <button class="btn btn-warning" ng-click="assignment.cancel()">No, wait...</button>
+    </div>
 </script>
 
 <!-- assignment -->

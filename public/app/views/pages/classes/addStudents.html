@@ -1,36 +1,45 @@
-<div class="row show-hide-message" ng-show="addStudents.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-		<div class="alert alert-info">
-			{{ addStudents.message }}
-		</div>
-
-	</div>
-</div>
-
-<h1>Add students</h1>
-<div class="jumbotron text-center" ng-show="addStudents.processing">
+<div class="row absolute text-center" ng-show="addStudents.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading Users...</p>
+	<p>Loading...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="addStudents.users">
-	<thead>
-		<tr>
-			<th>Full Name</th>
-			<th>Email</th>
-			<th class="col-sm-2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="person in addStudents.users">
-			<td>{{ person.fname }} {{person.lname}}</td>
-			<td>{{ person.email }}</td>
-			<td class="col-sm-2">
-				<input type="checkbox" ng-checked="addStudents.selectedUsers.indexOf(person) != -1" ng-click="addStudents.toggleCheck(person._id)">
-			</td>
-		</tr>
-	</tbody>
-</table>
+<div class="container">
+	<h1 class="logo-font align-center">Add Students</h1>
 
-<button class="btn btn-default" ng-click="addStudents.postStudents()">Add students</button>
+
+	<pagination class="float-right" rotate="false" max-size="addStudents.maxSize" total-items="addStudents.totalItems" items-per-page="addStudents.itemsPerPage" ng-model="addStudents.currentPage" ng-change="addStudents.pageChanged()"></pagination>
+
+
+	<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th>Full Name</th>
+					<th>Email</th>
+					<th>Amount of classes enrolled</th>
+					<th class="col-sm-2">
+						<input type="checkbox" ng-model="addStudents.selectedAll" ng-click="addStudents.checkAll()">
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="person in addStudents.users">
+					<td>{{ person.fname }} {{person.lname}}</td>
+					<td>{{ person.email }}</td>
+					<td>{{ person.classes.length }}</td>
+					<td class="col-sm-2">
+						<input type="checkbox" ng-checked="addStudents.selectedUsers.indexOf(person) != -1" ng-click="addStudents.toggleCheck(person._id)">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	<button class="btn btn-link float-right" ng-click="addStudents.postStudents()">Add students</button>
+</div>
+<div class="alert alert-danger upper align-center" ng-show="addStudents.error">
+	{{addStudents.error}}
+</div>
+
+
+<div class="container align-center" ng-show="addStudents.users.length == 0">
+	<h5 class="regular-small-font">Currently, there are no registered users.</h5>
+</div>
