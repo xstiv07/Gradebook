@@ -1,0 +1,50 @@
+<div class="container" ng-if="!assignment.receivedData">
+	<div class="col-md-offset-4 col-md-4">
+		<h5 class="logo-font align-center">Edit assignment</h5>
+		<form class="form-horizontal" name="form" ng-submit="assignment.saveAssignment()" novalidate>
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" class="form-control" ng-model="assignment.assignmentData.name">
+			</div>
+
+			<div class="form-group">
+				<label>Description</label>
+				<input type="text" class="form-control" ng-model="assignment.assignmentData.description">
+			</div>
+
+			<div class="form-group">
+				<label>Start Date</label>
+				<p class="input-group">
+	              <input ng-model="assignment.assignmentData.dateAssigned" type="text" class="form-control" datepicker-popup="{{assignment.format}}" name='dt' ng-model="assignment.dt" is-open="assignment.datepickers.dt" min-date="assignment.minDate" datepicker-options="assignment.dateOptions" date-disabled="assignment.disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-no-color" ng-click="assignment.open($event, 'dt')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+				
+			</div>
+
+			<div class="form-group">
+				<label>Start End Date</label>
+				<p class="input-group">
+	              <input ng-model="assignment.assignmentData.dateDue" required type="text" class="form-control" datepicker-popup="{{assignment.format}}" ng-model="assignment.dtSecond" is-open="assignment.datepickers.dtSecond" min-date="assignment.minDate" datepicker-options="assignment.dateOptions" date-disabled="assignment.disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-no-color" ng-click="assignment.open($event, 'dtSecond')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+			</div>
+
+			<div class="form-group align-center">
+				<button type="submit" class="Tghost-btn">Edit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="alert alert-info align-center upper" ng-if="assignment.receivedData">
+	{{ assignment.message}}
+</div>
+
+
+<div class="alert alert-danger upper align-center" ng-show="assignment.error">
+	{{assignment.error}}
+</div>

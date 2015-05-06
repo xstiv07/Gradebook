@@ -19,6 +19,10 @@ angular.module('assignmentService', [])
 		return $http.delete('/api/assignments/' + id);
 	};
 
+	assignmentFactory.update = function (id, data) {
+		return $http.put('/api/assignments/edit/' + id, data);
+	};
+
 	assignmentFactory.postAssignments = function (classId, assignmentIds) {
 		return $http.post('/api/assignments/addExisting/' + classId, assignmentIds);
 	};

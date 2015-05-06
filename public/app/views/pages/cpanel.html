@@ -42,6 +42,10 @@
 						<label for="due">Due Date</label>
 						<span id="due">{{ assignment.dateDue | date : 'medium' }}<span>
 					</div>
+					<div class="form-group float-right align-right">
+						<label for="due">Due Assigned</label>
+						<span id="due">{{ assignment.dateAssigned | date : 'medium' }}<span>
+					</div>
 					<div class="form-group" ng-show="assignment.attachments.length > 0">
 						<label for="attachm">Attachments</label>
 						<span id="attachm"><span>

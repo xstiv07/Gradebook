@@ -51,6 +51,32 @@ module.exports = function (apiRouter) {
 		});
 	});
 
+	apiRouter.put('/assignments/edit/:assignment_id', function (req, res) {
+		Assignment.findById(req.params.assignment_id, function (err, assignm) {
+			if(err)
+				res.send(err);
+
+			if (req.body.name)
+				assignm.name = req.body.name;
+			if(req.body.description)
+				assignm.description = req.body.description;
+			if(req.body.dateAssigned)
+				assignm.dateAssigned = req.body.dateAssigned;
+			if(req.body.dateDue)
+				assignm.dateDue = req.body.dateDue;
+
+			assignm.save(function (err) {
+				if (err)
+					res.send(err);
+				else
+					res.json({
+						success: true,
+						message: 'Successfully updated'
+					});
+			});
+		});
+	});
+
 	apiRouter.route('/assignments/submit/:assignment_id')
 		.post(function (req, res) {
 			var submission = new Submission();
