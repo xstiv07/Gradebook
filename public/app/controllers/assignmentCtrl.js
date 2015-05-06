@@ -5,9 +5,11 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.processing = true;
 
-	vm.itemsPerPage = 10;
+	vm.itemsPerPage = 2;
 	vm.currentPage = 1;
 	vm.maxSize = 5;
+
+	vm.receivedData = false;
 
 	vm.animationsEnabled = true;
 
@@ -27,6 +29,11 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 		end = begin + vm.itemsPerPage;
 		vm.assignments = vm.notFilteredAsssignments.slice(begin, end);
 	};
+	
+	vm.pageCount = function () {
+		return Math.ceil(vm.totalItems / vm.itemsPerPage)
+	}
+
 
 	vm.areYouSure = function (id) {
 		var modalInstance = $modal.open({
@@ -113,18 +120,20 @@ angular.module('assignmentCtrl', ['assignmentService', 'ui.bootstrap'])
 
 	vm.doNewAssignment = function (isValid) {
 		vm.error = '';
+		vm.processing = true
 		if (isValid){
 			Assignment.create(vm.assignmentData, $routeParams.class_id).success(function (data) {
-				if (data.success)
-					$location.path('/cpanel')
-				else{
-					vm.processing = false;
-					vm.error = data.message;
-				};
-			});
+				vm.receivedData = true;
+				vm.message = data.message;
+				vm.processing = false;
+			})
+			.error(function (err) {
+				vm.error = err;
+				vm.processing = false;
+			})
 		}else{
 			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
+			vm.error = 'Invalid form';
 		};
 	};
 })

@@ -15,6 +15,9 @@ angular.module('classService', [])
 		return $http.delete('/api/classes/' + id);
 	};
 
+	classFactory.update = function (id, data) {
+		return $http.put('/api/classes/' + id, data);
+	};
 	classFactory.postStudents = function (id, studentsIds) {
 		return $http.post('/api/classes/addStudents/' + id, studentsIds);
 	};

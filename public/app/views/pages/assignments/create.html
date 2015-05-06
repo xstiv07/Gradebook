@@ -1,4 +1,4 @@
-<div class="container lines">
+<div class="container lines" ng-if="!assignment.receivedData">
 	<div class="col-md-offset-6 col-md-5">
 		<h5 class="logo-font align-center">New assignment</h5>
 
@@ -39,6 +39,10 @@
 			</div>
 		</form>  
 	</div>
+</div>
+
+<div class="alert alert-info align-center upper" ng-if="assignment.receivedData">
+	{{ assignment.message}}
 </div>
 
 <div class="alert alert-danger upper align-center" ng-show="assignment.error">

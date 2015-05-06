@@ -3,8 +3,12 @@
 	<p>Loading...</p>
 </div>
 
-<div class="col-md-10 padding-big col-centered">
-	<table class="table table-bordered table-striped" ng-show="enrolledStudents.users">
+<div class="container" ng-if="enrolledStudents.users.length > 0">
+	<h1 class="logo-font align-center">Students enrolled in {{ enrolledStudents.className }}</h1>
+
+	<pagination class="float-right" rotate="false" max-size="enrolledStudents.maxSize" total-items="enrolledStudents.totalItems" items-per-page="enrolledStudents.itemsPerPage" ng-model="enrolledStudents.currentPage" ng-change="enrolledStudents.pageChanged()"></pagination>
+
+	<table class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
 				<th>Full Name</th>
@@ -17,9 +21,26 @@
 				<td>{{ person.fname }} {{person.lname}}</td>
 				<td>{{ person.email }}</td>
 				<td>
-					<a href="#" ng-click="enrolledStudents.unenroll(person._id)" class="btn btn-link">Delete from class</a>
+					<a href="#" ng-click="enrolledStudents.areYouSure(person._id)" class="btn btn-link">Delete from class</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+
+<div class="container align-center" ng-if="enrolledStudents.users.length == 0">
+	<h5 class="regular-small-font">No students enrolled in {{ enrolledStudents.className }}</h5>
+</div>
+
+<script type="text/ng-template" id="areYouSure.html">
+    <div class="modal-header">
+        <h3 class="modal-title">You are about to delete stuff...</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to do this?!</h5>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="class.ok()">Yes, Go Ahead..</button>
+        <button class="btn btn-warning" ng-click="class.cancel()">No, wait...</button>
+    </div>
+</script>

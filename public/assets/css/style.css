@@ -82,6 +82,9 @@ table{
   -moz-animation:fadeIn .8s both linear;
   animation:fadeIn .8s both linear;
 }
+.table>tbody>tr>td{
+  max-width: 200px;
+}
 .dashboard{
   margin-top: 5%;
   margin-bottom: 5%
@@ -140,6 +143,9 @@ table{
 .green{
   color: #fff;
   background-color: #03A678
+}
+.green-color{
+  color: #03A678;
 }
 .green:hover, .green:focus{
   color: #fff;
@@ -859,7 +865,10 @@ textarea{
   background: url(../images/lines.png);
   background-repeat: no-repeat;
 }
-
+.lines2{
+  background: url(../images/lines23.png);
+  background-repeat: no-repeat;
+}
 
 
 

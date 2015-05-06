@@ -3,6 +3,7 @@ angular.module('classCtrl', [])
 .controller('classController', function ($rootScope, $location, Class) {
 	var vm = this;
 	vm.processing = true;
+	vm.receivedData = false;
 
 	vm.itemsPerPage = 3;
 	vm.currentPage = 1;
@@ -19,10 +20,6 @@ angular.module('classCtrl', [])
 
 		vm.processing = false;
 	})
-	.error(function () {
-		vm.processing = true;
-	})
-
 
 	vm.pageChanged = function () {
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
@@ -50,15 +47,13 @@ angular.module('classCtrl', [])
 			vm.classData.instructor = currentUser.id;
 
 			Class.create(vm.classData).success(function (data) {
-				if(data.success)
-					$location.path('/cpanel');
-				else
-					vm.error = data.message;
+				vm.receivedData = true;
+				vm.message = data.message;
 				vm.processing = false;
-			});
+			})
 		}else{
 			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
+			vm.error = 'Invalid form';
 		};
 	};
 })
@@ -66,6 +61,7 @@ angular.module('classCtrl', [])
 .controller('addStudentsController', function ($routeParams, $location, User, Class, $scope) {
 	var vm = this;
 	vm.processing = true;
+	vm.receivedData = false;
 
 	vm.selectedUsers = [];
 
@@ -81,8 +77,6 @@ angular.module('classCtrl', [])
 		end = begin + vm.itemsPerPage;
 		vm.users = vm.notFilteredUsers.slice(begin, end);
 
-		vm.processing = false;
-	}).error(function () {
 		vm.processing = false;
 	});
 
@@ -120,8 +114,8 @@ angular.module('classCtrl', [])
 		if(vm.selectedUsers.length > 0){
 			vm.processing = true;
 			Class.postStudents($routeParams.class_id, vm.selectedUsers).success(function (data) {
-				if (data.success)			
-					$location.path('/cpanel');
+				vm.receivedData = true;
+				vm.message = data.message;
 				vm.processing = false;
 			});
 		}else
@@ -129,15 +123,44 @@ angular.module('classCtrl', [])
 	};
 })
 
-.controller('enrolledStudentsController', function ($location, $routeParams, Class) {
+.controller('enrolledStudentsController', function ($location, $routeParams, Class, $modal) {
 	var vm = this;
 	vm.processing = true;
+	vm.animationsEnabled = true;
+
+	vm.itemsPerPage = 5;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
 
 	Class.getStudents($routeParams.class_id).success(function (data) {
-		vm.users = data.students;
+
+		vm.notFilteredUsers = data.students;
+		vm.totalItems = data.students.length;
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
 		vm.className = data.className;
 		vm.processing = false;
-	});
+	})
+
+	vm.areYouSure = function (id) {
+		var modalInstance = $modal.open({
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSure.html',
+			controller: "areYouSureController",
+			controllerAs: "class",
+		});
+		modalInstance.result.then(function () {
+			vm.unenroll(id)
+		});
+	};
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.users = vm.notFilteredUsers.slice(begin, end);
+	};
 
 	vm.unenroll = function (userId) {
 		vm.processing = true;
@@ -149,5 +172,23 @@ angular.module('classCtrl', [])
 			vm.processing = false;
 		});
 	};
+})
 
+.controller('classEditController', function ($location, $routeParams, Class) {
+	var vm = this;
+	vm.processing = true;
+	vm.receivedData = false
+
+	vm.saveClass = function (isValid) {
+		if(vm.classData != null){
+			vm.processing = true;
+
+			Class.update($routeParams.class_id, vm.classData).success(function (data) {
+				vm.receivedData= true;
+				vm.message = data.message;
+				vm.processing = false;
+			})
+		}
+
+	}
 })

@@ -28,12 +28,35 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 })
 .controller('viewSubmissionController', function ($routeParams, Assignment, $location, $modalInstance, assignmentId) {
 	var vm = this;
+	vm.processing = true;
+
+	vm.receivedComment = false;
+	vm.receivedGrade = false;
+
+	vm.itemsPerPage = 1;
+	vm.currentPage = 1;
+	vm.maxSize = 5;
 
 	//get all submissions for the assignment
 	Assignment.getSubmissions(assignmentId).success(function (data) {
-		vm.submissions = data.submissions;
+		vm.notFilteredSubmissions = data.submissions;
+		vm.totalItems = data.submissions.length;
+
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.submissions = vm.notFilteredSubmissions.slice(begin, end);
+
 		vm.assignmentName = data.assignmentName;
+		vm.processing = false;
 	});
+
+
+	vm.pageChanged = function () {
+		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
+		end = begin + vm.itemsPerPage;
+		vm.submissions = vm.notFilteredSubmissions.slice(begin, end);
+	};
+
 
 	vm.postGrade = function (isValid, grade, submissionId) {
 		vm.error = '';
@@ -41,14 +64,15 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 		if(isValid){
 			var data = {
 				gradeToSet: grade,
+				assignmentId: assignmentId,
 				submissionId: submissionId
 			};
 			Assignment.setGradeOrComment(data).success(function (data) {
-				$location.path('/assignments/viewSubmissions/' + $routeParams.assignment_id);
+				vm.receivedGrade = true;
+				vm.processing = false;
 			});
 		}else{
-			vm.processing = false;
-			vm.error = 'Fields marked with a * are mandatory.';
+			vm.error = 'Invalid form';
 		};
 	};
 
@@ -60,10 +84,11 @@ angular.module('submissionCtrl', ['assignmentService', 'angularFileUpload'])
 		if(isValid){
 			var data = {
 				commentToSet: commment,
+				assignmentId: assignmentId,
 				submissionId: submissionId
 			};
 			Assignment.setGradeOrComment(data).success(function (data) {
-				console.log(data)
+				vm.receivedComment = true;
 			});
 		};
 	};

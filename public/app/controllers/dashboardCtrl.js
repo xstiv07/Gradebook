@@ -3,10 +3,8 @@ angular.module('dashboardCtrl', [])
 .controller('dashboardController', function (User, $routeParams, $rootScope) {
 	var vm = this;
 
-	vm.oneAtATime = false;
 	vm.isCollapsed = false;
 	vm.showTree = false;
-
 
 	// ---------------calendar---------------
 	vm.eventSources = [];
@@ -65,6 +63,18 @@ angular.module('dashboardCtrl', [])
 		});
 		modalInstance.result.then(function () {
 			vm.deleteAssignment(id)
+		});
+	};
+
+	vm.areYouSureDeleteClass = function (id) {
+		var modalInstance = $modal.open({
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSureDeleteClass.html',
+			controller: "areYouSureController",
+			controllerAs: "class",
+		});
+		modalInstance.result.then(function () {
+			vm.deleteClass(id)
 		});
 	};
 

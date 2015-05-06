@@ -143,7 +143,12 @@ module.exports = function (apiRouter) {
 			_id: submissionId}, data, function (err) {
 				if (err)
 					res.send(err)
-		});
+				else
+					res.json({
+						success: true
+					})
+		})
+
 	});
 		
 	apiRouter.post('/assignments/create/:class_id', function (req, res) {
@@ -170,7 +175,10 @@ module.exports = function (apiRouter) {
 			if (err)
 				res.send(err);
 			else
-				res.json({success: true});
+				res.json({
+					success: true,
+					message: 'Successfully created'
+				});
 		});
 	});
 

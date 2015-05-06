@@ -28,12 +28,41 @@ module.exports = function (apiRouter) {
 				if (err)
 					res.send(err);
 				else
-					res.json({success: true});
+					res.json({
+						success: true,
+						message: 'Successfully created'
+					});
 			})
 		});
 
-		//removing a class also deletes all references of the user
+		
 	apiRouter.route('/classes/:class_id')
+
+		.put(function (req,res) {
+			Class.findById(req.params.class_id, function (err, gclass) {
+				if (err)
+					res.send(err);
+
+				if(req.body.name)
+					gclass.name = req.body.name;
+				if(req.body.crn)
+					gclass.crn = req.body.crn;
+				if (req.body.term)
+					gclass.term = req.body.term;
+
+				gclass.save(function (err) {
+					if (err)
+						res.send(err);
+					else
+						res.json({
+							success: true,
+							message: 'Successfully updated'
+						})
+				})
+			})
+
+		})
+		//removing a class also deletes all references of the user
 		.delete(function (req, res) {
 
 			Class.findByIdAndRemove(req.params.class_id, function (err, gClass) {
@@ -44,7 +73,6 @@ module.exports = function (apiRouter) {
 				Class.find(function (err, classes) {
 					res.json({
 						classes: classes,
-						message: 'Successfully deleted',
 						success: true
 					});
 				});
@@ -88,7 +116,8 @@ module.exports = function (apiRouter) {
 				};
 				
 				res.json({
-					success: true
+					success: true,
+					message: "Successfully added"
 				});
 			})
 		})
