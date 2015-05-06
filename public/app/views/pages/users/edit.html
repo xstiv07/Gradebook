@@ -1,55 +1,44 @@
-<h1>Edit User</h1>
+<div class="container" ng-if="!user.receivedData">
+	<div class="col-md-offset-4 col-md-4">
+		<h5 class="logo-font align-center">Edit user</h5>
+		<form class="form-horizontal" ng-submit="user.saveUser()">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" class="form-control" ng-model="user.userData.name">
+			</div>
 
-<form class="form-horizontal" ng-submit="user.saveUser()">
-	
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Name</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.userData.name">
+			<div class="form-group">
+				<label>Email</label>
+				<input type="email" class="form-control" ng-model="user.userData.email">
+			</div>
+
+			<div class="form-group">
+				<label>Password</label>
+				<input type="text" class="form-control" ng-model="user.userData.password">
+			</div>
+
+			<div class="form-group align-center">
+				<button type="submit" class="Tghost-btn">Edit</button>
+			</div>
+		</form>
+		<div class="form-inline align-center">
+			<span ng-repeat="role in user.roles" class="padding-big input-group">
+				<label>{{ role }}</label>
+				<input type="checkbox" ng-checked="user.selectedRoles.indexOf(role) != -1" ng-click="user.toggleCheck(role)">
+			</span>
+			<div>
+				<button class="btn btn-link" ng-click="user.postUserRoles()">Set Roles</button>
+			</div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Username</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.userData.username">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Password</label>
-		<div class="col-sm-6">
-			<input type="password" class="form-control" ng-model="user.userData.password">
-		</div>
-	</div>
-	
-	<div class="form-group">
-	<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-default btn-lg btn-block">Update User</button>
-	</div>
-	</div>
-
-</form>
-
-<div class="row show-hide-message" ng-show="user.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-		<div class="alert alert-info">
-			{{ user.message }}
-		</div>
-
-	</div>
 </div>
 
-<div>
-	<table>
-		<tbody>
-			<tr ng-repeat="role in user.roles">
-				<td>{{ role }}</td>
-				<td><input type="checkbox" ng-checked="user.selectedRoles.indexOf(role) != -1" ng-click="user.toggleCheck(role)"></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="alert alert-info align-center upper" ng-if="user.receivedData">
+	{{ user.message}}
 </div>
 
-<button class="btn btn-default" ng-click="user.postUserRoles()">Set Roles</button>
+
+<div class="alert alert-danger upper align-center" ng-show="class.error">
+	{{class.error}}
+</div>

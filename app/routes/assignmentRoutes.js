@@ -227,11 +227,11 @@ module.exports = function (apiRouter) {
 		//create and list all assignments
 	apiRouter.route('/assignments')
 		.get(function (req, res) {
-			Assignment.find(function (err, assignments) {
+			Assignment.find().deepPopulate('gclass').exec(function (err, assignments) {
 				if (err)
 					res.send(err);
 				else
 					res.json(assignments);
-			});
+			})
 		});
 }

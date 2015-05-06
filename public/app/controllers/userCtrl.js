@@ -1,11 +1,11 @@
 angular.module('userCtrl', ['userService'])
 
-.controller('userController', function (User, $location) {
+.controller('userController', function (User, $location, $modal) {
 	var vm = this;
 
 	vm.processing = true;
 
-	vm.itemsPerPage = 10;
+	vm.itemsPerPage = 3;
 	vm.currentPage = 1;
 	vm.maxSize = 5;
 	
@@ -21,6 +21,18 @@ angular.module('userCtrl', ['userService'])
 	}).error(function () {
 		vm.processing = false;
 	});
+
+	vm.areYouSure = function (id) {
+		var modalInstance = $modal.open({
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSure.html',
+			controller: "areYouSureController",
+			controllerAs: "user",
+		});
+		modalInstance.result.then(function () {
+			vm.deleteUser(id)
+		});
+	};
 
 	vm.pageChanged = function () {
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
@@ -40,6 +52,8 @@ angular.module('userCtrl', ['userService'])
 .controller('userEditController', function ($location, $routeParams, User) {
 	var vm = this;
 	vm.processing = true;
+
+	vm.receivedData = false;
 
 
 	User.get($routeParams.user_id).success(function (data) {
@@ -61,8 +75,8 @@ angular.module('userCtrl', ['userService'])
 	vm.postUserRoles = function () {
 		vm.processing = true;
 		User.postUserRoles($routeParams.user_id, vm.selectedRoles).success(function (data) {
-			if (data.success)			
-				$location.path('/users');
+			vm.receivedData = true;
+			vm.message = data.message;
 				
 			vm.processing = false;
 		});
@@ -72,10 +86,9 @@ angular.module('userCtrl', ['userService'])
 		vm.processing = true;
 
 		User.update($routeParams.user_id, vm.userData).success(function (data) {
-			if (data.success)			
-					$location.path('/users');
-				else 
-					vm.message = data.message;
+		
+			vm.receivedData = true;
+			vm.message = data.message;
 			vm.processing = false;
 		});
 	};

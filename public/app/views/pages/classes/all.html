@@ -28,13 +28,12 @@
 				<td>{{ gClass.term }}</td>
 				<td>{{ gClass.instructor.fname }} {{gClass.instructor.lname}}</td>
 				<td class="col-sm-2">
-					<a ng-href="/classes/{{ gClass._id }}" class="btn btn-link">Edit Class</a>
-					<a href="#" ng-click="class.doDeleteClass(gClass._id)" class="btn btn-link">Delete Class</a>
+					<a ng-href="/classes/edit/{{ gClass._id }}" class="btn btn-link">Edit Class</a>
+					<a href="#" ng-click="class.areYouSureDeleteClass(gClass._id)" class="btn btn-link">Delete Class</a>
 					<a ng-href="/assignments/create/{{ gClass._id }}" class="btn btn-link">New Assignment</a>
-					<a ng-href="/assignments/addAssignment/{{ gClass._id }}" class="btn btn-link">Add Existing Assignment</a>
-					<a ng-href="/assignments/view/{{ gClass._id }}" class="btn btn-link">View Assignments</a>
+					<a ng-href="/assignments/view/{{ gClass._id }}" class="btn btn-link">Class Assignments</a>
 					<a ng-href="/classes/addStudents/{{ gClass._id }}" class="btn btn-link">Add Students</a>
-					<a ng-href="/classes/enrolledStudents/{{ gClass._id }}" class="btn btn-link">View Students</a>
+					<a ng-href="/classes/enrolled/{{ gClass._id }}" class="btn btn-link">Enrolled Students</a>
 				</td>
 			</tr>
 		</tbody>
@@ -44,3 +43,16 @@
 <div class="container align-center" ng-show="class.classes.length == 0">
 	<h5 class="regular-small-font">Currently, there are no active classes.</h5>
 </div>
+
+<script type="text/ng-template" id="areYouSure.html">
+    <div class="modal-header">
+        <h3 class="modal-title">You are about to delete stuff...</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to do this?!</h5>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="class.ok()">Yes, Go Ahead..</button>
+        <button class="btn btn-warning" ng-click="class.cancel()">No, wait...</button>
+    </div>
+</script>

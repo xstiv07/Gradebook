@@ -91,13 +91,6 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'assignment',
 			adminAccess: true
 		})
-		.when('/assignments/addAssignment/:class_id',{
-			templateUrl: 'app/views/pages/assignments/addExistingAssignment.html',
-			controller: 'assignmentController',
-			controllerAs: 'assignment',
-			instructorAccess: true,
-			adminAccess: true
-		})
 		.when('/assignments/submit/:assignment_id',{
 			templateUrl: 'app/views/pages/assignments/submit.html',
 			controller: 'submissionController',
@@ -118,7 +111,6 @@ angular.module('app.routes', ['ngRoute'])
 //checking for a user role on every request, based on the custom route parameters
 // when done - returning a promise, so main ctrl can execute. 
 .run(function ($rootScope, $location, $route, Auth, $q) {
-	console.log('executing run')
 	
 	var adminRoutes = [];
 	var instructorRoutes = [];

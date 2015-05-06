@@ -1,16 +1,40 @@
-<div ng-show="!submission.uploaded">
-	<span class="button-upload" ng-file-select ng-model="submission.files" ng-multiple="true">Select Files To Upload</span>
+<div class="container align-center">
+	<div ng-if="!submission.uploaded">
 
-	<button ng-click="submission.upload(submission.files)" class="btn btn-default">SUBMIT</button>
-</div>
 
-<p ng-show="!submission.uploaded" ng-bind="submission.uploadPercent"></p>
+		<span class="Tghost-btn Tghost-upload" ng-file-select ng-model="submission.files" ng-multiple="true">
+			<span class="logo-font">Select Files To Upload</span>
+		</span>
 
-<div ng-show='submission.uploaded'>
-	<p>Following files were successfully uploaded:</p>
-	<ul >
-	    <li ng-repeat="f in submission.files" style="font:smaller">
-	    	{{f.name}}
-	    </li>
-	</ul>
+		<div class="padding-big"></div>
+
+		<div ng-if="submission.files.length > 0">
+			<p>Selected Files:</p>
+			<ul>
+			    <li ng-repeat="f in submission.files">
+			    	<b>{{f.name}}</b>
+			    </li>
+			</ul>
+		</div>
+
+		<div class="padding-big"></div>
+
+		<div class="align-center">
+			<button ng-click="submission.upload(submission.files)" class="btn btn-no-color">
+			<span class="glyphicon glyphicon-floppy-disk"></span>
+				Upload     <span class="glyphicon glyphicon-floppy-disk"></span>
+			</button>
+		</div>
+	</div>
+
+	<p ng-show="!submission.uploaded" ng-bind="submission.uploadPercent"></p>
+
+	<div ng-show='submission.uploaded'>
+		<p>Following files were successfully uploaded:</p>
+		<ul >
+		    <li ng-repeat="f in submission.files">
+		    	<b>{{f.name}}</b>
+		    </li>
+		</ul>
+	</div>
 </div>

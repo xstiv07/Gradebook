@@ -82,6 +82,9 @@ table{
   -moz-animation:fadeIn .8s both linear;
   animation:fadeIn .8s both linear;
 }
+.flex{
+  display: flex;
+}
 .table>tbody>tr>td{
   max-width: 200px;
 }
@@ -851,6 +854,12 @@ textarea{
 }
 .Tghost-auth{
   background-color: transparent;
+}
+.Tghost-upload{
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  line-height: 200px
 }
 .Tgost-auth:hover{
   background-color: none;

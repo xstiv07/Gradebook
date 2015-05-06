@@ -70,7 +70,7 @@
 					  	<li>
 					  		<a href="/grades">Gradebook</a>
 					  	</li>
-					  	<li>
+					  	<li ng-if="main.isInstructor || main.isAdmin">
 					  		<a href="/cpanel">Instructor Panel</a>
 					  	</li>
 						<li ng-if='main.isAdmin'>

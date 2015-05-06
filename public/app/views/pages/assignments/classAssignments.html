@@ -1,32 +1,27 @@
-<div class="jumbotron text-center" ng-show="assignment.processing">
+<div class="row absolute text-center" ng-show="class.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading Assignments...</p>
+	<p>Loading...</p>
 </div>
-<div class="page-header">
-<h1>Assignments for {{assignment.classNm}}</h1>
-</div>
-<table class="table table-bordered table-striped">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Due Date</th>
-			<th class="col-sm-2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="assignm in assignment.assignments">
-			<td>{{ assignm.name }}</td>
-			<td>{{ assignm.description }}</td>
-			<td>{{ assignm.dateDue | date : 'medium' }}</td>
-			<td class="col-sm-2">
-				<a ng-href="/classes/{{ gClass._id }}" class="btn btn-default">Edit Assignment</a>
-				<a ng-href="/assignments/submit/{{ assignm._id }}" class="btn btn-default">Submit Assignment</a>
-				<a href="#" ng-click="assignment.deleteAssignmentFromClass(assignm._id)" class="btn btn-default">Delete Assignment From a Class</a>
-				<a ng-href="/assignments/viewSubmissions/{{ assignm._id }}" class="btn btn-default">View Submissions</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
 
-<h3>This is a class page - students can view and submit assignments here, see graphs for a their class and view deadlines for the class</h3>
+<div ng-if="assignment.assignments.length > 0" class="container">
+	<h1 class="logo-font align-center">Assignments for {{assignment.classNm}}</h1>
+
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Date Assigned</th>
+				<th>Due Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="assignm in assignment.assignments">
+				<td>{{ assignm.name }}</td>
+				<td>{{ assignm.description }}</td>
+				<td>{{ assignm.dateAssigned | date : 'medium' }}</td>
+				<td>{{ assignm.dateDue | date : 'medium' }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

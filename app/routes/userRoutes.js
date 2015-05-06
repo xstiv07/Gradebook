@@ -88,8 +88,8 @@ module.exports = function (apiRouter) {
 				//update the users info only if it is new
 				if(req.body.name)
 					user.name = req.body.name;
-				if(req.body.username)
-					user.username = req.body.username;
+				if(req.body.email)
+					user.email = req.body.email;
 				if(req.body.password)
 					user.password = req.body.password;
 
@@ -101,7 +101,7 @@ module.exports = function (apiRouter) {
 						//return a message
 						res.json({
 							success: true,
-							message: 'User updated'
+							message: 'Successfully updated'
 						});
 					};
 				});
@@ -138,7 +138,8 @@ module.exports = function (apiRouter) {
 			});				
 		
 		res.json({
-			success: true
+			success: true,
+			message: "Successfully updated"
 		});
 
 	});

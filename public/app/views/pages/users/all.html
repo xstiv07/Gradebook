@@ -30,7 +30,7 @@
 				</td>
 				<td class="col-sm-2">
 					<a ng-href="/users/{{ person._id }}" class="btn btn-link">Edit</a>
-					<a href="#" ng-click="user.deleteUser(person._id)" class="btn btn-link">Delete</a>
+					<a href="#" ng-click="user.areYouSure(person._id)" class="btn btn-link">Delete</a>
 				</td>
 			</tr>
 		</tbody>
@@ -40,3 +40,16 @@
 <div class="row" ng-show="!user.users">
 	<h5>Currently, there are no users in the database.</h5>
 </div>
+
+<script type="text/ng-template" id="areYouSure.html">
+    <div class="modal-header">
+        <h3 class="modal-title">You are about to delete stuff...</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to do this?!</h5>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="user.ok()">Yes, Go Ahead..</button>
+        <button class="btn btn-warning" ng-click="user.cancel()">No, wait...</button>
+    </div>
+</script>

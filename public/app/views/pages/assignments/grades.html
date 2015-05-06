@@ -10,7 +10,7 @@
 		    		<label style="display: inline">Class instructor: </label>
 		    		<span>{{class.instructor.fname}} {{class.instructor.lname}}</span>
 		    	</div>
-		    	<h5 class="align-center" ng-if="class.assignments.length == 0">This class has no active assignments. Please contact your instructor to resolve the issue.</h5>
+		    	<h5 class="align-center" ng-if="class.assignments.length == 0">This class has no active assignments. Contact your instructor...</h5>
 
 		    	<div class="inline padding-big margin-top-big gradebook-box" ng-repeat="assignment in class.assignments">
 
@@ -23,8 +23,13 @@
 						<span id="due">{{ assignment.dateDue | date : 'medium' }}<span>
 					</div>
 
+					<div class="form-group float-right align-right">
+						<label for="due">Due Assigned</label>
+						<span id="due">{{ assignment.dateAssigned | date : 'medium' }}<span>
+					</div>
+
 					<div class="form-group" ng-if="assignment.attachments.length == 0 || assignment.attachments.length == null">
-						<label for="attachm">Assignment docs</label>
+						<label for="attachm">Assignment Docs</label>
 						<span id="attachm">N/A<span>
 					</div>
 

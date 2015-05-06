@@ -1,6 +1,6 @@
 angular.module('classCtrl', [])
 
-.controller('classController', function ($rootScope, $location, Class) {
+.controller('classController', function ($rootScope, $location, Class, $modal) {
 	var vm = this;
 	vm.processing = true;
 	vm.receivedData = false;
@@ -20,6 +20,18 @@ angular.module('classCtrl', [])
 
 		vm.processing = false;
 	})
+
+	vm.areYouSureDeleteClass = function (id) {
+		var modalInstance = $modal.open({
+			animation: vm.animationsEnabled,
+			templateUrl: 'areYouSure.html',
+			controller: "areYouSureController",
+			controllerAs: "class",
+		});
+		modalInstance.result.then(function () {
+			vm.doDeleteClass(id)
+		});
+	};
 
 	vm.pageChanged = function () {
 		var begin = ((vm.currentPage - 1) * vm.itemsPerPage),
@@ -180,15 +192,17 @@ angular.module('classCtrl', [])
 	vm.receivedData = false
 
 	vm.saveClass = function (isValid) {
-		if(vm.classData != null){
-			vm.processing = true;
+		if(isValid){
+			if(vm.classData != null){
+				vm.processing = true;
 
-			Class.update($routeParams.class_id, vm.classData).success(function (data) {
-				vm.receivedData= true;
-				vm.message = data.message;
-				vm.processing = false;
-			})
-		}
-
+				Class.update($routeParams.class_id, vm.classData).success(function (data) {
+					vm.receivedData= true;
+					vm.message = data.message;
+					vm.processing = false;
+				})
+			}
+		}else
+			vm.error = "Invalid form"
 	}
 })
