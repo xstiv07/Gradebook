@@ -22,7 +22,6 @@ input[type="text"],
 input[type="password"] {
   font-family: "Open Sans", sans-serif;
   width: 100%;
-  padding: 0.7em 2em 0.7em 1.7em;
   font-size: 18px;
   background: none repeat scroll 0% 0% transparent;
   border: thin solid #b4b2b2;
