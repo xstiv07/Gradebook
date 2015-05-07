@@ -23,14 +23,9 @@
 						<span id="due">{{ assignment.dateDue | date : 'medium' }}<span>
 					</div>
 
-					<div class="form-group float-right align-right">
+					<div class="form-group align-right">
 						<label for="due">Due Assigned</label>
 						<span id="due">{{ assignment.dateAssigned | date : 'medium' }}<span>
-					</div>
-
-					<div class="form-group" ng-if="assignment.attachments.length == 0 || assignment.attachments.length == null">
-						<label for="attachm">Assignment Docs</label>
-						<span id="attachm">N/A<span>
 					</div>
 
 					<div class="assign-descr">
@@ -87,9 +82,9 @@
 		<div class="classTree">
 			<div class="circles" id="c-co">
 				<div ng-repeat="class in grade.userData.classes" class="circle">
-					<a href="/assignments/view/{{ c._id }}">
+					
 						<span>{{ class.name }}</span>
-					</a>
+					
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 angular.module('dashboardCtrl', [])
 
-.controller('dashboardController', function (User, $routeParams, $rootScope) {
+.controller('dashboardController', function (User, $routeParams, $rootScope, $modal) {
 	var vm = this;
 
 	vm.isCollapsed = false;

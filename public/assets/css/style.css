@@ -166,7 +166,9 @@ table{
 }
 .footer{
   background-color: black;
-  height: 80px;
+}
+.hei{
+  height: 100vh;
 }
 .cursor{
   cursor: pointer;
@@ -457,7 +459,7 @@ table{
   position: fixed;
   bottom:0;
   width: 100%;
-  z-index: 9999999;
+  z-index: 1;
 }
 .circles{
   margin: 0 auto;
@@ -486,7 +488,7 @@ table{
 .circle span{
   text-align: center;
   position: relative;
-  top: 40%;
+  line-height: 100px;
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -506,6 +508,9 @@ table{
   background-color: #ff2462;
   border-color: #ff2462;
   opacity: 1
+}
+.progress-bar {
+  background-color: #ff2462;
 }
 .fa-connectdevelop:focus{
   color: #ff2462;
@@ -801,6 +806,9 @@ textarea{
 .rules *{
   padding-bottom: 20px;
 }
+#instr{
+  background-image: url(../images/instr.jpg);
+}
 .instructor2{
   background-position: 33% 0;
 }
@@ -810,6 +818,7 @@ textarea{
 .student2{
   background-position: 100% 66.6%;
 }
+
 .Tghost-btn {
   font-family: "Arial";
   display: inline-block;
