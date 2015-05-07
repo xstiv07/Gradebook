@@ -175,15 +175,17 @@
 		<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
 			<div>
 				<label class="upper align-left">First Name<span class="pink-color">*</span></label>
-				<input required type="text" class="form-control" ng-model="register.registerData.fname">
+				<input required ng-minlength="3" name="fname" type="text" class="form-control" ng-model="register.registerData.fname">
+				<p class="help-block bg-danger" ng-show="form.fname.$error.minlength">Min 3 characters required</p>
 			</div>
 			<div>
 				<label class="upper align-left">Last Name<span class="pink-color">*</span></label>
-				<input required type="text" class="form-control" ng-model="register.registerData.lname">
+				<input required ng-minlength="3" type="text" class="form-control" name="lname" ng-model="register.registerData.lname">
+				<p class="help-block bg-danger" ng-show="form.lname.$error.minlength">Min 3 characters required</p>
 			</div>
 			<div>
 				<label class="upper align-left">E-mail<span class="pink-color">*</span></label>
-				<input type="email" name="email" required type="text" class="form-control" ng-model="register.registerData.email">
+				<input type='email' validate-email name='email' class="form-control" name="email" id='email' ng-model='register.registerData.email' required>  
 				<p class="help-block bg-danger" ng-show="form.email.$error.email">Invalid e-mail</p>
 			</div>
 			<div>
