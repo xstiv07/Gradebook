@@ -32,20 +32,11 @@ var classSchema = new Schema({
 	}]
 });
 
-classSchema.pre('remove', function (next) {
-	var gClass = this;
-
-	//should update all references of users
-	gClass.model('User').update(
-		{_id: {$in: gClass.users}},
-		{$pull: {classes: gClass._id}},
-		{multi: true},
-		next
-	);
-});
 
 classSchema.pre('remove', function (next) {
 	var gClass = this;
+
+	console.log('triggered from class schema')
 
 	async.each(gClass.assignments, function (assignmId, next) {
 		gClass.model('Assignment').findByIdAndRemove(assignmId).exec(function (err, assignm) {
@@ -54,6 +45,14 @@ classSchema.pre('remove', function (next) {
 			next();
 		})
 	});
+
+	//should update all references of users
+	gClass.model('User').update(
+		{_id: {$in: gClass.users}},
+		{$pull: {classes: gClass._id}},
+		{multi: true},
+		next
+	);
 })
 
 

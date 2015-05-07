@@ -33,8 +33,16 @@ var assignmentSchema = new Schema({
 	}]
 });
 
+//will remove an assignment from classes on delete cascade
 assignmentSchema.pre('remove', function (next) {
 	var assignment = this;
+	console.log('triggered from assignment schema')
+	async.each(assignment.submissions, function (subId, next) {
+		assignment.model('Submission').findByIdAndRemove(subId).exec(function (err, submission) {
+			submission.remove();
+			next();
+		})
+	});
 
 	assignment.model('Class').update(
 		{_id: {$in: assignment.gclass}},
@@ -42,18 +50,6 @@ assignmentSchema.pre('remove', function (next) {
 		{multi: true},
 		next
 	);
-})
-
-//will remove an assignment from classes on delete cascade
-assignmentSchema.pre('remove', function (next) {
-	var assignment = this;
-
-	async.each(assignment.submissions, function (subId, next) {
-		assignment.model('Submission').findByIdAndRemove(subId).exec(function (err, submission) {
-			submission.remove();
-			next();
-		})
-	});
 });
 
 assignmentSchema.plugin(deepPopulate);
