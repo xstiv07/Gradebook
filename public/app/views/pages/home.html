@@ -29,42 +29,38 @@
 	</div>
 </div>
 
-<div class='padding-big'></div>
+<div class="container align-center">
+	<h2 class="title-font">using gradebook</h2>
+	<div class="padding-huge"></div>
 
-<div class="hei">
-	<div class="container align-center">
-		<h2 class="title-font">using gradebook</h2>
-		<div class="padding-big"></div>
+	<div class="col-md-4 rules instructors">
+		<p class="regular-small-font orange">Instructors</p>
+		<div class="person instructor1"></div>
+		<div class="person instructor2"></div>
 
-		<div class="col-md-4 rules instructors">
-			<p class="regular-small-font orange">Instructors</p>
-			<div class="person instructor1"></div>
-			<div class="person instructor2"></div>
-
-			<p class="regular-normal-font">Start creating classes and assignments for your students right away</p>
-			
-		</div>
-		<div class="col-md-4 col-md-offset-4 rules students">
-			<p class="regular-small-font green-color">Students</p>
-			<div class="person student1"></div>
-			<div class="person student2"></div>
-			<p class="regular-normal-font">Contact your instructor about class enrollment.</p>
-		</div>
-
+		<p class="regular-normal-font">Start creating classes and assignments for your students right away</p>
+		
 	</div>
-	<div class="container align-center ">
-		<h2 class="title-font">features</h2>
-		<div class="padding-big"></div>
-		<div id="cloud"></div>
+	<div class="col-md-4 col-md-offset-4 rules students">
+		<p class="regular-small-font green-color">Students</p>
+		<div class="person student1"></div>
+		<div class="person student2"></div>
+		<p class="regular-normal-font">Contact your instructor about class enrollment.</p>
 	</div>
-	<div class="padding-big"></div>
-
-	<div class="footer align-center">
-		<div class="container">
-			<span class="regular-small-font">Simple Gradebook 2015</span>
-		</div>
-	</div>	
+	<div class="padding-huge"></div>
 </div>
+<div class="container align-center ">
+	<h2 class="title-font">Application features include: </h2>
+	<div id="cloud"></div>
+</div>
+<div class="padding-big"></div>
+
+<div class="footer align-center">
+	<div class="container">
+		<span class="regular-small-font white">Simple Gradebook 2015&nbsp;&nbsp;<span class="glyphicon glyphicon-copyright-mark"></span></span>
+	</div>
+</div>	
+
 
 <script type="text/javascript" src="scripts/d3.js"></script>
 <script type="text/javascript" src="scripts/d3.layout.cloud.js"></script>
@@ -72,10 +68,11 @@
 <script type="text/javascript" src="scripts/inview.min.js"></script>
 
 <script>
-  var fill = d3.scale.category20();
+  var fill = d3.scale.category10();
   var selection = d3.select("#cloud");
   var width = selection[0][0].clientWidth;
   var height = 600;
+  var color = "#ececec"
 
   d3.layout.cloud().size([width, height])
       .words([
@@ -100,7 +97,7 @@
       .enter().append("text")
         .style("font-size", function(d) { return d.size + "px"; })
         .style("font-family", "Impact")
-        .style("fill", function(d, i) { return fill(i); })
+        .style("fill", function(d) { return color })
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
