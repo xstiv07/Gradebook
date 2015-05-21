@@ -58,6 +58,9 @@ module.exports = function (apiRouter) {
 			user.email =  req.body.email;
 			user.password = req.body.password;
 
+			if (req.body.role === "Instructor")
+				user.roles.push(req.body.role)
+
 			user.save(function(err){
 				if (err){
 					//duplicate entry

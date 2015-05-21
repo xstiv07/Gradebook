@@ -173,6 +173,22 @@
 	<div class="login-form">
 		<span class="logo-font">registration</span>
 		<form ng-submit="register.doRegister(form.$valid)" name="form" novalidate>
+			<div class="align-left">
+				<label class="upper align-left">I am: <span class="pink-color">*</span></label>
+
+				<div class="radio">
+					<label class>
+						<input type='radio' name="student" value="Student" ng-model="register.registerData.role">
+						Student
+					</label>
+
+					<label>
+						<input type='radio' name="instructor" value="Instructor" ng-model="register.registerData.role">
+						Instructor
+					</label>
+				</div>
+				
+			</div>
 			<div>
 				<label class="upper align-left">First Name<span class="pink-color">*</span></label>
 				<input required ng-minlength="3" name="fname" type="text" class="form-control" ng-model="register.registerData.fname">
